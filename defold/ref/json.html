@@ -1,0 +1,24 @@
+<html><head><link rel='stylesheet' type='text/css' href='../defold.css'></head><body><div class='nav'><a class='chevron' href='../index.html'><img src='../svg/chevron-left.svg' alt='Home'></a></div><h1>JSON</h1>
+<p><p>Manipulation of JSON data strings.</p></p>
+<h1><a name='//apple_ref/cpp/Function/json.decode' class='dashAnchor'></a><a class='entry' name='json.decode'>json.decode()</a></h1><div class='brief'><p>decode JSON from a string to a lua-table</p></div><p><p>Decode a string of JSON data into a Lua table.
+A Lua error is raised for syntax errors.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>json<p><span class="type">string</span> json data</p></p></div><h3>RETURN</h3><div class='return'><p>data - <p><span class="type">table</span> decoded json</p></p></div><h3>EXAMPLES</h3><div class='examples'><p><p>Converting a string containing JSON data into a Lua table:</p>
+<div class="codehilite"><pre><span></span><span class="k">function</span> <span class="nf">init</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
+    <span class="kd">local</span> <span class="n">jsonstring</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="s">{&quot;persons&quot;:[{&quot;name&quot;:&quot;John Doe&quot;},{&quot;name&quot;:&quot;Darth Vader&quot;}]}&#39;</span>
+    <span class="kd">local</span> <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="n">decode</span><span class="p">(</span><span class="n">jsonstring</span><span class="p">)</span>
+    <span class="n">pprint</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="k">end</span>
+</pre></div>
+
+
+<p>Results in the following printout:</p>
+<div class="codehilite"><pre><span></span>{
+  persons = {
+    1 = {
+      name = John Doe,
+    }
+    2 = {
+      name = Darth Vader,
+    }
+  }
+}
+</pre></div></p></div><hr/></body></html>

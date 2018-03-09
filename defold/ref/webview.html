@@ -1,0 +1,58 @@
+<html><head><link rel='stylesheet' type='text/css' href='../defold.css'></head><body><div class='nav'><a class='chevron' href='../index.html'><img src='../svg/chevron-left.svg' alt='Home'></a></div><h1>Webview</h1>
+<p><p>Functions and for creating and controlling webviews to show html pages
+or evaluate javascript.</p></p>
+<h1><a name='//apple_ref/cpp/Function/webview.create' class='dashAnchor'></a><a class='entry' name='webview.create'>webview.create()</a></h1><div class='brief'><p>Creates a webview</p></div><p><p>Creates a webview instance. It can show HTML pages as well as evaluate Javascript.
+The view remains hidden until the first call.</p>
+<p><span class="icon-ios"></span> On iOS, the callback will never get a webview.CALLBACK_RESULT_EVAL_ERROR,
+due to the iOS SDK implementation.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>callback<p><span class="type">function(self, webview_id, request_id, type, data)</span> A callback which receives info about finished requests taking the following parameters</p>
+<dl>
+<dt><code>self</code></dt>
+<dd><span class="type">object</span> The calling script</dd>
+<dt><code>webview_id</code></dt>
+<dd><span class="type">number</span> The webview id</dd>
+<dt><code>request_id</code></dt>
+<dd><span class="type">number</span> The request id</dd>
+<dt><code>type</code></dt>
+<dd><span class="type">number</span> The type of the callback. Can be one of these:</dd>
+</dl>
+<ul>
+<li><code>webview.CALLBACK_RESULT_URL_OK</code></li>
+<li><code>webview.CALLBACK_RESULT_URL_ERROR</code></li>
+<li><code>webview.CALLBACK_RESULT_EVAL_OK</code></li>
+<li><code>webview.CALLBACK_RESULT_EVAL_ERROR</code></li>
+</ul>
+<dl>
+<dt><code>data</code></dt>
+<dd><span class="type">table</span> A table holding the data. The table has these fields:</dd>
+</dl>
+<ul>
+<li><span class="type">string</span> <code>url</code>: The url used in the webview.open() call. <code>nil</code> otherwise.</li>
+<li><span class="type">string</span> <code>result</code>: Holds the result of either: a failed url open, a successful eval request or a failed eval. <code>nil</code> otherwise</li>
+</ul></p></div><h3>RETURN</h3><div class='return'><p>id - <p><span class="type">number</span> The id number of the webview</p></p></div><h3>EXAMPLES</h3><div class='examples'><p><div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="k">function</span> <span class="nf">webview_callback</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">webview_id</span><span class="p">,</span> <span class="n">request_id</span><span class="p">,</span> <span class="nb">type</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">type</span> <span class="o">==</span> <span class="n">webview</span><span class="p">.</span><span class="n">CALLBACK_RESULT_URL_OK</span> <span class="k">then</span>
+        <span class="c1">-- the page is now loaded, let&#39;s show it</span>
+        <span class="n">webview</span><span class="p">.</span><span class="n">set_visible</span><span class="p">(</span><span class="n">webview_id</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">elseif</span> <span class="nb">type</span> <span class="o">==</span> <span class="n">webview</span><span class="p">.</span><span class="n">CALLBACK_RESULT_URL_ERROR</span> <span class="k">then</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">Failed to load url: &quot;</span> <span class="o">..</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;</span><span class="s">url&quot;</span><span class="p">])</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">Error: &quot;</span> <span class="o">..</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;</span><span class="s">error&quot;</span><span class="p">])</span>
+    <span class="k">elseif</span> <span class="nb">type</span> <span class="o">==</span> <span class="n">webview</span><span class="p">.</span><span class="n">CALLBACK_RESULT_EVAL_OK</span> <span class="k">then</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">Eval ok. Result: &quot;</span> <span class="o">..</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;</span><span class="s">result&#39;</span><span class="p">])</span>
+    <span class="k">elseif</span> <span class="nb">type</span> <span class="o">==</span> <span class="n">webview</span><span class="p">.</span><span class="n">CALLBACK_RESULT_EVAL_ERROR</span> <span class="k">then</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">Eval not ok. Request # &quot;</span> <span class="o">..</span> <span class="n">request_id</span><span class="p">)</span>
+    <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="kd">local</span> <span class="n">webview_id</span> <span class="o">=</span> <span class="n">webview</span><span class="p">.</span><span class="n">create</span><span class="p">(</span><span class="n">webview_callback</span><span class="p">)</span>
+</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Function/webview.destroy' class='dashAnchor'></a><a class='entry' name='webview.destroy'>webview.destroy()</a></h1><div class='brief'><p>Destroys a webview</p></div><p><p>Destroys an instance of a webview.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>webview_id<p><span class="type">number</span> The webview id (returned by the webview.create() call)</p></p></div><hr/><h1><a name='//apple_ref/cpp/Function/webview.eval' class='dashAnchor'></a><a class='entry' name='webview.eval'>webview.eval()</a></h1><div class='brief'><p>Evaluates javascript in a webview</p></div><p><p>Evaluates java script within the context of the currently loaded page (if any).
+Once the request is done, the callback (registered in <code>webview.create()</code>)
+is invoked. The callback will get the result in the <code>data["result"]</code> field.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>webview_id<p><span class="type">number</span> The webview id</p></p><p class='param'>code<p><span class="type">string</span> The java script code to evaluate</p></p></div><h3>RETURN</h3><div class='return'><p>id - <p><span class="type">number</span> The id number of the request</p></p></div><h3>EXAMPLES</h3><div class='examples'><p><div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">request_id</span> <span class="o">=</span> <span class="n">webview</span><span class="p">.</span><span class="n">eval</span><span class="p">(</span><span class="n">webview_id</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">GetMyFormData()&quot;</span><span class="p">)</span>
+</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Function/webview.is_visible' class='dashAnchor'></a><a class='entry' name='webview.is_visible'>webview.is_visible()</a></h1><div class='brief'><p>Gets the visibility state of the webview</p></div><p><p>Returns the visibility state of the webview.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>webview_id<p><span class="type">number</span> The webview id (returned by the webview.create() call)</p></p></div><h3>RETURN</h3><div class='return'><p>visibility - <p><span class="type">number</span> Returns 0 if not visible, 1 if it is visible</p></p></div><hr/><h1><a name='//apple_ref/cpp/Function/webview.open' class='dashAnchor'></a><a class='entry' name='webview.open'>webview.open()</a></h1><div class='brief'><p>Open a page using an url</p></div><p><p>Opens a web page in the webview, using an url. Once the request is done, the
+callback (registered in <code>webview.create()</code>) is invoked.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>webview_id<p><span class="type">number</span> The webview id</p></p><p class='param'>url<p><span class="type">string</span> The url to open</p></p><p class='param'>options<p><span class="type">table</span> A table of options for the request. Currently it holds these options</p>
+<dl>
+<dt><code>hidden</code></dt>
+<dd><span class="type">boolean</span> If true, the webview will stay hidden (default=false)</dd>
+</dl></p></div><h3>RETURN</h3><div class='return'><p>id - <p><span class="type">number</span> The id number of the request</p></p></div><h3>EXAMPLES</h3><div class='examples'><p><div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">request_id</span> <span class="o">=</span> <span class="n">webview</span><span class="p">.</span><span class="n">open</span><span class="p">(</span><span class="n">webview_id</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">http://www.defold.com&quot;</span><span class="p">,</span> <span class="p">{</span><span class="n">hidden</span> <span class="o">=</span> <span class="kc">true</span><span class="p">})</span>
+</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Function/webview.open_raw' class='dashAnchor'></a><a class='entry' name='webview.open_raw'>webview.open_raw()</a></h1><div class='brief'><p>Open a page using html</p></div><p><p>Opens a web page in the webview, using html data. Once the request is done,
+the callback (registered in <code>webview.create()</code>) is invoked.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>webview_id<p><span class="type">number</span> The webview id</p></p><p class='param'>html<p><span class="type">string</span> The html data to display</p></p><p class='param'>options<p><span class="type">table</span> A table of options for the request. See webview.open()</p></p></div><h3>RETURN</h3><div class='return'><p>id - <p><span class="type">number</span> The id number of the request</p></p></div><h3>EXAMPLES</h3><div class='examples'><p><div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">html</span> <span class="o">=</span> <span class="n">sys</span><span class="p">.</span><span class="n">load_resource</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">/main/data/test.html&quot;</span><span class="p">)</span>
+<span class="kd">local</span> <span class="n">request_id</span> <span class="o">=</span> <span class="n">webview</span><span class="p">.</span><span class="n">open_raw</span><span class="p">(</span><span class="n">webview_id</span><span class="p">,</span> <span class="n">html</span><span class="p">,</span> <span class="p">{</span><span class="n">hidden</span> <span class="o">=</span> <span class="kc">true</span><span class="p">})</span>
+</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Function/webview.set_visible' class='dashAnchor'></a><a class='entry' name='webview.set_visible'>webview.set_visible()</a></h1><div class='brief'><p>Shows or hides a web view</p></div><p><p>Shows or hides a web view</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>webview_id<p><span class="type">number</span> The webview id (returned by the <code>webview.create()</code> call)</p></p><p class='param'>visible<p><span class="type">number</span> If 0, hides the webview. If non zero, shows the view</p></p></div><hr/></body></html>

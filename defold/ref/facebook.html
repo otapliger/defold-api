@@ -1,0 +1,222 @@
+<html><head><link rel='stylesheet' type='text/css' href='../defold.css'></head><body><div class='nav'><a class='chevron' href='../index.html'><img src='../svg/chevron-left.svg' alt='Home'></a></div><h1>Facebook</h1>
+<p><p>Functions and constants for interacting with Facebook APIs.</p></p>
+<h1><a name='//apple_ref/cpp/Variable/facebook.AUDIENCE_EVERYONE' class='dashAnchor'></a><a class='entry' name='facebook.AUDIENCE_EVERYONE'>facebook.AUDIENCE_EVERYONE</a></h1><div class='brief'><p>publish permission to reach everyone</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/facebook.AUDIENCE_FRIENDS' class='dashAnchor'></a><a class='entry' name='facebook.AUDIENCE_FRIENDS'>facebook.AUDIENCE_FRIENDS</a></h1><div class='brief'><p>publish permission to reach user friends</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/facebook.AUDIENCE_NONE' class='dashAnchor'></a><a class='entry' name='facebook.AUDIENCE_NONE'>facebook.AUDIENCE_NONE</a></h1><div class='brief'><p>publish permission to reach no audience</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/facebook.AUDIENCE_ONLYME' class='dashAnchor'></a><a class='entry' name='facebook.AUDIENCE_ONLYME'>facebook.AUDIENCE_ONLYME</a></h1><div class='brief'><p>publish permission to reach only me (private to current user)</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/facebook.EVENT_ADDED_PAYMENT_INFO' class='dashAnchor'></a><a class='entry' name='facebook.EVENT_ADDED_PAYMENT_INFO'>facebook.EVENT_ADDED_PAYMENT_INFO</a></h1><div class='brief'><p>log this event when the user has entered their payment info</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/facebook.EVENT_ADDED_TO_CART' class='dashAnchor'></a><a class='entry' name='facebook.EVENT_ADDED_TO_CART'>facebook.EVENT_ADDED_TO_CART</a></h1><div class='brief'><p>log this event when the user has added an item to their cart</p></div><p><p>The value_to_sum passed to facebook.post_event should be the item's price.</p></p><hr/><h1><a name='//apple_ref/cpp/Variable/facebook.EVENT_ADDED_TO_WISHLIST' class='dashAnchor'></a><a class='entry' name='facebook.EVENT_ADDED_TO_WISHLIST'>facebook.EVENT_ADDED_TO_WISHLIST</a></h1><div class='brief'><p>log this event when the user has added an item to their wish list</p></div><p><p>The value_to_sum passed to facebook.post_event should be the item's price.</p></p><hr/><h1><a name='//apple_ref/cpp/Variable/facebook.EVENT_COMPLETED_REGISTRATION' class='dashAnchor'></a><a class='entry' name='facebook.EVENT_COMPLETED_REGISTRATION'>facebook.EVENT_COMPLETED_REGISTRATION</a></h1><div class='brief'><p>log this event when a user has completed registration with the app</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/facebook.EVENT_COMPLETED_TUTORIAL' class='dashAnchor'></a><a class='entry' name='facebook.EVENT_COMPLETED_TUTORIAL'>facebook.EVENT_COMPLETED_TUTORIAL</a></h1><div class='brief'><p>log this event when the user has completed a tutorial in the app</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/facebook.EVENT_INITIATED_CHECKOUT' class='dashAnchor'></a><a class='entry' name='facebook.EVENT_INITIATED_CHECKOUT'>facebook.EVENT_INITIATED_CHECKOUT</a></h1><div class='brief'><p>log this event when the user has entered the checkout process</p></div><p><p>The value_to_sum passed to facebook.post_event should be the total price in
+the cart.</p></p><hr/><h1><a name='//apple_ref/cpp/Variable/facebook.EVENT_PURCHASED' class='dashAnchor'></a><a class='entry' name='facebook.EVENT_PURCHASED'>facebook.EVENT_PURCHASED</a></h1><div class='brief'><p>Log this event when the user has completed a purchase.</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/facebook.EVENT_RATED' class='dashAnchor'></a><a class='entry' name='facebook.EVENT_RATED'>facebook.EVENT_RATED</a></h1><div class='brief'><p>log this event when the user has rated an item in the app</p></div><p><p>The value_to_sum passed to facebook.post_event should be the numeric rating.</p></p><hr/><h1><a name='//apple_ref/cpp/Variable/facebook.EVENT_SEARCHED' class='dashAnchor'></a><a class='entry' name='facebook.EVENT_SEARCHED'>facebook.EVENT_SEARCHED</a></h1><div class='brief'><p>log this event when a user has performed a search within the app</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/facebook.EVENT_SPENT_CREDITS' class='dashAnchor'></a><a class='entry' name='facebook.EVENT_SPENT_CREDITS'>facebook.EVENT_SPENT_CREDITS</a></h1><div class='brief'><p>log this event when the user has spent app credits</p></div><p><p>The value_to_sum passed to facebook.post_event should be the number of
+credits spent.</p>
+<p><span class="icon-attention"></span> This event is currently an undocumented event in the Facebook
+SDK.</p></p><hr/><h1><a name='//apple_ref/cpp/Variable/facebook.EVENT_TIME_BETWEEN_SESSIONS' class='dashAnchor'></a><a class='entry' name='facebook.EVENT_TIME_BETWEEN_SESSIONS'>facebook.EVENT_TIME_BETWEEN_SESSIONS</a></h1><div class='brief'><p>log this event when measuring the time between user sessions</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/facebook.EVENT_UNLOCKED_ACHIEVEMENT' class='dashAnchor'></a><a class='entry' name='facebook.EVENT_UNLOCKED_ACHIEVEMENT'>facebook.EVENT_UNLOCKED_ACHIEVEMENT</a></h1><div class='brief'><p>log this event when the user has unlocked an achievement in the app</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/facebook.EVENT_VIEWED_CONTENT' class='dashAnchor'></a><a class='entry' name='facebook.EVENT_VIEWED_CONTENT'>facebook.EVENT_VIEWED_CONTENT</a></h1><div class='brief'><p>log this event when a user has viewed a form of content in the app</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/facebook.GAMEREQUEST_ACTIONTYPE_ASKFOR' class='dashAnchor'></a><a class='entry' name='facebook.GAMEREQUEST_ACTIONTYPE_ASKFOR'>facebook.GAMEREQUEST_ACTIONTYPE_ASKFOR</a></h1><div class='brief'><p>game request action type "askfor" for "apprequests" dialog</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/facebook.GAMEREQUEST_ACTIONTYPE_NONE' class='dashAnchor'></a><a class='entry' name='facebook.GAMEREQUEST_ACTIONTYPE_NONE'>facebook.GAMEREQUEST_ACTIONTYPE_NONE</a></h1><div class='brief'><p>game request action type "none" for "apprequests" dialog</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/facebook.GAMEREQUEST_ACTIONTYPE_SEND' class='dashAnchor'></a><a class='entry' name='facebook.GAMEREQUEST_ACTIONTYPE_SEND'>facebook.GAMEREQUEST_ACTIONTYPE_SEND</a></h1><div class='brief'><p>game request action type "send" for "apprequests" dialog</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/facebook.GAMEREQUEST_ACTIONTYPE_TURN' class='dashAnchor'></a><a class='entry' name='facebook.GAMEREQUEST_ACTIONTYPE_TURN'>facebook.GAMEREQUEST_ACTIONTYPE_TURN</a></h1><div class='brief'><p>game request action type "turn" for "apprequests" dialog</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/facebook.GAMEREQUEST_FILTER_APPNONUSERS' class='dashAnchor'></a><a class='entry' name='facebook.GAMEREQUEST_FILTER_APPNONUSERS'>facebook.GAMEREQUEST_FILTER_APPNONUSERS</a></h1><div class='brief'><p>game request filter type "app_non_users" for "apprequests" dialog</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/facebook.GAMEREQUEST_FILTER_APPUSERS' class='dashAnchor'></a><a class='entry' name='facebook.GAMEREQUEST_FILTER_APPUSERS'>facebook.GAMEREQUEST_FILTER_APPUSERS</a></h1><div class='brief'><p>game request filter type "app_users" for "apprequests" dialog</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/facebook.GAMEREQUEST_FILTER_NONE' class='dashAnchor'></a><a class='entry' name='facebook.GAMEREQUEST_FILTER_NONE'>facebook.GAMEREQUEST_FILTER_NONE</a></h1><div class='brief'><p>game request filter type "none" for "apprequests" dialog</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/facebook.PARAM_CONTENT_ID' class='dashAnchor'></a><a class='entry' name='facebook.PARAM_CONTENT_ID'>facebook.PARAM_CONTENT_ID</a></h1><div class='brief'><p>parameter key used to specify an ID for the content being logged about</p></div><p><p>The parameter key could be an EAN, article identifier, etc., depending
+on the nature of the app.</p></p><hr/><h1><a name='//apple_ref/cpp/Variable/facebook.PARAM_CONTENT_TYPE' class='dashAnchor'></a><a class='entry' name='facebook.PARAM_CONTENT_TYPE'>facebook.PARAM_CONTENT_TYPE</a></h1><div class='brief'><p>parameter key used to specify a generic content type/family for the logged event</p></div><p><p>The key is an arbitrary type/family (e.g. "music", "photo", "video") depending
+on the nature of the app.</p></p><hr/><h1><a name='//apple_ref/cpp/Variable/facebook.PARAM_CURRENCY' class='dashAnchor'></a><a class='entry' name='facebook.PARAM_CURRENCY'>facebook.PARAM_CURRENCY</a></h1><div class='brief'><p>parameter key used to specify currency used with logged event</p></div><p><p>Use a currency value key, e.g. "USD", "EUR", "GBP" etc.
+See ISO-4217 for specific values.</p></p><hr/><h1><a name='//apple_ref/cpp/Variable/facebook.PARAM_DESCRIPTION' class='dashAnchor'></a><a class='entry' name='facebook.PARAM_DESCRIPTION'>facebook.PARAM_DESCRIPTION</a></h1><div class='brief'><p>parameter key used to specify a description appropriate to the event being logged</p></div><p><p>Use this for app specific event description, for instance the name of the achievement
+unlocked in the facebook.EVENT_UNLOCKED_ACHIEVEMENT event.</p></p><hr/><h1><a name='//apple_ref/cpp/Variable/facebook.PARAM_LEVEL' class='dashAnchor'></a><a class='entry' name='facebook.PARAM_LEVEL'>facebook.PARAM_LEVEL</a></h1><div class='brief'><p>parameter key used to specify the level achieved</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/facebook.PARAM_MAX_RATING_VALUE' class='dashAnchor'></a><a class='entry' name='facebook.PARAM_MAX_RATING_VALUE'>facebook.PARAM_MAX_RATING_VALUE</a></h1><div class='brief'><p>parameter key used to specify the maximum rating available</p></div><p><p>Set to specify the max rating available for the facebook.EVENT_RATED event.
+E.g., "5" or "10".</p></p><hr/><h1><a name='//apple_ref/cpp/Variable/facebook.PARAM_NUM_ITEMS' class='dashAnchor'></a><a class='entry' name='facebook.PARAM_NUM_ITEMS'>facebook.PARAM_NUM_ITEMS</a></h1><div class='brief'><p>parameter key used to specify how many items are being processed</p></div><p><p>Set to specify the number of items being processed for an
+facebook.EVENT_INITIATED_CHECKOUT or facebook.EVENT_PURCHASED event.</p></p><hr/><h1><a name='//apple_ref/cpp/Variable/facebook.PARAM_PAYMENT_INFO_AVAILABLE' class='dashAnchor'></a><a class='entry' name='facebook.PARAM_PAYMENT_INFO_AVAILABLE'>facebook.PARAM_PAYMENT_INFO_AVAILABLE</a></h1><div class='brief'><p>parameter key used to specify whether payment info is available</p></div><p><p>Set to specify if payment info is available for the
+facebook.EVENT_INITIATED_CHECKOUT event.</p></p><hr/><h1><a name='//apple_ref/cpp/Variable/facebook.PARAM_REGISTRATION_METHOD' class='dashAnchor'></a><a class='entry' name='facebook.PARAM_REGISTRATION_METHOD'>facebook.PARAM_REGISTRATION_METHOD</a></h1><div class='brief'><p>parameter key used to specify method user has used to register for the app</p></div><p><p>Set to specify what registation method a user used for the app, e.g.
+"Facebook", "email", "Twitter", etc.</p></p><hr/><h1><a name='//apple_ref/cpp/Variable/facebook.PARAM_SEARCH_STRING' class='dashAnchor'></a><a class='entry' name='facebook.PARAM_SEARCH_STRING'>facebook.PARAM_SEARCH_STRING</a></h1><div class='brief'><p>parameter key used to specify user search string</p></div><p><p>Set this to the the string that the user provided for a search
+operation.</p></p><hr/><h1><a name='//apple_ref/cpp/Variable/facebook.PARAM_SOURCE_APPLICATION' class='dashAnchor'></a><a class='entry' name='facebook.PARAM_SOURCE_APPLICATION'>facebook.PARAM_SOURCE_APPLICATION</a></h1><div class='brief'><p>parameter key used to specify source application package</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/facebook.PARAM_SUCCESS' class='dashAnchor'></a><a class='entry' name='facebook.PARAM_SUCCESS'>facebook.PARAM_SUCCESS</a></h1><div class='brief'><p>parameter key used to specify activity success</p></div><p><p>Set this key to indicate whether the activity being logged about was
+successful or not.</p></p><hr/><h1><a name='//apple_ref/cpp/Variable/facebook.STATE_CLOSED_LOGIN_FAILED' class='dashAnchor'></a><a class='entry' name='facebook.STATE_CLOSED_LOGIN_FAILED'>facebook.STATE_CLOSED_LOGIN_FAILED</a></h1><div class='brief'><p>the Facebook login session has closed because login failed</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/facebook.STATE_OPEN' class='dashAnchor'></a><a class='entry' name='facebook.STATE_OPEN'>facebook.STATE_OPEN</a></h1><div class='brief'><p>the Facebook login session is open</p></div><hr/><h1><a name='//apple_ref/cpp/Function/facebook.access_token' class='dashAnchor'></a><a class='entry' name='facebook.access_token'>facebook.access_token()</a></h1><div class='brief'><p>get the current Facebook access token</p></div><p><p>This function returns the currently stored access token after a previous
+sucessful login. If it returns nil no access token exists and you need
+to perform a login to get the wanted permissions.</p></p><h3>RETURN</h3><div class='return'><p>token - <p><span class="type">string</span> the access token or nil if the user is not logged in</p></p></div><h3>EXAMPLES</h3><div class='examples'><p><p>Get the current access token, then use it to perform a graph API request.</p>
+<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="k">function</span> <span class="nf">get_name_callback</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">id</span><span class="p">,</span> <span class="n">response</span><span class="p">)</span>
+    <span class="c1">-- do something with the response</span>
+<span class="k">end</span>
+
+<span class="k">function</span> <span class="nf">init</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
+    <span class="c1">-- assuming we are already logged in.</span>
+    <span class="kd">local</span> <span class="n">token</span> <span class="o">=</span> <span class="n">facebook</span><span class="p">.</span><span class="n">access_token</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">token</span> <span class="k">then</span>
+        <span class="kd">local</span> <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="s">https://graph.facebook.com/me/?access_token=&quot;</span><span class="o">..</span> <span class="n">token</span>
+        <span class="n">http</span><span class="p">.</span><span class="n">request</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">GET&quot;</span><span class="p">,</span> <span class="n">get_name_callback</span><span class="p">)</span>
+    <span class="k">end</span>
+<span class="k">end</span>
+</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Function/facebook.disable_event_usage' class='dashAnchor'></a><a class='entry' name='facebook.disable_event_usage'>facebook.disable_event_usage()</a></h1><div class='brief'><p>disable event usage with Facebook Analytics</p></div><p><p>This function will disable event usage for Facebook Analytics which means
+that Facebook won't be able to use event data for ad-tracking. Events will
+still be sent to Facebook for insights.</p>
+<p><span class="icon-attention"></span> Event usage cannot be controlled and is always enabled for the
+Facebook Canvas platform, therefore this function has no effect on Facebook
+Canvas.</p></p><hr/><h1><a name='//apple_ref/cpp/Function/facebook.enable_event_usage' class='dashAnchor'></a><a class='entry' name='facebook.enable_event_usage'>facebook.enable_event_usage()</a></h1><div class='brief'><p>enable event usage with Facebook Analytics</p></div><p><p>This function will enable event usage for Facebook Analytics which means
+that Facebook will be able to use event data for ad-tracking.</p>
+<p><span class="icon-attention"></span> Event usage cannot be controlled and is always enabled for the
+Facebook Canvas platform, therefore this function has no effect on Facebook
+Canvas.</p></p><hr/><h1><a name='//apple_ref/cpp/Function/facebook.login_with_publish_permissions' class='dashAnchor'></a><a class='entry' name='facebook.login_with_publish_permissions'>facebook.login_with_publish_permissions()</a></h1><div class='brief'><p>Login to Facebook and request a set of publish permissions</p></div><p><p>Login to Facebook and request a set of publish permissions. The user is
+prompted to authorize the application using the login dialog of the specific
+platform. Even if the user is already logged in to Facebook this function
+can still be used to request additional publish permissions.</p>
+<p><span class="icon-attention"></span> Note that this function cannot be used to request read permissions.
+If the application requires both publish and read permissions, individual
+calls to both <a href="#login_with_publish_permissions">login_with_publish_permissions</a>
+and <a href="#login_with_read_permissions">login_with_read_permissions</a> has to be made.</p>
+<p>A comprehensive list of permissions can be found in the <a href="https://developers.facebook.com/docs/facebook-login/permissions">Facebook documentation</a>,
+as well as a <a href="https://developers.facebook.com/docs/facebook-login/best-practices">guide to best practises for login management</a>.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>permissions<p><span class="type">table</span> Table with the requested publish permission strings.</p></p><p class='param'>audience<p><span class="type">constant | number</span> The audience that should be able to see the publications.</p>
+<ul>
+<li><code>facebook.AUDIENCE_NONE</code></li>
+<li><code>facebook.AUDIENCE_ONLYME</code></li>
+<li><code>facebook.AUDIENCE_FRIENDS</code></li>
+<li><code>facebook.AUDIENCE_EVERYONE</code></li>
+</ul></p><p class='param'>callback<p><span class="type">function(self, data)</span> Callback function that is executed when the permission request dialog is closed.</p>
+<dl>
+<dt><code>self</code></dt>
+<dd><span class="type">object</span> The context of the calling script</dd>
+<dt><code>data</code></dt>
+<dd><span class="type">table</span> A table that contains the response</dd>
+</dl></p></div><h3>EXAMPLES</h3><div class='examples'><p><p>Log in to Facebook with a set of publish permissions:</p>
+<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">permissions</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;</span><span class="s">publish_actions&quot;</span><span class="p">}</span>
+<span class="n">facebook</span><span class="p">.</span><span class="n">login_with_publish_permissions</span><span class="p">(</span><span class="n">permissions</span><span class="p">,</span> <span class="n">facebook</span><span class="p">.</span><span class="n">AUDIENCE_FRIENDS</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">data</span><span class="p">.</span><span class="n">status</span> <span class="o">==</span> <span class="n">facebook</span><span class="p">.</span><span class="n">STATE_OPEN</span> <span class="ow">and</span> <span class="n">data</span><span class="p">.</span><span class="n">error</span> <span class="o">==</span> <span class="kc">nil</span><span class="p">)</span> <span class="k">then</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">Successfully logged into Facebook&quot;</span><span class="p">)</span>
+        <span class="n">pprint</span><span class="p">(</span><span class="n">facebook</span><span class="p">.</span><span class="n">permissions</span><span class="p">())</span>
+    <span class="k">else</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">Failed to get permissions (&quot;</span> <span class="o">..</span> <span class="n">data</span><span class="p">.</span><span class="n">status</span> <span class="o">..</span> <span class="s2">&quot;</span><span class="s">)&quot;</span><span class="p">)</span>
+        <span class="n">pprint</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="k">end</span>
+<span class="k">end</span><span class="p">)</span>
+</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Function/facebook.login_with_read_permissions' class='dashAnchor'></a><a class='entry' name='facebook.login_with_read_permissions'>facebook.login_with_read_permissions()</a></h1><div class='brief'><p>Login to Facebook and request a set of read permissions</p></div><p><p>Login to Facebook and request a set of read permissions. The user is
+prompted to authorize the application using the login dialog of the specific
+platform. Even if the user is already logged in to Facebook this function
+can still be used to request additional read permissions.</p>
+<p><span class="icon-attention"></span> Note that this function cannot be used to request publish permissions.
+If the application requires both read and publish permissions, individual
+calls to both <a href="#login_with_publish_permissions">login_with_publish_permissions</a>
+and <a href="#login_with_read_permissions">login_with_read_permissions</a> has to be made.</p>
+<p>A comprehensive list of permissions can be found in the <a href="https://developers.facebook.com/docs/facebook-login/permissions">Facebook documentation</a>,
+as well as a <a href="https://developers.facebook.com/docs/facebook-login/best-practices">guide to best practises for login management</a>.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>permissions<p><span class="type">table</span> Table with the requested read permission strings.</p></p><p class='param'>callback<p><span class="type">function(self, data)</span> callback function that is executed when the permission request dialog is closed.</p>
+<dl>
+<dt><code>self</code></dt>
+<dd><span class="type">object</span> The context of the calling script</dd>
+<dt><code>data</code></dt>
+<dd><span class="type">table</span> A table that contains the response</dd>
+</dl></p></div><h3>EXAMPLES</h3><div class='examples'><p><p>Log in to Facebook with a set of read permissions:</p>
+<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">permissions</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;</span><span class="s">public_profile&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">email&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">user_friends&quot;</span><span class="p">}</span>
+<span class="n">facebook</span><span class="p">.</span><span class="n">login_with_read_permissions</span><span class="p">(</span><span class="n">permissions</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">data</span><span class="p">.</span><span class="n">status</span> <span class="o">==</span> <span class="n">facebook</span><span class="p">.</span><span class="n">STATE_OPEN</span> <span class="ow">and</span> <span class="n">data</span><span class="p">.</span><span class="n">error</span> <span class="o">==</span> <span class="kc">nil</span><span class="p">)</span> <span class="k">then</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">Successfully logged into Facebook&quot;</span><span class="p">)</span>
+        <span class="n">pprint</span><span class="p">(</span><span class="n">facebook</span><span class="p">.</span><span class="n">permissions</span><span class="p">())</span>
+    <span class="k">else</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">Failed to get permissions (&quot;</span> <span class="o">..</span> <span class="n">data</span><span class="p">.</span><span class="n">status</span> <span class="o">..</span> <span class="s2">&quot;</span><span class="s">)&quot;</span><span class="p">)</span>
+        <span class="n">pprint</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="k">end</span>
+<span class="k">end</span><span class="p">)</span>
+</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Function/facebook.logout' class='dashAnchor'></a><a class='entry' name='facebook.logout'>facebook.logout()</a></h1><div class='brief'><p>logout from Facebook</p></div><p><p>Logout from Facebook.</p></p><hr/><h1><a name='//apple_ref/cpp/Function/facebook.permissions' class='dashAnchor'></a><a class='entry' name='facebook.permissions'>facebook.permissions()</a></h1><div class='brief'><p>get the currently granted permissions</p></div><p><p>This function returns a table with all the currently granted permission strings.</p></p><h3>RETURN</h3><div class='return'><p>permissions - <p><span class="type">table</span> the permissions</p></p></div><h3>EXAMPLES</h3><div class='examples'><p><p>Check the currently granted permissions for a particular permission:</p>
+<div class="codehilite"><pre><span></span><span class="k">for</span> <span class="n">_</span><span class="p">,</span><span class="n">permission</span> <span class="k">in</span> <span class="nb">ipairs</span><span class="p">(</span><span class="n">facebook</span><span class="p">.</span><span class="n">permissions</span><span class="p">())</span> <span class="k">do</span>
+    <span class="k">if</span> <span class="n">permission</span> <span class="o">==</span> <span class="s2">&quot;</span><span class="s">user_likes&quot;</span> <span class="k">then</span>
+        <span class="c1">-- &quot;user_likes&quot; granted...</span>
+        <span class="k">break</span>
+    <span class="k">end</span>
+<span class="k">end</span>
+</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Function/facebook.post_event' class='dashAnchor'></a><a class='entry' name='facebook.post_event'>facebook.post_event()</a></h1><div class='brief'><p>post an event to Facebook Analytics</p></div><p><p>This function will post an event to Facebook Analytics where it can be used
+in the Facebook Insights system.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>event<p><span class="type">constant | string</span> An event can either be one of the predefined
+constants below or a text string which can be used to define a custom event that is
+registered with Facebook Analytics.</p>
+<ul>
+<li><code>facebook.EVENT_ACHIEVED_LEVEL</code></li>
+<li><code>facebook.EVENT_ACTIVATED_APP</code></li>
+<li><code>facebook.EVENT_ADDED_PAYMENT_INFO</code></li>
+<li><code>facebook.EVENT_ADDED_TO_CART</code></li>
+<li><code>facebook.EVENT_ADDED_TO_WISHLIST</code></li>
+<li><code>facebook.EVENT_COMPLETED_REGISTRATION</code></li>
+<li><code>facebook.EVENT_COMPLETED_TUTORIAL</code></li>
+<li><code>facebook.EVENT_DEACTIVATED_APP</code></li>
+<li><code>facebook.EVENT_INITIATED_CHECKOUT</code></li>
+<li><code>facebook.EVENT_PURCHASED</code></li>
+<li><code>facebook.EVENT_RATED</code></li>
+<li><code>facebook.EVENT_SEARCHED</code></li>
+<li><code>facebook.EVENT_SESSION_INTERRUPTIONS</code></li>
+<li><code>facebook.EVENT_SPENT_CREDITS</code></li>
+<li><code>facebook.EVENT_TIME_BETWEEN_SESSIONS</code></li>
+<li><code>facebook.EVENT_UNLOCKED_ACHIEVEMENT</code></li>
+<li><code>facebook.EVENT_VIEWED_CONTENT</code></li>
+</ul></p><p class='param'>value<p><span class="type">number</span> a numeric value for the event. This should
+represent the value of the event, such as the level achieved, price for an
+item or number of orcs killed.</p></p><p class='param'>[params]<p><span class="type">table</span> optional table with parameters and their values. A key in the
+table can either be one of the predefined constants below or a text which
+can be used to define a custom parameter.</p>
+<ul>
+<li><code>facebook.PARAM_CONTENT_ID</code></li>
+<li><code>facebook.PARAM_CONTENT_TYPE</code></li>
+<li><code>facebook.PARAM_CURRENCY</code></li>
+<li><code>facebook.PARAM_DESCRIPTION</code></li>
+<li><code>facebook.PARAM_LEVEL</code></li>
+<li><code>facebook.PARAM_MAX_RATING_VALUE</code></li>
+<li><code>facebook.PARAM_NUM_ITEMS</code></li>
+<li><code>facebook.PARAM_PAYMENT_INFO_AVAILABLE</code></li>
+<li><code>facebook.PARAM_REGISTRATION_METHOD</code></li>
+<li><code>facebook.PARAM_SEARCH_STRING</code></li>
+<li><code>facebook.PARAM_SOURCE_APPLICATION</code></li>
+<li><code>facebook.PARAM_SUCCESS</code></li>
+</ul></p></div><h3>EXAMPLES</h3><div class='examples'><p><p>Post a spent credits event to Facebook Analytics:</p>
+<div class="codehilite"><pre><span></span><span class="n">params</span> <span class="o">=</span> <span class="p">{[</span><span class="n">facebook</span><span class="p">.</span><span class="n">PARAM_LEVEL</span><span class="p">]</span> <span class="o">=</span> <span class="mi">30</span><span class="p">,</span> <span class="p">[</span><span class="n">facebook</span><span class="p">.</span><span class="n">PARAM_NUM_ITEMS</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span><span class="p">}</span>
+<span class="n">facebook</span><span class="p">.</span><span class="n">post_event</span><span class="p">(</span><span class="n">facebook</span><span class="p">.</span><span class="n">EVENT_SPENT_CREDITS</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span>
+</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Function/facebook.show_dialog' class='dashAnchor'></a><a class='entry' name='facebook.show_dialog'>facebook.show_dialog()</a></h1><div class='brief'><p>show facebook web dialog</p></div><p><p>Display a Facebook web dialog of the type specified in the <code>dialog</code> parameter.
+The <code>param</code> table should be set up according to the requirements of each dialog
+type. Note that some parameters are mandatory. Below is the list of available dialogs and
+where to find Facebook's developer documentation on parameters and response data.</p>
+<h3>"apprequests"</h3>
+<p>Shows a Game Request dialog. Game Requests allows players to invite their friends to play a
+game. Available parameters:</p>
+<ul>
+<li><span class="type">string</span> <code>title</code></li>
+<li><span class="type">string</span> <code>message</code></li>
+<li><span class="type">number</span> <code>action_type</code></li>
+<li><span class="type">number</span> <code>filters</code></li>
+<li><span class="type">string</span> <code>data</code></li>
+<li><span class="type">string</span> <code>object_id</code></li>
+<li><span class="type">table</span> <code>suggestions</code></li>
+<li><span class="type">table</span> <code>recipients</code></li>
+<li><span class="type">string</span> <code>to</code></li>
+</ul>
+<p>On success, the "result" table parameter passed to the callback function will include the following fields:</p>
+<ul>
+<li><span class="type">string</span> <code>request_id</code></li>
+<li><span class="type">table</span> <code>to</code></li>
+</ul>
+<p>Details for each parameter: <a href='https://developers.facebook.com/docs/games/services/gamerequests/v2.6#dialogparameters'>https://developers.facebook.com/docs/games/services/gamerequests/v2.6#dialogparameters</a></p>
+<h3>"feed"</h3>
+<p>The Feed Dialog allows people to publish individual stories to their timeline.</p>
+<ul>
+<li><span class="type">string</span> <code>caption</code></li>
+<li><span class="type">string</span> <code>description</code></li>
+<li><span class="type">string</span> <code>picture</code></li>
+<li><span class="type">string</span> <code>link</code></li>
+<li><span class="type">table</span> <code>people_ids</code></li>
+<li><span class="type">string</span> <code>place_id</code></li>
+<li><span class="type">string</span> <code>ref</code></li>
+</ul>
+<p>On success, the "result" table parameter passed to the callback function will include the following fields:</p>
+<ul>
+<li><span class="type">string</span> <code>post_id</code></li>
+</ul>
+<p>Details for each parameter: <a href='https://developers.facebook.com/docs/sharing/reference/feed-dialog/v2.6#params'>https://developers.facebook.com/docs/sharing/reference/feed-dialog/v2.6#params</a></p>
+<h3>"appinvite"</h3>
+<p>The App Invite dialog is available only on iOS and Android.
+Note that the <code>url</code> parameter
+corresponds to the appLinkURL (iOS) and setAppLinkUrl (Android) properties.</p>
+<ul>
+<li><span class="type">string</span> <code>url</code></li>
+<li><span class="type">string</span> <code>preview_image</code></li>
+</ul>
+<p>Details for each parameter: <a href='https://developers.facebook.com/docs/reference/ios/current/class/FBSDKAppInviteContent/'>https://developers.facebook.com/docs/reference/ios/current/class/FBSDKAppInviteContent/</a></p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>dialog<p><span class="type">string</span> dialog to show.
+- <code>"apprequests"</code>
+- <code>"feed"</code>
+- <code>"appinvite"</code></p></p><p class='param'>param<p><span class="type">table</span> table with dialog parameters</p></p><p class='param'>callback<p><span class="type">function(self, result, error)</span> callback function that is called when the dialog is closed.</p>
+<dl>
+<dt><code>self</code></dt>
+<dd><span class="type">object</span> The context of the calling script</dd>
+<dt><code>result</code></dt>
+<dd><span class="type">table</span> Table with dialog specific results. See above.</dd>
+<dt><code>error</code></dt>
+<dd><span class="type">table</span> Error message. If there is no error, <code>error</code> is <code>nil</code>.</dd>
+</dl></p></div><h3>EXAMPLES</h3><div class='examples'><p><p>Show a dialog allowing the user to share a post to their timeline:</p>
+<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="k">function</span> <span class="nf">fb_share</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">result</span><span class="p">,</span> <span class="nb">error</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">error</span> <span class="k">then</span>
+        <span class="c1">-- something did not go right...</span>
+    <span class="k">else</span>
+        <span class="c1">-- do something sensible</span>
+    <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">function</span> <span class="nf">init</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
+    <span class="c1">-- assuming we have logged in with publish permissions</span>
+    <span class="kd">local</span> <span class="n">param</span> <span class="o">=</span> <span class="p">{</span> <span class="n">link</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="s">http://www.mygame.com&quot;</span><span class="p">,</span><span class="n">picture</span><span class="o">=</span><span class="s2">&quot;</span><span class="s">http://www.mygame.com/image.jpg&quot;</span> <span class="p">}</span>
+    <span class="n">facebook</span><span class="p">.</span><span class="n">show_dialog</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">feed&quot;</span><span class="p">,</span> <span class="n">param</span><span class="p">,</span> <span class="n">fb_share</span><span class="p">)</span>
+<span class="k">end</span>
+</pre></div></p></div><hr/></body></html>

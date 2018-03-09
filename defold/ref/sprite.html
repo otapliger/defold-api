@@ -1,0 +1,90 @@
+<html><head><link rel='stylesheet' type='text/css' href='../defold.css'></head><body><div class='nav'><a class='chevron' href='../index.html'><img src='../svg/chevron-left.svg' alt='Home'></a></div><h1>Sprite</h1>
+<p><p>Functions, messages and properties used to manipulate sprite components.</p></p>
+<h1><a name='//apple_ref/cpp/Command/animation_done' class='dashAnchor'></a><a class='entry' name='animation_done'>animation_done</a></h1><div class='brief'><p>reports that an animation has completed</p></div><p><p>This message is sent to the sender of a <code>play_animation</code> message when the
+animation has completed.</p>
+<p>Note that this message is sent only for animations that play with the following
+playback modes:</p>
+<ul>
+<li>Once Forward</li>
+<li>Once Backward</li>
+<li>Once Ping Pong</li>
+</ul>
+<p>See <a href="#play_animation">play_animation</a> for more information and examples of how to use
+this message.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>current_tile<p><span class="type">number</span> the current tile of the sprite</p></p><p class='param'>id<p><span class="type">hash</span> id of the animation that was completed</p></p></div><h3>EXAMPLES</h3><div class='examples'><p><p>How to sequence two animations together.</p>
+<div class="codehilite"><pre><span></span><span class="k">function</span> <span class="nf">init</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
+  <span class="c1">-- play jump animation at init</span>
+  <span class="n">msg</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">#sprite&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">play_animation&quot;</span><span class="p">,</span> <span class="p">{</span><span class="n">id</span> <span class="o">=</span> <span class="n">hash</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">jump&quot;</span><span class="p">)})</span>
+<span class="k">end</span>
+
+<span class="k">function</span> <span class="nf">on_message</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">message_id</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">sender</span><span class="p">)</span>
+  <span class="c1">-- check for animation done response</span>
+  <span class="k">if</span> <span class="n">message_id</span> <span class="o">==</span> <span class="n">hash</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">animation_done&quot;</span><span class="p">)</span> <span class="k">then</span>
+    <span class="c1">-- start the walk animation</span>
+    <span class="n">msg</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">#sprite&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">play_animation&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="n">id</span> <span class="o">=</span> <span class="n">hash</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">walk&quot;</span><span class="p">)</span> <span class="p">})</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Command/play_animation' class='dashAnchor'></a><a class='entry' name='play_animation'>play_animation</a></h1><div class='brief'><p>play a sprite animation</p></div><p><p>Post this message to a sprite component to make it play an animation from its tile set.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>id<p><span class="type">hash</span> the id of the animation to play</p></p></div><h3>EXAMPLES</h3><div class='examples'><p><p>In the example, it is assumed that the instance of the script has a sprite-component with id "sprite". The sprite itself is assumed to be bound to a tile set with animations "walk" and "jump".</p>
+<div class="codehilite"><pre><span></span><span class="n">msg</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">#sprite&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">play_animation&quot;</span><span class="p">,</span> <span class="p">{</span><span class="n">id</span> <span class="o">=</span> <span class="n">hash</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">jump&quot;</span><span class="p">)})</span>
+</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Property/scale' class='dashAnchor'></a><a class='entry' name='scale'>scale</a></h1><div class='brief'><p><span class="type">vector3</span> sprite scale</p></div><p><p>The non-uniform scale of the sprite. The type of the property is vector3.</p></p><h3>EXAMPLES</h3><div class='examples'><p><p>How to scale a sprite independently along the X and Y axis:</p>
+<div class="codehilite"><pre><span></span><span class="k">function</span> <span class="nf">init</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
+  <span class="c1">-- Double the y-axis scaling on component &quot;sprite&quot;</span>
+     <span class="kd">local</span> <span class="n">yscale</span> <span class="o">=</span> <span class="n">go</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">#sprite&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">scale.y&quot;</span><span class="p">)</span>
+     <span class="n">go</span><span class="p">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">#sprite&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">scale.y&quot;</span><span class="p">,</span> <span class="n">yscale</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
+<span class="k">end</span>
+</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Property/size' class='dashAnchor'></a><a class='entry' name='size'>size</a></h1><div class='brief'><p><span class="type">vector3</span> sprite size</p></div><p><p><span class="mark">READ ONLY</span> Returns the size of the sprite, not allowing for any additional scaling that may be applied.
+The type of the property is vector3.</p></p><h3>EXAMPLES</h3><div class='examples'><p><p>How to query a sprite's size, either as a vector or selecting a specific dimension:</p>
+<div class="codehilite"><pre><span></span><span class="k">function</span> <span class="nf">init</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
+  <span class="c1">-- get size from component &quot;sprite&quot;</span>
+  <span class="kd">local</span> <span class="n">size</span> <span class="o">=</span> <span class="n">go</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">#sprite&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">size&quot;</span><span class="p">)</span>
+  <span class="kd">local</span> <span class="n">sx</span> <span class="o">=</span> <span class="n">go</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">#sprite&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">size.x&quot;</span><span class="p">)</span>
+  <span class="c1">-- do something useful</span>
+  <span class="nb">assert</span><span class="p">(</span><span class="n">size</span><span class="p">.</span><span class="n">x</span> <span class="o">==</span> <span class="n">sx</span><span class="p">)</span>
+<span class="k">end</span>
+</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Function/sprite.reset_constant' class='dashAnchor'></a><a class='entry' name='sprite.reset_constant'>sprite.reset_constant()</a></h1><div class='brief'><p>reset a shader constant for a sprite</p></div><p><p>Resets a shader constant for a sprite component.
+The constant must be defined in the material assigned to the sprite.
+Resetting a constant through this function implies that the value defined in the material will be used.
+Which sprite to reset a constant for is identified by the URL.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>url<p><span class="type">string | hash | url</span> the sprite that should have a constant reset</p></p><p class='param'>constant<p><span class="type">string | hash</span> name of the constant</p></p></div><h3>EXAMPLES</h3><div class='examples'><p><p>The following examples assumes that the sprite has id "sprite" and that the default-material in builtins is used, which defines the constant "tint".
+If you assign a custom material to the sprite, you can reset the constants defined there in the same manner.</p>
+<p>How to reset the tinting of a sprite:</p>
+<div class="codehilite"><pre><span></span><span class="k">function</span> <span class="nf">init</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
+  <span class="n">sprite</span><span class="p">.</span><span class="n">reset_constant</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">#sprite&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">tint&quot;</span><span class="p">)</span>
+<span class="k">end</span>
+</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Function/sprite.set_constant' class='dashAnchor'></a><a class='entry' name='sprite.set_constant'>sprite.set_constant()</a></h1><div class='brief'><p>set a shader constant for a sprite</p></div><p><p>Sets a shader constant for a sprite component.
+The constant must be defined in the material assigned to the sprite.
+Setting a constant through this function will override the value set for that constant in the material.
+The value will be overridden until <code>sprite.reset_constant</code> is called.
+Which sprite to set a constant for is identified by the URL.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>url<p><span class="type">string | hash | url</span> the sprite that should have a constant set</p></p><p class='param'>constant<p><span class="type">string | hash</span> name of the constant</p></p><p class='param'>value<p><span class="type">vector4</span> of the constant</p></p></div><h3>EXAMPLES</h3><div class='examples'><p><p>The following examples assumes that the sprite has id "sprite" and that the default-material in builtins is used, which defines the constant "tint".
+If you assign a custom material to the sprite, you can set the constants defined there in the same manner.</p>
+<p>How to tint a sprite red:</p>
+<div class="codehilite"><pre><span></span><span class="k">function</span> <span class="nf">init</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
+  <span class="n">sprite</span><span class="p">.</span><span class="n">set_constant</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">#sprite&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">tint&quot;</span><span class="p">,</span> <span class="n">vmath</span><span class="p">.</span><span class="n">vector4</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="k">end</span>
+</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Function/sprite.set_hflip' class='dashAnchor'></a><a class='entry' name='sprite.set_hflip'>sprite.set_hflip()</a></h1><div class='brief'><p>set horizontal flipping on a sprite's animations</p></div><p><p>Sets horizontal flipping of the provided sprite's animations.
+The sprite is identified by its URL.
+If the currently playing animation is flipped by default, flipping it again will make it appear like the original texture.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>url<p><span class="type">string | hash | url</span> the sprite that should flip its animations</p></p><p class='param'>flip<p><span class="type">boolean</span> <code>true</code> if the sprite should flip its animations, <code>false</code> if not</p></p></div><h3>EXAMPLES</h3><div class='examples'><p><p>How to flip a sprite so it faces the horizontal movement:</p>
+<div class="codehilite"><pre><span></span><span class="k">function</span> <span class="nf">update</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
+  <span class="c1">-- calculate self.velocity somehow</span>
+  <span class="n">sprite</span><span class="p">.</span><span class="n">set_hflip</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">#sprite&quot;</span><span class="p">,</span> <span class="n">self</span><span class="p">.</span><span class="n">velocity</span><span class="p">.</span><span class="n">x</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>
+<span class="k">end</span>
+</pre></div>
+
+
+<p>It is assumed that the sprite component has id "sprite" and that the original animations faces right.</p></p></div><hr/><h1><a name='//apple_ref/cpp/Function/sprite.set_vflip' class='dashAnchor'></a><a class='entry' name='sprite.set_vflip'>sprite.set_vflip()</a></h1><div class='brief'><p>set vertical flipping on a sprite's animations</p></div><p><p>Sets vertical flipping of the provided sprite's animations.
+The sprite is identified by its URL.
+If the currently playing animation is flipped by default, flipping it again will make it appear like the original texture.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>url<p><span class="type">string | hash | url</span> the sprite that should flip its animations</p></p><p class='param'>flip<p><span class="type">boolean</span> <code>true</code> if the sprite should flip its animations, <code>false</code> if not</p></p></div><h3>EXAMPLES</h3><div class='examples'><p><p>How to flip a sprite in a game which negates gravity as a game mechanic:</p>
+<div class="codehilite"><pre><span></span><span class="k">function</span> <span class="nf">update</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
+  <span class="c1">-- calculate self.up_side_down somehow, then:</span>
+  <span class="n">sprite</span><span class="p">.</span><span class="n">set_vflip</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">#sprite&quot;</span><span class="p">,</span> <span class="n">self</span><span class="p">.</span><span class="n">up_side_down</span><span class="p">)</span>
+<span class="k">end</span>
+</pre></div>
+
+
+<p>It is assumed that the sprite component has id "sprite" and that the original animations are up-right.</p></p></div><hr/><h1><a name='//apple_ref/cpp/Property/texture0' class='dashAnchor'></a><a class='entry' name='texture0'>texture0</a></h1><div class='brief'><p><span class="type">hash</span> sprite texture0</p></div><p><p><span class="mark">READ ONLY</span> Returns the texture path hash of the sprite. Used for getting/setting resource data</p></p><h3>EXAMPLES</h3><div class='examples'><p><p>How to overwrite a sprite's original texture</p>
+<div class="codehilite"><pre><span></span><span class="k">function</span> <span class="nf">init</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
+  <span class="c1">-- get texture resource from one sprite and set it on another</span>
+  <span class="kd">local</span> <span class="n">resource_path1</span> <span class="o">=</span> <span class="n">go</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">#sprite1&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">texture0&quot;</span><span class="p">)</span>
+  <span class="kd">local</span> <span class="n">buffer</span> <span class="o">=</span> <span class="n">resource</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="n">resource_path1</span><span class="p">)</span>
+  <span class="kd">local</span> <span class="n">resource_path2</span> <span class="o">=</span> <span class="n">go</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">#sprite2&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">texture0&quot;</span><span class="p">)</span>
+  <span class="n">resource</span><span class="p">.</span><span class="n">set</span><span class="p">(</span><span class="n">resource_path2</span><span class="p">,</span> <span class="n">buffer</span><span class="p">)</span>
+<span class="k">end</span>
+</pre></div></p></div><hr/></body></html>

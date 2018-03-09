@@ -1,0 +1,10 @@
+<html><head><link rel='stylesheet' type='text/css' href='../defold.css'></head><body><div class='nav'><a class='chevron' href='../index.html'><img src='../svg/chevron-left.svg' alt='Home'></a></div><h1>HTML5</h1>
+<p><p>HTML5 platform specific functions.</p>
+<p><span class="icon-html5"></span> The following functions are only available on HTML5 builds, the <code>html5.*</code> Lua namespace will not be available on other platforms.</p></p>
+<h1><a name='//apple_ref/cpp/Function/html5.run' class='dashAnchor'></a><a class='entry' name='html5.run'>html5.run()</a></h1><div class='brief'><p>run JavaScript code, in the browser, from Lua</p></div><p><p>Executes the supplied string as JavaScript inside the browser.
+A call to this function is blocking, the result is returned as-is, as a string.
+(Internally this will execute the string using the <code>eval()</code> JavaScript function.)</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>code<p><span class="type">string</span> Javascript code to run</p></p></div><h3>RETURN</h3><div class='return'><p>result - <p><span class="type">string</span> result as string</p></p></div><h3>EXAMPLES</h3><div class='examples'><p><div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">res</span> <span class="o">=</span> <span class="n">html5</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">10 + 20&quot;</span><span class="p">)</span> <span class="c1">-- returns the string &quot;30&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+<span class="kd">local</span> <span class="n">res_num</span> <span class="o">=</span> <span class="nb">tonumber</span><span class="p">(</span><span class="n">res</span><span class="p">)</span> <span class="c1">-- convert to number</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">res_num</span> <span class="o">-</span> <span class="mi">20</span><span class="p">)</span> <span class="c1">-- prints 10</span>
+</pre></div></p></div><hr/></body></html>

@@ -1,0 +1,732 @@
+<html><head><link rel='stylesheet' type='text/css' href='../defold.css'></head><body><div class='nav'><a class='chevron' href='../index.html'><img src='../svg/chevron-left.svg' alt='Home'></a></div><h1>GUI</h1>
+<p><p>GUI core hooks, functions, messages, properties and constants for
+creation and manipulation of GUI nodes. The "gui" namespace is
+accessible only from gui scripts.</p></p>
+<h1><a name='//apple_ref/cpp/Function/final' class='dashAnchor'></a><a class='entry' name='final'>final()</a></h1><div class='brief'><p>called when a gui component is finalized</p></div><p><p>This is a callback-function, which is called by the engine when a gui component is finalized (destroyed). It can
+be used to e.g. take some last action, report the finalization to other game object instances
+or release user input focus (see <code>release_input_focus</code>). There is no use in starting any animations or similar
+from this function since the gui component is about to be destroyed.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>self<p><span class="type">object</span> reference to the script state to be used for storing data</p></p></div><h3>EXAMPLES</h3><div class='examples'><p><div class="codehilite"><pre><span></span><span class="k">function</span> <span class="nf">final</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
+    <span class="c1">-- report finalization</span>
+    <span class="n">msg</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">my_friend_instance&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">im_dead&quot;</span><span class="p">,</span> <span class="p">{</span><span class="n">my_stats</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">some_value</span><span class="p">})</span>
+<span class="k">end</span>
+</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Variable/gui.ADJUST_FIT' class='dashAnchor'></a><a class='entry' name='gui.ADJUST_FIT'>gui.ADJUST_FIT</a></h1><div class='brief'><p>fit adjust mode</p></div><p><p>Adjust mode is used when the screen resolution differs from the project settings.
+The fit mode ensures that the entire node is visible in the adjusted gui scene.</p></p><hr/><h1><a name='//apple_ref/cpp/Variable/gui.ADJUST_STRETCH' class='dashAnchor'></a><a class='entry' name='gui.ADJUST_STRETCH'>gui.ADJUST_STRETCH</a></h1><div class='brief'><p>stretch adjust mode</p></div><p><p>Adjust mode is used when the screen resolution differs from the project settings.
+The stretch mode ensures that the node is displayed as is in the adjusted gui scene, which might scale it non-uniformally.</p></p><hr/><h1><a name='//apple_ref/cpp/Variable/gui.ADJUST_ZOOM' class='dashAnchor'></a><a class='entry' name='gui.ADJUST_ZOOM'>gui.ADJUST_ZOOM</a></h1><div class='brief'><p>zoom adjust mode</p></div><p><p>Adjust mode is used when the screen resolution differs from the project settings.
+The zoom mode ensures that the node fills its entire area and might make the node exceed it.</p></p><hr/><h1><a name='//apple_ref/cpp/Variable/gui.ANCHOR_BOTTOM' class='dashAnchor'></a><a class='entry' name='gui.ANCHOR_BOTTOM'>gui.ANCHOR_BOTTOM</a></h1><div class='brief'><p>bottom y-anchor</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/gui.ANCHOR_LEFT' class='dashAnchor'></a><a class='entry' name='gui.ANCHOR_LEFT'>gui.ANCHOR_LEFT</a></h1><div class='brief'><p>left x-anchor</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/gui.ANCHOR_RIGHT' class='dashAnchor'></a><a class='entry' name='gui.ANCHOR_RIGHT'>gui.ANCHOR_RIGHT</a></h1><div class='brief'><p>right x-anchor</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/gui.ANCHOR_TOP' class='dashAnchor'></a><a class='entry' name='gui.ANCHOR_TOP'>gui.ANCHOR_TOP</a></h1><div class='brief'><p>top y-anchor</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/gui.BLEND_ADD' class='dashAnchor'></a><a class='entry' name='gui.BLEND_ADD'>gui.BLEND_ADD</a></h1><div class='brief'><p>additive blending</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/gui.BLEND_ADD_ALPHA' class='dashAnchor'></a><a class='entry' name='gui.BLEND_ADD_ALPHA'>gui.BLEND_ADD_ALPHA</a></h1><div class='brief'><p>additive alpha blending</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/gui.BLEND_ALPHA' class='dashAnchor'></a><a class='entry' name='gui.BLEND_ALPHA'>gui.BLEND_ALPHA</a></h1><div class='brief'><p>alpha blending</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/gui.BLEND_MULT' class='dashAnchor'></a><a class='entry' name='gui.BLEND_MULT'>gui.BLEND_MULT</a></h1><div class='brief'><p>multiply blending</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/gui.CLIPPING_MODE_NONE' class='dashAnchor'></a><a class='entry' name='gui.CLIPPING_MODE_NONE'>gui.CLIPPING_MODE_NONE</a></h1><div class='brief'><p>clipping mode none</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/gui.CLIPPING_MODE_STENCIL' class='dashAnchor'></a><a class='entry' name='gui.CLIPPING_MODE_STENCIL'>gui.CLIPPING_MODE_STENCIL</a></h1><div class='brief'><p>clipping mode stencil</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/gui.EASING_INBACK' class='dashAnchor'></a><a class='entry' name='gui.EASING_INBACK'>gui.EASING_INBACK</a></h1><div class='brief'><p>in-back</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/gui.EASING_INBOUNCE' class='dashAnchor'></a><a class='entry' name='gui.EASING_INBOUNCE'>gui.EASING_INBOUNCE</a></h1><div class='brief'><p>in-bounce</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/gui.EASING_INCIRC' class='dashAnchor'></a><a class='entry' name='gui.EASING_INCIRC'>gui.EASING_INCIRC</a></h1><div class='brief'><p>in-circlic</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/gui.EASING_INCUBIC' class='dashAnchor'></a><a class='entry' name='gui.EASING_INCUBIC'>gui.EASING_INCUBIC</a></h1><div class='brief'><p>in-cubic</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/gui.EASING_INELASTIC' class='dashAnchor'></a><a class='entry' name='gui.EASING_INELASTIC'>gui.EASING_INELASTIC</a></h1><div class='brief'><p>in-elastic</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/gui.EASING_INEXPO' class='dashAnchor'></a><a class='entry' name='gui.EASING_INEXPO'>gui.EASING_INEXPO</a></h1><div class='brief'><p>in-exponential</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/gui.EASING_INOUTBACK' class='dashAnchor'></a><a class='entry' name='gui.EASING_INOUTBACK'>gui.EASING_INOUTBACK</a></h1><div class='brief'><p>in-out-back</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/gui.EASING_INOUTBOUNCE' class='dashAnchor'></a><a class='entry' name='gui.EASING_INOUTBOUNCE'>gui.EASING_INOUTBOUNCE</a></h1><div class='brief'><p>in-out-bounce</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/gui.EASING_INOUTCIRC' class='dashAnchor'></a><a class='entry' name='gui.EASING_INOUTCIRC'>gui.EASING_INOUTCIRC</a></h1><div class='brief'><p>in-out-circlic</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/gui.EASING_INOUTCUBIC' class='dashAnchor'></a><a class='entry' name='gui.EASING_INOUTCUBIC'>gui.EASING_INOUTCUBIC</a></h1><div class='brief'><p>in-out-cubic</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/gui.EASING_INOUTELASTIC' class='dashAnchor'></a><a class='entry' name='gui.EASING_INOUTELASTIC'>gui.EASING_INOUTELASTIC</a></h1><div class='brief'><p>in-out-elastic</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/gui.EASING_INOUTEXPO' class='dashAnchor'></a><a class='entry' name='gui.EASING_INOUTEXPO'>gui.EASING_INOUTEXPO</a></h1><div class='brief'><p>in-out-exponential</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/gui.EASING_INOUTQUAD' class='dashAnchor'></a><a class='entry' name='gui.EASING_INOUTQUAD'>gui.EASING_INOUTQUAD</a></h1><div class='brief'><p>in-out-quadratic</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/gui.EASING_INOUTQUART' class='dashAnchor'></a><a class='entry' name='gui.EASING_INOUTQUART'>gui.EASING_INOUTQUART</a></h1><div class='brief'><p>in-out-quartic</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/gui.EASING_INOUTQUINT' class='dashAnchor'></a><a class='entry' name='gui.EASING_INOUTQUINT'>gui.EASING_INOUTQUINT</a></h1><div class='brief'><p>in-out-quintic</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/gui.EASING_INOUTSINE' class='dashAnchor'></a><a class='entry' name='gui.EASING_INOUTSINE'>gui.EASING_INOUTSINE</a></h1><div class='brief'><p>in-out-sine</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/gui.EASING_INQUAD' class='dashAnchor'></a><a class='entry' name='gui.EASING_INQUAD'>gui.EASING_INQUAD</a></h1><div class='brief'><p>in-quadratic</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/gui.EASING_INQUART' class='dashAnchor'></a><a class='entry' name='gui.EASING_INQUART'>gui.EASING_INQUART</a></h1><div class='brief'><p>in-quartic</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/gui.EASING_INQUINT' class='dashAnchor'></a><a class='entry' name='gui.EASING_INQUINT'>gui.EASING_INQUINT</a></h1><div class='brief'><p>in-quintic</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/gui.EASING_INSINE' class='dashAnchor'></a><a class='entry' name='gui.EASING_INSINE'>gui.EASING_INSINE</a></h1><div class='brief'><p>in-sine</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/gui.EASING_LINEAR' class='dashAnchor'></a><a class='entry' name='gui.EASING_LINEAR'>gui.EASING_LINEAR</a></h1><div class='brief'><p>linear interpolation</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/gui.EASING_OUTBACK' class='dashAnchor'></a><a class='entry' name='gui.EASING_OUTBACK'>gui.EASING_OUTBACK</a></h1><div class='brief'><p>out-back</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/gui.EASING_OUTBOUNCE' class='dashAnchor'></a><a class='entry' name='gui.EASING_OUTBOUNCE'>gui.EASING_OUTBOUNCE</a></h1><div class='brief'><p>out-bounce</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/gui.EASING_OUTCIRC' class='dashAnchor'></a><a class='entry' name='gui.EASING_OUTCIRC'>gui.EASING_OUTCIRC</a></h1><div class='brief'><p>out-circlic</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/gui.EASING_OUTCUBIC' class='dashAnchor'></a><a class='entry' name='gui.EASING_OUTCUBIC'>gui.EASING_OUTCUBIC</a></h1><div class='brief'><p>out-cubic</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/gui.EASING_OUTELASTIC' class='dashAnchor'></a><a class='entry' name='gui.EASING_OUTELASTIC'>gui.EASING_OUTELASTIC</a></h1><div class='brief'><p>out-elastic</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/gui.EASING_OUTEXPO' class='dashAnchor'></a><a class='entry' name='gui.EASING_OUTEXPO'>gui.EASING_OUTEXPO</a></h1><div class='brief'><p>out-exponential</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/gui.EASING_OUTINBACK' class='dashAnchor'></a><a class='entry' name='gui.EASING_OUTINBACK'>gui.EASING_OUTINBACK</a></h1><div class='brief'><p>out-in-back</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/gui.EASING_OUTINBOUNCE' class='dashAnchor'></a><a class='entry' name='gui.EASING_OUTINBOUNCE'>gui.EASING_OUTINBOUNCE</a></h1><div class='brief'><p>out-in-bounce</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/gui.EASING_OUTINCIRC' class='dashAnchor'></a><a class='entry' name='gui.EASING_OUTINCIRC'>gui.EASING_OUTINCIRC</a></h1><div class='brief'><p>out-in-circlic</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/gui.EASING_OUTINCUBIC' class='dashAnchor'></a><a class='entry' name='gui.EASING_OUTINCUBIC'>gui.EASING_OUTINCUBIC</a></h1><div class='brief'><p>out-in-cubic</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/gui.EASING_OUTINELASTIC' class='dashAnchor'></a><a class='entry' name='gui.EASING_OUTINELASTIC'>gui.EASING_OUTINELASTIC</a></h1><div class='brief'><p>out-in-elastic</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/gui.EASING_OUTINEXPO' class='dashAnchor'></a><a class='entry' name='gui.EASING_OUTINEXPO'>gui.EASING_OUTINEXPO</a></h1><div class='brief'><p>out-in-exponential</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/gui.EASING_OUTINQUAD' class='dashAnchor'></a><a class='entry' name='gui.EASING_OUTINQUAD'>gui.EASING_OUTINQUAD</a></h1><div class='brief'><p>out-in-quadratic</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/gui.EASING_OUTINQUART' class='dashAnchor'></a><a class='entry' name='gui.EASING_OUTINQUART'>gui.EASING_OUTINQUART</a></h1><div class='brief'><p>out-in-quartic</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/gui.EASING_OUTINQUINT' class='dashAnchor'></a><a class='entry' name='gui.EASING_OUTINQUINT'>gui.EASING_OUTINQUINT</a></h1><div class='brief'><p>out-in-quintic</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/gui.EASING_OUTINSINE' class='dashAnchor'></a><a class='entry' name='gui.EASING_OUTINSINE'>gui.EASING_OUTINSINE</a></h1><div class='brief'><p>out-in-sine</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/gui.EASING_OUTQUAD' class='dashAnchor'></a><a class='entry' name='gui.EASING_OUTQUAD'>gui.EASING_OUTQUAD</a></h1><div class='brief'><p>out-quadratic</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/gui.EASING_OUTQUART' class='dashAnchor'></a><a class='entry' name='gui.EASING_OUTQUART'>gui.EASING_OUTQUART</a></h1><div class='brief'><p>out-quartic</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/gui.EASING_OUTQUINT' class='dashAnchor'></a><a class='entry' name='gui.EASING_OUTQUINT'>gui.EASING_OUTQUINT</a></h1><div class='brief'><p>out-quintic</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/gui.EASING_OUTSINE' class='dashAnchor'></a><a class='entry' name='gui.EASING_OUTSINE'>gui.EASING_OUTSINE</a></h1><div class='brief'><p>out-sine</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/gui.KEYBOARD_TYPE_DEFAULT' class='dashAnchor'></a><a class='entry' name='gui.KEYBOARD_TYPE_DEFAULT'>gui.KEYBOARD_TYPE_DEFAULT</a></h1><div class='brief'><p>default keyboard</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/gui.KEYBOARD_TYPE_EMAIL' class='dashAnchor'></a><a class='entry' name='gui.KEYBOARD_TYPE_EMAIL'>gui.KEYBOARD_TYPE_EMAIL</a></h1><div class='brief'><p>email keyboard</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/gui.KEYBOARD_TYPE_NUMBER_PAD' class='dashAnchor'></a><a class='entry' name='gui.KEYBOARD_TYPE_NUMBER_PAD'>gui.KEYBOARD_TYPE_NUMBER_PAD</a></h1><div class='brief'><p>number input keyboard</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/gui.KEYBOARD_TYPE_PASSWORD' class='dashAnchor'></a><a class='entry' name='gui.KEYBOARD_TYPE_PASSWORD'>gui.KEYBOARD_TYPE_PASSWORD</a></h1><div class='brief'><p>password keyboard</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/gui.PIEBOUNDS_ELLIPSE' class='dashAnchor'></a><a class='entry' name='gui.PIEBOUNDS_ELLIPSE'>gui.PIEBOUNDS_ELLIPSE</a></h1><div class='brief'><p>elliptical pie node bounds</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/gui.PIEBOUNDS_RECTANGLE' class='dashAnchor'></a><a class='entry' name='gui.PIEBOUNDS_RECTANGLE'>gui.PIEBOUNDS_RECTANGLE</a></h1><div class='brief'><p>rectangular pie node bounds</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/gui.PIVOT_CENTER' class='dashAnchor'></a><a class='entry' name='gui.PIVOT_CENTER'>gui.PIVOT_CENTER</a></h1><div class='brief'><p>center pivor</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/gui.PIVOT_E' class='dashAnchor'></a><a class='entry' name='gui.PIVOT_E'>gui.PIVOT_E</a></h1><div class='brief'><p>east pivot</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/gui.PIVOT_N' class='dashAnchor'></a><a class='entry' name='gui.PIVOT_N'>gui.PIVOT_N</a></h1><div class='brief'><p>north pivot</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/gui.PIVOT_NE' class='dashAnchor'></a><a class='entry' name='gui.PIVOT_NE'>gui.PIVOT_NE</a></h1><div class='brief'><p>north-east pivot</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/gui.PIVOT_NW' class='dashAnchor'></a><a class='entry' name='gui.PIVOT_NW'>gui.PIVOT_NW</a></h1><div class='brief'><p>north-west pivot</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/gui.PIVOT_S' class='dashAnchor'></a><a class='entry' name='gui.PIVOT_S'>gui.PIVOT_S</a></h1><div class='brief'><p>south pivot</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/gui.PIVOT_SE' class='dashAnchor'></a><a class='entry' name='gui.PIVOT_SE'>gui.PIVOT_SE</a></h1><div class='brief'><p>south-east pivot</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/gui.PIVOT_SW' class='dashAnchor'></a><a class='entry' name='gui.PIVOT_SW'>gui.PIVOT_SW</a></h1><div class='brief'><p>south-west pivot</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/gui.PIVOT_W' class='dashAnchor'></a><a class='entry' name='gui.PIVOT_W'>gui.PIVOT_W</a></h1><div class='brief'><p>west pivot</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/gui.PLAYBACK_LOOP_BACKWARD' class='dashAnchor'></a><a class='entry' name='gui.PLAYBACK_LOOP_BACKWARD'>gui.PLAYBACK_LOOP_BACKWARD</a></h1><div class='brief'><p>loop backward</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/gui.PLAYBACK_LOOP_FORWARD' class='dashAnchor'></a><a class='entry' name='gui.PLAYBACK_LOOP_FORWARD'>gui.PLAYBACK_LOOP_FORWARD</a></h1><div class='brief'><p>loop forward</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/gui.PLAYBACK_LOOP_PINGPONG' class='dashAnchor'></a><a class='entry' name='gui.PLAYBACK_LOOP_PINGPONG'>gui.PLAYBACK_LOOP_PINGPONG</a></h1><div class='brief'><p>ping pong loop</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/gui.PLAYBACK_ONCE_BACKWARD' class='dashAnchor'></a><a class='entry' name='gui.PLAYBACK_ONCE_BACKWARD'>gui.PLAYBACK_ONCE_BACKWARD</a></h1><div class='brief'><p>once backward</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/gui.PLAYBACK_ONCE_FORWARD' class='dashAnchor'></a><a class='entry' name='gui.PLAYBACK_ONCE_FORWARD'>gui.PLAYBACK_ONCE_FORWARD</a></h1><div class='brief'><p>once forward</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/gui.PLAYBACK_ONCE_PINGPONG' class='dashAnchor'></a><a class='entry' name='gui.PLAYBACK_ONCE_PINGPONG'>gui.PLAYBACK_ONCE_PINGPONG</a></h1><div class='brief'><p>once forward and then backward</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/gui.PROP_COLOR' class='dashAnchor'></a><a class='entry' name='gui.PROP_COLOR'>gui.PROP_COLOR</a></h1><div class='brief'><p>color property</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/gui.PROP_FILL_ANGLE' class='dashAnchor'></a><a class='entry' name='gui.PROP_FILL_ANGLE'>gui.PROP_FILL_ANGLE</a></h1><div class='brief'><p>fill_angle property</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/gui.PROP_INNER_RADIUS' class='dashAnchor'></a><a class='entry' name='gui.PROP_INNER_RADIUS'>gui.PROP_INNER_RADIUS</a></h1><div class='brief'><p>inner_radius property</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/gui.PROP_OUTLINE' class='dashAnchor'></a><a class='entry' name='gui.PROP_OUTLINE'>gui.PROP_OUTLINE</a></h1><div class='brief'><p>outline color property</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/gui.PROP_POSITION' class='dashAnchor'></a><a class='entry' name='gui.PROP_POSITION'>gui.PROP_POSITION</a></h1><div class='brief'><p>position property</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/gui.PROP_ROTATION' class='dashAnchor'></a><a class='entry' name='gui.PROP_ROTATION'>gui.PROP_ROTATION</a></h1><div class='brief'><p>rotation property</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/gui.PROP_SCALE' class='dashAnchor'></a><a class='entry' name='gui.PROP_SCALE'>gui.PROP_SCALE</a></h1><div class='brief'><p>scale property</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/gui.PROP_SHADOW' class='dashAnchor'></a><a class='entry' name='gui.PROP_SHADOW'>gui.PROP_SHADOW</a></h1><div class='brief'><p>shadow color property</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/gui.PROP_SIZE' class='dashAnchor'></a><a class='entry' name='gui.PROP_SIZE'>gui.PROP_SIZE</a></h1><div class='brief'><p>size property</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/gui.PROP_SLICE9' class='dashAnchor'></a><a class='entry' name='gui.PROP_SLICE9'>gui.PROP_SLICE9</a></h1><div class='brief'><p>slice9 property</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/gui.SIZE_MODE_AUTO' class='dashAnchor'></a><a class='entry' name='gui.SIZE_MODE_AUTO'>gui.SIZE_MODE_AUTO</a></h1><div class='brief'><p>automatic size mode</p></div><p><p>The size of the node is determined by the currently assigned texture.</p></p><hr/><h1><a name='//apple_ref/cpp/Variable/gui.SIZE_MODE_MANUAL' class='dashAnchor'></a><a class='entry' name='gui.SIZE_MODE_MANUAL'>gui.SIZE_MODE_MANUAL</a></h1><div class='brief'><p>manual size mode</p></div><p><p>The size of the node is determined by the size set in the editor, the constructor or by gui.set_size()</p></p><hr/><h1><a name='//apple_ref/cpp/Function/gui.animate' class='dashAnchor'></a><a class='entry' name='gui.animate'>gui.animate()</a></h1><div class='brief'><p>animates a node property</p></div><p><p>This starts an animation of a node property according to the specified parameters.
+If the node property is already being animated, that animation will be canceled and
+replaced by the new one. Note however that several different node properties
+can be animated simultaneously. Use <code>gui.cancel_animation</code> to stop the animation
+before it has completed.</p>
+<p>Composite properties of type vector3, vector4 or quaternion
+also expose their sub-components (x, y, z and w).
+You can address the components individually by suffixing the name with a dot '.'
+and the name of the component.
+For instance, <code>"position.x"</code> (the position x coordinate) or <code>"color.w"</code>
+(the color alpha value).</p>
+<p>If a <code>complete_function</code> (Lua function) is specified, that function will be called
+when the animation has completed.
+By starting a new animation in that function, several animations can be sequenced
+together. See the examples below for more information.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>node<p><span class="type">node</span> node to animate</p></p><p class='param'>property<p><span class="type">string | constant</span> property to animate</p>
+<ul>
+<li><code>"position"</code></li>
+<li><code>"rotation"</code></li>
+<li><code>"scale"</code></li>
+<li><code>"color"</code></li>
+<li><code>"outline"</code></li>
+<li><code>"shadow"</code></li>
+<li><code>"size"</code></li>
+<li><code>"fill_angle"</code> (pie)</li>
+<li><code>"inner_radius"</code> (pie)</li>
+<li><code>"slice9"</code> (slice9)</li>
+</ul>
+<p>The following property constants are defined equaling the corresponding property string names.</p>
+<ul>
+<li><code>gui.PROP_POSITION</code></li>
+<li><code>gui.PROP_ROTATION</code></li>
+<li><code>gui.PROP_SCALE</code></li>
+<li><code>gui.PROP_COLOR</code></li>
+<li><code>gui.PROP_OUTLINE</code></li>
+<li><code>gui.PROP_SHADOW</code></li>
+<li><code>gui.PROP_SIZE</code></li>
+<li><code>gui.PROP_FILL_ANGLE</code></li>
+<li><code>gui.PROP_INNER_RADIUS</code></li>
+<li><code>gui.PROP_SLICE9</code></li>
+</ul></p><p class='param'>to<p><span class="type">vector3 | vector4</span> target property value</p></p><p class='param'>easing<p><span class="type">constant | vector</span> easing to use during animation.
+     Either specify one of the <code>gui.EASING_*</code> constants or provide a
+     <span class="type">vector</span> with a custom curve.</p></p><p class='param'>duration<p><span class="type">number</span> duration of the animation in seconds.</p></p><p class='param'>[delay]<p><span class="type">number</span> delay before the animation starts in seconds.</p></p><p class='param'>[complete_function]<p><span class="type">function(self, node)</span> function to call when the
+     animation has completed</p></p><p class='param'>[playback]<p><span class="type">constant</span> playback mode</p>
+<ul>
+<li><code>gui.PLAYBACK_ONCE_FORWARD</code></li>
+<li><code>gui.PLAYBACK_ONCE_BACKWARD</code></li>
+<li><code>gui.PLAYBACK_ONCE_PINGPONG</code></li>
+<li><code>gui.PLAYBACK_LOOP_FORWARD</code></li>
+<li><code>gui.PLAYBACK_LOOP_BACKWARD</code></li>
+<li><code>gui.PLAYBACK_LOOP_PINGPONG</code></li>
+</ul></p></div><h3>EXAMPLES</h3><div class='examples'><p><p>How to start a simple color animation, where the node fades in to white during 0.5 seconds:</p>
+<div class="codehilite"><pre><span></span><span class="n">gui</span><span class="p">.</span><span class="n">set_color</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">vmath</span><span class="p">.</span><span class="n">vector4</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span> <span class="c1">-- node is fully transparent</span>
+<span class="n">gui</span><span class="p">.</span><span class="n">animate</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">gui</span><span class="p">.</span><span class="n">PROP_COLOR</span><span class="p">,</span> <span class="n">vmath</span><span class="p">.</span><span class="n">vector4</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">gui</span><span class="p">.</span><span class="n">EASING_INOUTQUAD</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span> <span class="c1">-- start animation</span>
+</pre></div>
+
+
+<p>How to start a sequenced animation where the node fades in to white during 0.5 seconds, stays visible for 2 seconds and then fades out:</p>
+<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="k">function</span> <span class="nf">on_animation_done</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">node</span><span class="p">)</span>
+    <span class="c1">-- fade out node, but wait 2 seconds before the animation starts</span>
+    <span class="n">gui</span><span class="p">.</span><span class="n">animate</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">gui</span><span class="p">.</span><span class="n">PROP_COLOR</span><span class="p">,</span> <span class="n">vmath</span><span class="p">.</span><span class="n">vector4</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">gui</span><span class="p">.</span><span class="n">EASING_OUTQUAD</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="k">function</span> <span class="nf">init</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
+    <span class="c1">-- fetch the node we want to animate</span>
+    <span class="kd">local</span> <span class="n">my_node</span> <span class="o">=</span> <span class="n">gui</span><span class="p">.</span><span class="n">get_node</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">my_node&quot;</span><span class="p">)</span>
+    <span class="c1">-- node is initially set to fully transparent</span>
+    <span class="n">gui</span><span class="p">.</span><span class="n">set_color</span><span class="p">(</span><span class="n">my_node</span><span class="p">,</span> <span class="n">vmath</span><span class="p">.</span><span class="n">vector4</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+    <span class="c1">-- animate the node immediately and call on_animation_done when the animation has completed</span>
+    <span class="n">gui</span><span class="p">.</span><span class="n">animate</span><span class="p">(</span><span class="n">my_node</span><span class="p">,</span> <span class="n">gui</span><span class="p">.</span><span class="n">PROP_COLOR</span><span class="p">,</span> <span class="n">vmath</span><span class="p">.</span><span class="n">vector4</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">gui</span><span class="p">.</span><span class="n">EASING_INOUTQUAD</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">on_animation_done</span><span class="p">)</span>
+<span class="k">end</span>
+</pre></div>
+
+
+<p>How to animate a node's y position using a crazy custom easing curve:</p>
+<div class="codehilite"><pre><span></span><span class="k">function</span> <span class="nf">init</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
+    <span class="kd">local</span> <span class="n">values</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>
+                     <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span>
+                     <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>
+                     <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span>
+                     <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>
+                     <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span>
+                     <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>
+                     <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span> <span class="p">}</span>
+    <span class="kd">local</span> <span class="n">vec</span> <span class="o">=</span> <span class="n">vmath</span><span class="p">.</span><span class="n">vector</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
+    <span class="kd">local</span> <span class="n">node</span> <span class="o">=</span> <span class="n">gui</span><span class="p">.</span><span class="n">get_node</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">box&quot;</span><span class="p">)</span>
+    <span class="n">gui</span><span class="p">.</span><span class="n">animate</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">position.y&quot;</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="n">vec</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="kc">nil</span><span class="p">,</span> <span class="n">gui</span><span class="p">.</span><span class="n">PLAYBACK_LOOP_PINGPONG</span><span class="p">)</span>
+<span class="k">end</span>
+</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.cancel_animation' class='dashAnchor'></a><a class='entry' name='gui.cancel_animation'>gui.cancel_animation()</a></h1><div class='brief'><p>cancels an ongoing animation</p></div><p><p>If an animation of the specified node is currently running (started by <code>gui.animate</code>), it will immediately be canceled.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>node<p><span class="type">node</span> node that should have its animation canceled</p></p><p class='param'>property<p><span class="type">string | constant</span> property for which the animation should be canceled</p>
+<ul>
+<li><code>"position"</code></li>
+<li><code>"rotation"</code></li>
+<li><code>"scale"</code></li>
+<li><code>"color"</code></li>
+<li><code>"outline"</code></li>
+<li><code>"shadow"</code></li>
+<li><code>"size"</code></li>
+<li><code>"fill_angle"</code> (pie)</li>
+<li><code>"inner_radius"</code> (pie)</li>
+<li><code>"slice9"</code> (slice9)</li>
+</ul></p></div><h3>EXAMPLES</h3><div class='examples'><p><p>Start an animation of the position property of a node, then cancel parts of
+the animation:</p>
+<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">node</span> <span class="o">=</span> <span class="n">gui</span><span class="p">.</span><span class="n">get_node</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">my_node&quot;</span><span class="p">)</span>
+<span class="c1">-- animate to new position</span>
+<span class="kd">local</span> <span class="n">pos</span> <span class="o">=</span> <span class="n">vmath</span><span class="p">.</span><span class="n">vector3</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">gui</span><span class="p">.</span><span class="n">animate</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">position&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">go</span><span class="p">.</span><span class="n">EASING_LINEAR</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="o">...</span>
+<span class="c1">-- cancel animation of the x component.</span>
+<span class="n">gui</span><span class="p">.</span><span class="n">cancel_animation</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">position.x&quot;</span><span class="p">)</span>
+</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.cancel_flipbook' class='dashAnchor'></a><a class='entry' name='gui.cancel_flipbook'>gui.cancel_flipbook()</a></h1><div class='brief'><p>cancel a node flipbook animation</p></div><p><p>Cancels any running flipbook animation on the specified node.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>node<p><span class="type">node</span> node cancel flipbook animation for</p></p></div><h3>EXAMPLES</h3><div class='examples'><p><div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">node</span> <span class="o">=</span> <span class="n">gui</span><span class="p">.</span><span class="n">get_node</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">anim_node&quot;</span><span class="p">)</span>
+<span class="n">gui</span><span class="p">.</span><span class="n">cancel_flipbook</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.cancel_spine' class='dashAnchor'></a><a class='entry' name='gui.cancel_spine'>gui.cancel_spine()</a></h1><div class='brief'><p>cancel a spine animation</p></div><h3>PARAMETERS</h3><div class='params'><p class='param'>node<p><span class="type">node</span> spine node that should cancel its animation</p></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.clone' class='dashAnchor'></a><a class='entry' name='gui.clone'>gui.clone()</a></h1><div class='brief'><p>clone a node</p></div><p><p>Make a clone instance of a node.
+This function does not clone the supplied node's children nodes.
+Use gui.clone_tree for that purpose.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>node<p><span class="type">node</span> node to clone</p></p></div><h3>RETURN</h3><div class='return'><p>clone - <p><span class="type">node</span> the cloned node</p></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.clone_tree' class='dashAnchor'></a><a class='entry' name='gui.clone_tree'>gui.clone_tree()</a></h1><div class='brief'><p>clone a node including its children</p></div><p><p>Make a clone instance of a node and all its children.
+Use gui.clone to clone a node excluding its children.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>node<p><span class="type">node</span> root node to clone</p></p></div><h3>RETURN</h3><div class='return'><p>clones - <p><span class="type">table</span> a table mapping node ids to the corresponding cloned nodes</p></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.delete_node' class='dashAnchor'></a><a class='entry' name='gui.delete_node'>gui.delete_node()</a></h1><div class='brief'><p>deletes a node</p></div><p><p>Deletes the specified node. Any child nodes of the specified node will be
+recursively deleted.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>node<p><span class="type">node</span> node to delete</p></p></div><h3>EXAMPLES</h3><div class='examples'><p><p>Delete a particular node and any child nodes it might have:</p>
+<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">node</span> <span class="o">=</span> <span class="n">gui</span><span class="p">.</span><span class="n">get_node</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">my_node&quot;</span><span class="p">)</span>
+<span class="n">gui</span><span class="p">.</span><span class="n">delete_node</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.delete_texture' class='dashAnchor'></a><a class='entry' name='gui.delete_texture'>gui.delete_texture()</a></h1><div class='brief'><p>delete texture</p></div><p><p>Delete a dynamically created texture.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>texture<p><span class="type">string | hash</span> texture id</p></p></div><h3>EXAMPLES</h3><div class='examples'><p><div class="codehilite"><pre><span></span><span class="k">function</span> <span class="nf">init</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
+     <span class="c1">-- Create a texture.</span>
+     <span class="k">if</span> <span class="n">gui</span><span class="p">.</span><span class="n">new_texture</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">temp_tx&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">rgb&quot;</span><span class="p">,</span> <span class="nb">string.rep</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\0</span><span class="s">&#39;</span><span class="p">,</span> <span class="mi">10</span> <span class="o">*</span> <span class="mi">10</span> <span class="o">*</span> <span class="mi">3</span><span class="p">))</span> <span class="k">then</span>
+         <span class="c1">-- Do something with the texture.</span>
+         <span class="o">...</span>
+
+         <span class="c1">-- Delete the texture</span>
+         <span class="n">gui</span><span class="p">.</span><span class="n">delete_texture</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">temp_tx&quot;</span><span class="p">)</span>
+     <span class="k">end</span>
+<span class="k">end</span>
+</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.get_adjust_mode' class='dashAnchor'></a><a class='entry' name='gui.get_adjust_mode'>gui.get_adjust_mode()</a></h1><div class='brief'><p>gets the node adjust mode</p></div><p><p>Returns the adjust mode of a node.
+The adjust mode defines how the node will adjust itself to screen
+resolutions that differs from the one in the project settings.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>node<p><span class="type">node</span> node from which to get the adjust mode (node)</p></p></div><h3>RETURN</h3><div class='return'><p>adjust_mode - <p><span class="type">constant</span> the current adjust mode</p>
+<ul>
+<li><code>gui.ADJUST_FIT</code></li>
+<li><code>gui.ADJUST_ZOOM</code></li>
+<li><code>gui.ADJUST_STRETCH</code></li>
+</ul></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.get_blend_mode' class='dashAnchor'></a><a class='entry' name='gui.get_blend_mode'>gui.get_blend_mode()</a></h1><div class='brief'><p>gets the node blend mode</p></div><p><p>Returns the blend mode of a node.
+Blend mode defines how the node will be blended with the background.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>node<p><span class="type">node</span> node from which to get the blend mode</p></p></div><h3>RETURN</h3><div class='return'><p>blend_mode - <p><span class="type">constant</span> blend mode</p>
+<ul>
+<li><code>gui.BLEND_ALPHA</code></li>
+<li><code>gui.BLEND_ADD</code></li>
+<li><code>gui.BLEND_ADD_ALPHA</code></li>
+<li><code>gui.BLEND_MULT</code></li>
+</ul></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.get_clipping_inverted' class='dashAnchor'></a><a class='entry' name='gui.get_clipping_inverted'>gui.get_clipping_inverted()</a></h1><div class='brief'><p>gets node clipping inverted state</p></div><p><p>If node is set as an inverted clipping node, it will clip anything inside as opposed to outside.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>node<p><span class="type">node</span> node from which to get the clipping inverted state</p></p></div><h3>RETURN</h3><div class='return'><p>inverted - <p><span class="type">boolean</span> true or false</p></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.get_clipping_mode' class='dashAnchor'></a><a class='entry' name='gui.get_clipping_mode'>gui.get_clipping_mode()</a></h1><div class='brief'><p>gets the node clipping mode</p></div><p><p>Clipping mode defines how the node will clipping it's children nodes</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>node<p><span class="type">node</span> node from which to get the clipping mode</p></p></div><h3>RETURN</h3><div class='return'><p>clipping_mode - <p><span class="type">constant</span> clipping mode
+<ul>
+  <li><code>gui.CLIPPING_MODE_NONE</code></li>
+  <li><code>gui.CLIPPING_MODE_STENCIL</code></li>
+</ul></p></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.get_clipping_visible' class='dashAnchor'></a><a class='entry' name='gui.get_clipping_visible'>gui.get_clipping_visible()</a></h1><div class='brief'><p>gets node clipping visibility state</p></div><p><p>If node is set as visible clipping node, it will be shown as well as clipping. Otherwise, it will only clip but not show visually.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>node<p><span class="type">node</span> node from which to get the clipping visibility state</p></p></div><h3>RETURN</h3><div class='return'><p>visible - <p><span class="type">boolean</span> true or false</p></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.get_color' class='dashAnchor'></a><a class='entry' name='gui.get_color'>gui.get_color()</a></h1><div class='brief'><p>gets the node color</p></div><p><p>Returns the color of the supplied node. The components
+of the returned vector4 contains the color channel values:</p>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Color value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>x</td>
+<td>Red value</td>
+</tr>
+<tr>
+<td>y</td>
+<td>Green value</td>
+</tr>
+<tr>
+<td>z</td>
+<td>Blue value</td>
+</tr>
+<tr>
+<td>w</td>
+<td>Alpha value</td>
+</tr>
+</tbody>
+</table></p><h3>PARAMETERS</h3><div class='params'><p class='param'>node<p><span class="type">node</span> node to get the color from</p></p></div><h3>RETURN</h3><div class='return'><p>color - <p><span class="type">vector4</span> node color</p></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.get_fill_angle' class='dashAnchor'></a><a class='entry' name='gui.get_fill_angle'>gui.get_fill_angle()</a></h1><div class='brief'><p>gets the angle for the filled pie sector</p></div><p><p>Returns the sector angle of a pie node.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>node<p><span class="type">node</span> node from which to get the fill angle</p></p></div><h3>RETURN</h3><div class='return'><p>angle - <p><span class="type">number</span> sector angle</p></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.get_flipbook' class='dashAnchor'></a><a class='entry' name='gui.get_flipbook'>gui.get_flipbook()</a></h1><div class='brief'><p>gets the node flipbook animation</p></div><p><p>Get node flipbook animation.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>node<p><span class="type">node</span> node to get flipbook animation from</p></p></div><h3>RETURN</h3><div class='return'><p>animation - <p><span class="type">hash</span> animation id</p></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.get_font' class='dashAnchor'></a><a class='entry' name='gui.get_font'>gui.get_font()</a></h1><div class='brief'><p>gets the node font</p></div><p><p>This is only useful for text nodes. The font must be mapped to the gui scene in the gui editor.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>node<p><span class="type">node</span> node from which to get the font</p></p></div><h3>RETURN</h3><div class='return'><p>font - <p><span class="type">hash</span> font id</p></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.get_height' class='dashAnchor'></a><a class='entry' name='gui.get_height'>gui.get_height()</a></h1><div class='brief'><p>gets the scene height</p></div><p><p>Returns the scene height.</p></p><h3>RETURN</h3><div class='return'><p>height - <p><span class="type">number</span> scene height</p></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.get_id' class='dashAnchor'></a><a class='entry' name='gui.get_id'>gui.get_id()</a></h1><div class='brief'><p>gets the id of the specified node</p></div><p><p>Retrieves the id of the specified node.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>node<p><span class="type">node</span> the node to retrieve the id from</p></p></div><h3>RETURN</h3><div class='return'><p>id - <p><span class="type">hash</span> the id of the node</p></p></div><h3>EXAMPLES</h3><div class='examples'><p><p>Gets the id of a node:</p>
+<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">node</span> <span class="o">=</span> <span class="n">gui</span><span class="p">.</span><span class="n">get_node</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">my_node&quot;</span><span class="p">)</span>
+
+<span class="kd">local</span> <span class="n">id</span> <span class="o">=</span> <span class="n">gui</span><span class="p">.</span><span class="n">get_id</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">id</span><span class="p">)</span> <span class="c1">--&gt; hash: [my_node]</span>
+</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.get_index' class='dashAnchor'></a><a class='entry' name='gui.get_index'>gui.get_index()</a></h1><div class='brief'><p>gets the index of the specified node</p></div><p><p>Retrieve the index of the specified node.
+The index defines the order in which a node appear in a GUI scene.
+Higher index means the node is drawn on top of lower indexed nodes.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>node<p><span class="type">node</span> the node to retrieve the id from</p></p></div><h3>RETURN</h3><div class='return'><p>index - <p><span class="type">number</span> the index of the node</p></p></div><h3>EXAMPLES</h3><div class='examples'><p><p>Compare the index order of two nodes:</p>
+<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">node1</span> <span class="o">=</span> <span class="n">gui</span><span class="p">.</span><span class="n">get_node</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">my_node_1&quot;</span><span class="p">)</span>
+<span class="kd">local</span> <span class="n">node2</span> <span class="o">=</span> <span class="n">gui</span><span class="p">.</span><span class="n">get_node</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">my_node_2&quot;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">gui</span><span class="p">.</span><span class="n">get_index</span><span class="p">(</span><span class="n">node1</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">gui</span><span class="p">.</span><span class="n">get_index</span><span class="p">(</span><span class="n">node2</span><span class="p">)</span> <span class="k">then</span>
+    <span class="c1">-- node1 is drawn below node2</span>
+<span class="k">else</span>
+    <span class="c1">-- node2 is drawn below node1</span>
+<span class="k">end</span>
+</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.get_inner_radius' class='dashAnchor'></a><a class='entry' name='gui.get_inner_radius'>gui.get_inner_radius()</a></h1><div class='brief'><p>gets the pie inner radius</p></div><p><p>Returns the inner radius of a pie node.
+The radius is defined along the x-axis.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>node<p><span class="type">node</span> node from where to get the inner radius</p></p></div><h3>RETURN</h3><div class='return'><p>radius - <p><span class="type">number</span> inner radius</p></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.get_layer' class='dashAnchor'></a><a class='entry' name='gui.get_layer'>gui.get_layer()</a></h1><div class='brief'><p>gets the node layer</p></div><p><p>The layer must be mapped to the gui scene in the gui editor.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>node<p><span class="type">node</span> node from which to get the layer</p></p></div><h3>RETURN</h3><div class='return'><p>layer - <p><span class="type">hash</span> layer id</p></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.get_layout' class='dashAnchor'></a><a class='entry' name='gui.get_layout'>gui.get_layout()</a></h1><div class='brief'><p>gets the scene current layout</p></div><h3>RETURN</h3><div class='return'><p>layout - <p><span class="type">hash</span> layout id</p></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.get_leading' class='dashAnchor'></a><a class='entry' name='gui.get_leading'>gui.get_leading()</a></h1><div class='brief'><p>gets the leading of the text node</p></div><p><p>Returns the leading value for a text node.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>node<p><span class="type">node</span> node from where to get the leading</p></p></div><h3>RETURN</h3><div class='return'><p>leading - <p><span class="type">number</span> leading scaling value (default=1)</p></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.get_line_break' class='dashAnchor'></a><a class='entry' name='gui.get_line_break'>gui.get_line_break()</a></h1><div class='brief'><p>get line-break mode</p></div><p><p>Returns whether a text node is in line-break mode or not.
+This is only useful for text nodes.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>node<p><span class="type">node</span> node from which to get the line-break for</p></p></div><h3>RETURN</h3><div class='return'><p>line-break - <p><span class="type">boolean</span> <code>true</code> or <code>false</code></p></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.get_node' class='dashAnchor'></a><a class='entry' name='gui.get_node'>gui.get_node()</a></h1><div class='brief'><p>gets the node with the specified id</p></div><p><p>Retrieves the node with the specified id.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>id<p><span class="type">string | hash</span> id of the node to retrieve</p></p></div><h3>RETURN</h3><div class='return'><p>instance - <p><span class="type">node</span> a new node instance</p></p></div><h3>EXAMPLES</h3><div class='examples'><p><p>Gets a node by id and change its color:</p>
+<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">node</span> <span class="o">=</span> <span class="n">gui</span><span class="p">.</span><span class="n">get_node</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">my_node&quot;</span><span class="p">)</span>
+<span class="kd">local</span> <span class="n">red</span> <span class="o">=</span> <span class="n">vmath</span><span class="p">.</span><span class="n">vector4</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+<span class="n">gui</span><span class="p">.</span><span class="n">set_color</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">red</span><span class="p">)</span>
+</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.get_outer_bounds' class='dashAnchor'></a><a class='entry' name='gui.get_outer_bounds'>gui.get_outer_bounds()</a></h1><div class='brief'><p>gets the pie outer bounds mode</p></div><p><p>Returns the outer bounds mode for a pie node.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>node<p><span class="type">node</span> node from where to get the outer bounds mode</p></p></div><h3>RETURN</h3><div class='return'><p>bounds_mode - <p><span class="type">constant</span> the outer bounds mode of the pie node:</p>
+<ul>
+<li><code>gui.PIEBOUNDS_RECTANGLE</code></li>
+<li><code>gui.PIEBOUNDS_ELLIPSE</code></li>
+</ul></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.get_outline' class='dashAnchor'></a><a class='entry' name='gui.get_outline'>gui.get_outline()</a></h1><div class='brief'><p>gets the node outline color</p></div><p><p>Returns the outline color of the supplied node.
+See <a href="http://www.defold.com/ref/gui#gui.get_color">gui.get_color</a> for info how vectors encode color values.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>node<p><span class="type">node</span> node to get the outline color from</p></p></div><h3>RETURN</h3><div class='return'><p>color - <p><span class="type">vector4</span> outline color</p></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.get_parent' class='dashAnchor'></a><a class='entry' name='gui.get_parent'>gui.get_parent()</a></h1><div class='brief'><p>gets the parent of the specified node</p></div><p><p>Returns the parent node of the specified node.
+If the supplied node does not have a parent, <code>nil</code> is returned.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>node<p><span class="type">node</span> the node from which to retrieve its parent</p></p></div><h3>RETURN</h3><div class='return'><p>parent - <p><span class="type">node</span> parent instance or nil</p></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.get_particlefx' class='dashAnchor'></a><a class='entry' name='gui.get_particlefx'>gui.get_particlefx()</a></h1><div class='brief'><p>Gets a particle fx</p></div><p><p>Get the paricle fx for a gui node</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>node<p><span class="type">node</span> node to get particle fx for</p></p></div><h3>RETURN</h3><div class='return'><p>[type:hash] - <p>particle fx id</p></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.get_perimeter_vertices' class='dashAnchor'></a><a class='entry' name='gui.get_perimeter_vertices'>gui.get_perimeter_vertices()</a></h1><div class='brief'><p>gets the number of generarted vertices around the perimeter</p></div><p><p>Returns the number of generated vertices around the perimeter
+of a pie node.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>node<p><span class="type">node</span> pie node</p></p></div><h3>RETURN</h3><div class='return'><p>vertices - <p><span class="type">number</span> vertex count</p></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.get_pivot' class='dashAnchor'></a><a class='entry' name='gui.get_pivot'>gui.get_pivot()</a></h1><div class='brief'><p>gets the pivot of a node</p></div><p><p>The pivot specifies how the node is drawn and rotated from its position.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>node<p><span class="type">node</span> node to get pivot from</p></p></div><h3>RETURN</h3><div class='return'><p>pivot - <p><span class="type">constant</span> pivot constant
+<ul>
+  <li><code>gui.PIVOT_CENTER</code></li>
+  <li><code>gui.PIVOT_N</code></li>
+  <li><code>gui.PIVOT_NE</code></li>
+  <li><code>gui.PIVOT_E</code></li>
+  <li><code>gui.PIVOT_SE</code></li>
+  <li><code>gui.PIVOT_S</code></li>
+  <li><code>gui.PIVOT_SW</code></li>
+  <li><code>gui.PIVOT_W</code></li>
+  <li><code>gui.PIVOT_NW</code></li>
+</ul></p></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.get_position' class='dashAnchor'></a><a class='entry' name='gui.get_position'>gui.get_position()</a></h1><div class='brief'><p>gets the node position</p></div><p><p>Returns the position of the supplied node.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>node<p><span class="type">node</span> node to get the position from</p></p></div><h3>RETURN</h3><div class='return'><p>position - <p><span class="type">vector3</span> node position</p></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.get_rotation' class='dashAnchor'></a><a class='entry' name='gui.get_rotation'>gui.get_rotation()</a></h1><div class='brief'><p>gets the node rotation</p></div><p><p>Returns the rotation of the supplied node.
+The rotation is expressed in degree Euler angles.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>node<p><span class="type">node</span> node to get the rotation from</p></p></div><h3>RETURN</h3><div class='return'><p>rotation - <p><span class="type">vector3</span> node rotation</p></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.get_scale' class='dashAnchor'></a><a class='entry' name='gui.get_scale'>gui.get_scale()</a></h1><div class='brief'><p>gets the node scale</p></div><p><p>Returns the scale of the supplied node.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>node<p><span class="type">node</span> node to get the scale from</p></p></div><h3>RETURN</h3><div class='return'><p>scale - <p><span class="type">vector3</span> node scale</p></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.get_screen_position' class='dashAnchor'></a><a class='entry' name='gui.get_screen_position'>gui.get_screen_position()</a></h1><div class='brief'><p>gets the node screen position</p></div><p><p>Returns the screen position of the supplied node.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>node<p><span class="type">node</span> node to get the screen position from</p></p></div><h3>RETURN</h3><div class='return'><p>position - <p><span class="type">vector3</span> node screen position</p></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.get_shadow' class='dashAnchor'></a><a class='entry' name='gui.get_shadow'>gui.get_shadow()</a></h1><div class='brief'><p>gets the node shadow color</p></div><p><p>Returns the shadow color of the supplied node.
+See <a href="http://www.defold.com/ref/gui#gui.get_color">gui.get_color</a> for info how vectors encode color values.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>node<p><span class="type">node</span> node to get the shadow color from</p></p></div><h3>RETURN</h3><div class='return'><p>color - <p><span class="type">vector4</span> node shadow color</p></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.get_size' class='dashAnchor'></a><a class='entry' name='gui.get_size'>gui.get_size()</a></h1><div class='brief'><p>gets the node size</p></div><p><p>Returns the size of the supplied node.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>node<p><span class="type">node</span> node to get the size from</p></p></div><h3>RETURN</h3><div class='return'><p>size - <p><span class="type">vector3</span> node size</p></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.get_size_mode' class='dashAnchor'></a><a class='entry' name='gui.get_size_mode'>gui.get_size_mode()</a></h1><div class='brief'><p>gets the node size mode</p></div><p><p>Returns the size of a node.
+The size mode defines how the node will adjust itself in size. Automatic
+size mode alters the node size based on the node's content.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>node<p><span class="type">node</span> node from which to get the size mode (node)</p></p></div><h3>RETURN</h3><div class='return'><p>size_mode - <p><span class="type">constant</span> the current size mode</p>
+<ul>
+<li><code>gui.SIZE_MODE_MANUAL</code></li>
+<li><code>gui.SIZE_MODE_AUTO</code></li>
+</ul></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.get_slice9' class='dashAnchor'></a><a class='entry' name='gui.get_slice9'>gui.get_slice9()</a></h1><div class='brief'><p>get the slice9 values for the node</p></div><p><p>Returns the slice9 configuration values for the node.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>node<p><span class="type">node</span> node to manipulate</p></p></div><h3>RETURN</h3><div class='return'><p>values - <p><span class="type">vector4</span> configuration values</p></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.get_spine_bone' class='dashAnchor'></a><a class='entry' name='gui.get_spine_bone'>gui.get_spine_bone()</a></h1><div class='brief'><p>retrieve the GUI node corresponding to a spine skeleton bone</p></div><p><p>The returned node can be used for parenting and transform queries.
+This function has complexity O(n), where n is the number of bones in the spine model skeleton.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>node<p><span class="type">node</span> spine node to query for bone node</p></p><p class='param'>bone_id<p><span class="type">string | hash</span> id of the corresponding bone</p></p></div><h3>RETURN</h3><div class='return'><p>bone - <p><span class="type">node</span> node corresponding to the spine bone</p></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.get_spine_cursor' class='dashAnchor'></a><a class='entry' name='gui.get_spine_cursor'>gui.get_spine_cursor()</a></h1><div class='brief'><p>gets the normalized cursor of the animation on a spine node</p></div><p><p>This is only useful for spine nodes. Gets the normalized cursor of the animation on a spine node.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>node<p>spine node to set the cursor for (node)</p></p></div><h3>RETURN</h3><div class='return'><p>cursor - <p>value <span class="type">number</span> cursor value</p></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.get_spine_playback_rate' class='dashAnchor'></a><a class='entry' name='gui.get_spine_playback_rate'>gui.get_spine_playback_rate()</a></h1><div class='brief'><p>gets the playback rate of the animation on a spine node</p></div><p><p>This is only useful for spine nodes. Gets the playback rate of the animation on a spine node.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>node<p><span class="type">node</span> spine node to set the cursor for</p></p></div><h3>RETURN</h3><div class='return'><p>rate - <p><span class="type">number</span> playback rate</p></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.get_spine_scene' class='dashAnchor'></a><a class='entry' name='gui.get_spine_scene'>gui.get_spine_scene()</a></h1><div class='brief'><p>gets the spine scene of a node</p></div><p><p>Returns the spine scene id of the supplied node.
+This is currently only useful for spine nodes.
+The returned spine scene must be mapped to the gui scene in the gui editor.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>node<p><span class="type">node</span> node to get texture from</p></p></div><h3>RETURN</h3><div class='return'><p>spine_scene - <p><span class="type">hash</span> spine scene id</p></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.get_spine_skin' class='dashAnchor'></a><a class='entry' name='gui.get_spine_skin'>gui.get_spine_skin()</a></h1><div class='brief'><p>gets the skin of a spine node</p></div><p><p>Gets the spine skin of a spine node</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>node<p><span class="type">node</span> node to get spine skin from</p></p></div><h3>RETURN</h3><div class='return'><p>id - <p><span class="type">hash</span> spine skin id, 0 if no explicit skin is set</p></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.get_text' class='dashAnchor'></a><a class='entry' name='gui.get_text'>gui.get_text()</a></h1><div class='brief'><p>gets the node text</p></div><p><p>Returns the text value of a text node. This is only useful for text nodes.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>node<p><span class="type">node</span> node from which to get the text</p></p></div><h3>RETURN</h3><div class='return'><p>text - <p><span class="type">string</span> text value</p></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.get_text_metrics' class='dashAnchor'></a><a class='entry' name='gui.get_text_metrics'>gui.get_text_metrics()</a></h1><div class='brief'><p>get text metrics</p></div><p><p>Get text metrics given the provided font, text and parameters.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>font<p><span class="type">string | hash</span> font id</p></p><p class='param'>text<p><span class="type">string</span> text to measure</p></p><p class='param'>width<p><span class="type">number</span> max-width. Use for line-breaks (default=FLT_MAX)</p></p><p class='param'>line_breaks<p><span class="type">boolean</span> true to break lines accordingly to width (default=false)</p></p><p class='param'>leading<p><span class="type">number</span> scale value for line spacing (default=1)</p></p><p class='param'>tracking<p><span class="type">number</span> scale value for letter spacing (default=0)</p></p></div><h3>RETURN</h3><div class='return'><p>metrics - <p><span class="type">table</span> a table with the following fields:</p>
+<ul>
+<li>width</li>
+<li>height</li>
+<li>max_ascent</li>
+<li>max_descent</li>
+</ul></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.get_text_metrics_from_node' class='dashAnchor'></a><a class='entry' name='gui.get_text_metrics_from_node'>gui.get_text_metrics_from_node()</a></h1><div class='brief'><p>get text metrics from node</p></div><p><p>Get the text metrics from a text node.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>node<p><span class="type">node</span> text node to measure text from</p></p></div><h3>RETURN</h3><div class='return'><p>metrics - <p><span class="type">table</span> a table with the following fields:</p>
+<ul>
+<li>width</li>
+<li>height</li>
+<li>max_ascent</li>
+<li>max_descent</li>
+</ul></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.get_texture' class='dashAnchor'></a><a class='entry' name='gui.get_texture'>gui.get_texture()</a></h1><div class='brief'><p>gets node texture</p></div><p><p>Returns the texture of a node.
+This is currently only useful for box or pie nodes.
+The texture must be mapped to the gui scene in the gui editor.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>node<p><span class="type">node</span> node to get texture from</p></p></div><h3>RETURN</h3><div class='return'><p>texture - <p><span class="type">hash</span> texture id</p></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.get_tracking' class='dashAnchor'></a><a class='entry' name='gui.get_tracking'>gui.get_tracking()</a></h1><div class='brief'><p>gets the tracking of the text node</p></div><p><p>Returns the tracking value of a text node.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>node<p><span class="type">node</span> node from where to get the tracking</p></p></div><h3>RETURN</h3><div class='return'><p>tracking - <p><span class="type">number</span> tracking scaling number (default=0)</p></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.get_width' class='dashAnchor'></a><a class='entry' name='gui.get_width'>gui.get_width()</a></h1><div class='brief'><p>gets the scene width</p></div><p><p>Returns the scene width.</p></p><h3>RETURN</h3><div class='return'><p>width - <p><span class="type">number</span> scene width</p></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.get_xanchor' class='dashAnchor'></a><a class='entry' name='gui.get_xanchor'>gui.get_xanchor()</a></h1><div class='brief'><p>gets the x-anchor of a node</p></div><p><p>The x-anchor specifies how the node is moved when the game is run in a different resolution.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>node<p><span class="type">node</span> node to get x-anchor from</p></p></div><h3>RETURN</h3><div class='return'><p>anchor - <p><span class="type">constant</span> anchor constant</p>
+<ul>
+<li><code>gui.ANCHOR_NONE</code></li>
+<li><code>gui.ANCHOR_LEFT</code></li>
+<li><code>gui.ANCHOR_RIGHT</code></li>
+</ul></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.get_yanchor' class='dashAnchor'></a><a class='entry' name='gui.get_yanchor'>gui.get_yanchor()</a></h1><div class='brief'><p>gets the y-anchor of a node</p></div><p><p>The y-anchor specifies how the node is moved when the game is run in a different resolution.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>node<p><span class="type">node</span> node to get y-anchor from</p></p></div><h3>RETURN</h3><div class='return'><p>anchor - <p><span class="type">constant</span> anchor constant</p>
+<ul>
+<li><code>gui.ANCHOR_NONE</code></li>
+<li><code>gui.ANCHOR_TOP</code></li>
+<li><code>gui.ANCHOR_BOTTOM</code></li>
+</ul></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.hide_keyboard' class='dashAnchor'></a><a class='entry' name='gui.hide_keyboard'>gui.hide_keyboard()</a></h1><div class='brief'><p>hides on-display keyboard if available</p></div><p><p>Hides the on-display touch keyboard on the device.</p></p><hr/><h1><a name='//apple_ref/cpp/Function/gui.is_enabled' class='dashAnchor'></a><a class='entry' name='gui.is_enabled'>gui.is_enabled()</a></h1><div class='brief'><p>returns if a node is enabled or not</p></div><p><p>Returns <code>true</code> if a node is enabled and <code>false</code> if it's not.
+Disabled nodes are not rendered and animations acting on them are not evaluated.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>node<p><span class="type">node</span> node to query</p></p></div><h3>RETURN</h3><div class='return'><p>enabled - <p><span class="type">boolean</span> whether the node is enabled or not</p></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.move_above' class='dashAnchor'></a><a class='entry' name='gui.move_above'>gui.move_above()</a></h1><div class='brief'><p>moves the first node above the second</p></div><p><p>Alters the ordering of the two supplied nodes by moving the first node
+above the second.
+If the second argument is <code>nil</code> the first node is moved to the top.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>node<p><span class="type">node</span> to move</p></p><p class='param'>node<p><span class="type">node | nil</span> reference node above which the first node should be moved</p></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.move_below' class='dashAnchor'></a><a class='entry' name='gui.move_below'>gui.move_below()</a></h1><div class='brief'><p>moves the first node below the second</p></div><p><p>Alters the ordering of the two supplied nodes by moving the first node
+below the second.
+If the second argument is <code>nil</code> the first node is moved to the bottom.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>node<p><span class="type">node</span> to move</p></p><p class='param'>node<p><span class="type">node | nil</span> reference node below which the first node should be moved</p></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.new_box_node' class='dashAnchor'></a><a class='entry' name='gui.new_box_node'>gui.new_box_node()</a></h1><div class='brief'><p>creates a new box node</p></div><p><p>Dynamically create a new box node.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>pos<p><span class="type">vector3 | vector4</span> node position</p></p><p class='param'>size<p><span class="type">vector3</span> node size</p></p></div><h3>RETURN</h3><div class='return'><p>node - <p><span class="type">node</span> new box node</p></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.new_particlefx_node' class='dashAnchor'></a><a class='entry' name='gui.new_particlefx_node'>gui.new_particlefx_node()</a></h1><div class='brief'><p>creates a new particle fx node</p></div><p><p>Dynamically create a particle fx node.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>pos<p><span class="type">vector3 | vector4</span> node position</p></p><p class='param'>particlefx<p><span class="type">hash | string</span> particle fx resource name</p></p></div><h3>RETURN</h3><div class='return'><p>node - <p><span class="type">node</span> new particle fx node</p></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.new_pie_node' class='dashAnchor'></a><a class='entry' name='gui.new_pie_node'>gui.new_pie_node()</a></h1><div class='brief'><p>creates a new pie node</p></div><p><p>Dynamically create a new pie node.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>pos<p><span class="type">vector3 | vector4</span> node position</p></p><p class='param'>size<p><span class="type">vector3</span> node size</p></p></div><h3>RETURN</h3><div class='return'><p>node - <p><span class="type">node</span> new box node</p></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.new_spine_node' class='dashAnchor'></a><a class='entry' name='gui.new_spine_node'>gui.new_spine_node()</a></h1><div class='brief'><p>creates a new spine node</p></div><p><p>Dynamically create a new spine node.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>pos<p><span class="type">vector3 | vector4</span> node position</p></p><p class='param'>spine_scene<p><span class="type">string | hash</span> spine scene id</p></p></div><h3>RETURN</h3><div class='return'><p>node - <p><span class="type">node</span> new spine node</p></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.new_text_node' class='dashAnchor'></a><a class='entry' name='gui.new_text_node'>gui.new_text_node()</a></h1><div class='brief'><p>creates a new text node</p></div><p><p>Dynamically create a new text node.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>pos<p><span class="type">vector3 | vector4</span> node position</p></p><p class='param'>text<p><span class="type">string</span> node text</p></p></div><h3>RETURN</h3><div class='return'><p>node - <p><span class="type">node</span> new text node</p></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.new_texture' class='dashAnchor'></a><a class='entry' name='gui.new_texture'>gui.new_texture()</a></h1><div class='brief'><p>create new texture</p></div><p><p>Dynamically create a new texture.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>texture<p><span class="type">string | hash</span> texture id</p></p><p class='param'>width<p><span class="type">number</span> texture width</p></p><p class='param'>height<p><span class="type">number</span> texture height</p></p><p class='param'>type<p><span class="type">string | constant</span> texture type</p>
+<ul>
+<li><code>"rgb"</code> - RGB</li></li>
+<li><code>"rgba"</code> - RGBA</li></li>
+<li><code>"l"</code> - LUMINANCE</li></li>
+</ul></p><p class='param'>buffer<p><span class="type">string</span> texture data</p></p><p class='param'>flip<p><span class="type">boolean</span> flip texture vertically</p></p></div><h3>RETURN</h3><div class='return'><p>success - <p><span class="type">boolean</span> texture creation was successful</p></p></div><h3>EXAMPLES</h3><div class='examples'><p><p>How to create a texture and apply it to a new box node:</p>
+<div class="codehilite"><pre><span></span><span class="k">function</span> <span class="nf">init</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
+     <span class="kd">local</span> <span class="n">w</span> <span class="o">=</span> <span class="mi">200</span>
+     <span class="kd">local</span> <span class="n">h</span> <span class="o">=</span> <span class="mi">300</span>
+
+     <span class="c1">-- A nice orange. String with the RGB values.</span>
+     <span class="kd">local</span> <span class="n">orange</span> <span class="o">=</span> <span class="nb">string.char</span><span class="p">(</span><span class="mh">0xff</span><span class="p">)</span> <span class="o">..</span> <span class="nb">string.char</span><span class="p">(</span><span class="mh">0x80</span><span class="p">)</span> <span class="o">..</span> <span class="nb">string.char</span><span class="p">(</span><span class="mh">0x10</span><span class="p">)</span>
+
+     <span class="c1">-- Create the texture. Repeat the color string for each pixel.</span>
+     <span class="k">if</span> <span class="n">gui</span><span class="p">.</span><span class="n">new_texture</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">orange_tx&quot;</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">rgb&quot;</span><span class="p">,</span> <span class="nb">string.rep</span><span class="p">(</span><span class="n">orange</span><span class="p">,</span> <span class="n">w</span> <span class="o">*</span> <span class="n">h</span><span class="p">))</span> <span class="k">then</span>
+         <span class="c1">-- Create a box node and apply the texture to it.</span>
+         <span class="kd">local</span> <span class="n">n</span> <span class="o">=</span> <span class="n">gui</span><span class="p">.</span><span class="n">new_box_node</span><span class="p">(</span><span class="n">vmath</span><span class="p">.</span><span class="n">vector3</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">vmath</span><span class="p">.</span><span class="n">vector3</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+         <span class="n">gui</span><span class="p">.</span><span class="n">set_texture</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">orange_tx&quot;</span><span class="p">)</span>
+     <span class="k">else</span>
+         <span class="c1">-- Could not create texture...</span>
+         <span class="o">...</span>
+     <span class="k">end</span>
+<span class="k">end</span>
+</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.pick_node' class='dashAnchor'></a><a class='entry' name='gui.pick_node'>gui.pick_node()</a></h1><div class='brief'><p>determines if the node is pickable by the supplied coordinates</p></div><p><p>Tests whether a coordinate is within the bounding box of a
+node.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>node<p><span class="type">node</span> node to be tested for picking</p></p><p class='param'>x<p><span class="type">number</span> x-coordinate (see <a href="#on_input">on_input</a> )</p></p><p class='param'>y<p><span class="type">number</span> y-coordinate (see <a href="#on_input">on_input</a> )</p></p></div><h3>RETURN</h3><div class='return'><p>pickable - <p><span class="type">boolean</span> pick result</p></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.play_flipbook' class='dashAnchor'></a><a class='entry' name='gui.play_flipbook'>gui.play_flipbook()</a></h1><div class='brief'><p>play node flipbook animation</p></div><p><p>Play flipbook animation on a box or pie node.
+The current node texture must contain the animation.
+Use this function to set one-frame still images on the node.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>node<p><span class="type">node</span> node to set animation for</p></p><p class='param'>animation<p><span class="type">string | hash</span> animation id</p></p><p class='param'>[complete_function]<p><span class="type">function(self, node)</span> optional function to call when the animation has completed</p>
+<dl>
+<dt><code>self</code></dt>
+<dd>
+<p><span class="type">object</span> The current object.</p>
+</dd>
+<dt><code>node</code></dt>
+<dd>
+<p><span class="type">node</span> The node that is animated.</p>
+</dd>
+</dl></p></div><h3>EXAMPLES</h3><div class='examples'><p><p>Set the texture of a node to a flipbook animation from an atlas:</p>
+<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="k">function</span> <span class="nf">anim_callback</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">node</span><span class="p">)</span>
+    <span class="c1">-- Take action after animation has played.</span>
+<span class="k">end</span>
+
+<span class="k">function</span> <span class="nf">init</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
+    <span class="c1">-- Create a new node and set the texture to a flipbook animation</span>
+    <span class="kd">local</span> <span class="n">node</span> <span class="o">=</span> <span class="n">gui</span><span class="p">.</span><span class="n">get_node</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">button_node&quot;</span><span class="p">)</span>
+    <span class="n">gui</span><span class="p">.</span><span class="n">set_texture</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">gui_sprites&quot;</span><span class="p">)</span>
+    <span class="n">gui</span><span class="p">.</span><span class="n">play_flipbook</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">animated_button&quot;</span><span class="p">)</span>
+<span class="k">end</span>
+</pre></div>
+
+
+<p>Set the texture of a node to an image from an atlas:</p>
+<div class="codehilite"><pre><span></span><span class="c1">-- Create a new node and set the texture to a &quot;button.png&quot; from atlas</span>
+<span class="kd">local</span> <span class="n">node</span> <span class="o">=</span> <span class="n">gui</span><span class="p">.</span><span class="n">get_node</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">button_node&quot;</span><span class="p">)</span>
+<span class="n">gui</span><span class="p">.</span><span class="n">set_texture</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">gui_sprites&quot;</span><span class="p">)</span>
+<span class="n">gui</span><span class="p">.</span><span class="n">play_flipbook</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">button&quot;</span><span class="p">)</span>
+</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.play_particlefx' class='dashAnchor'></a><a class='entry' name='gui.play_particlefx'>gui.play_particlefx()</a></h1><div class='brief'><p>Plays a particle fx</p></div><p><p>Plays the paricle fx for a gui node</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>node<p><span class="type">node</span> node to play particle fx for</p></p><p class='param'>[emitter_state_function]<p><span class="type">function(self, node, emitter, state)</span> optional callback function that will be called when an emitter attached to this particlefx changes state.</p>
+<dl>
+<dt><code>self</code></dt>
+<dd><span class="type">object</span> The current object</dd>
+<dt><code>id</code></dt>
+<dd><span class="type">hash</span> The id of the particle fx component</dd>
+<dt><code>emitter</code></dt>
+<dd><span class="type">hash</span> The id of the emitter</dd>
+<dt><code>state</code></dt>
+<dd><span class="type">constant</span> the new state of the emitter:</dd>
+</dl>
+<ul>
+<li><code>gui.EMITTER_STATE_SLEEPING</code></li>
+<li><code>gui.EMITTER_STATE_PRESPAWN</code></li>
+<li><code>gui.EMITTER_STATE_SPAWNING</code></li>
+<li><code>gui.EMITTER_STATE_POSTSPAWN</code></li>
+</ul></p></div><h3>EXAMPLES</h3><div class='examples'><p><p>How to play a particle fx when a gui node is created.
+The callback receives the gui node, the hash of the id
+of the emitter, and the new state of the emitter as gui.EMITTER_STATE_<STATE>.</p>
+<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="k">function</span> <span class="nf">emitter_state_change</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">node</span><span class="p">,</span> <span class="n">emitter</span><span class="p">,</span> <span class="n">state</span><span class="p">)</span>
+  <span class="k">if</span> <span class="n">emitter</span> <span class="o">==</span> <span class="n">hash</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">exhaust&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">state</span> <span class="o">==</span> <span class="n">gui</span><span class="p">.</span><span class="n">EMITTER_STATE_POSTSPAWN</span> <span class="k">then</span>
+    <span class="c1">-- exhaust is done spawning particles...</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">function</span> <span class="nf">init</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
+    <span class="n">gui</span><span class="p">.</span><span class="n">play_particlefx</span><span class="p">(</span><span class="n">gui</span><span class="p">.</span><span class="n">get_node</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">particlefx&quot;</span><span class="p">),</span> <span class="n">emitter_state_change</span><span class="p">)</span>
+<span class="k">end</span>
+</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.play_spine_anim' class='dashAnchor'></a><a class='entry' name='gui.play_spine_anim'>gui.play_spine_anim()</a></h1><div class='brief'><p>play a spine animation</p></div><p><p>Starts a spine animation.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>node<p><span class="type">node</span> spine node that should play the animation</p></p><p class='param'>animation_id<p><span class="type">string | hash</span> id of the animation to play</p></p><p class='param'>playback<p><span class="type">constant</span> playback mode</p>
+<ul>
+<li><code>gui.PLAYBACK_ONCE_FORWARD</code></li>
+<li><code>gui.PLAYBACK_ONCE_BACKWARD</code></li>
+<li><code>gui.PLAYBACK_ONCE_PINGPONG</code></li>
+<li><code>gui.PLAYBACK_LOOP_FORWARD</code></li>
+<li><code>gui.PLAYBACK_LOOP_BACKWARD</code></li>
+<li><code>gui.PLAYBACK_LOOP_PINGPONG</code></li>
+</ul></p><p class='param'>[play_properties]<p><span class="type">table</span> optional table with properties</p>
+<dl>
+<dt><code>blend_duration</code></dt>
+<dd><span class="type">number</span> The duration of a linear blend between the current and new animation</dd>
+<dt><code>offset</code></dt>
+<dd><span class="type">number</span> The normalized initial value of the animation cursor when the animation starts playing</dd>
+<dt><code>playback_rate</code></dt>
+<dd><span class="type">number</span> The rate with which the animation will be played. Must be positive</dd>
+</dl></p><p class='param'>[complete_function]<p><span class="type">function(self, node)</span> function to call when the animation has completed</p></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.reset_keyboard' class='dashAnchor'></a><a class='entry' name='gui.reset_keyboard'>gui.reset_keyboard()</a></h1><div class='brief'><p>resets on-display keyboard if available</p></div><p><p>Resets the input context of keyboard. This will clear marked text.</p></p><hr/><h1><a name='//apple_ref/cpp/Function/gui.reset_nodes' class='dashAnchor'></a><a class='entry' name='gui.reset_nodes'>gui.reset_nodes()</a></h1><div class='brief'><p>resets all nodes to initial state</p></div><p><p>Resets all nodes in the current GUI scene to their initial state.
+The reset only applies to static node loaded from the scene.
+Nodes that are created dynamically from script are not affected.</p></p><hr/><h1><a name='//apple_ref/cpp/Function/gui.set_adjust_mode' class='dashAnchor'></a><a class='entry' name='gui.set_adjust_mode'>gui.set_adjust_mode()</a></h1><div class='brief'><p>sets node adjust mode</p></div><p><p>Sets the adjust mode on a node.
+The adjust mode defines how the node will adjust itself to screen
+resolutions that differs from the one in the project settings.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>node<p><span class="type">node</span> node to set adjust mode for</p></p><p class='param'>adjust_mode<p><span class="type">constant</span> adjust mode to set</p>
+<ul>
+<li><code>gui.ADJUST_FIT</code></li>
+<li><code>gui.ADJUST_ZOOM</code></li>
+<li><code>gui.ADJUST_STRETCH</code></li>
+</ul></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.set_blend_mode' class='dashAnchor'></a><a class='entry' name='gui.set_blend_mode'>gui.set_blend_mode()</a></h1><div class='brief'><p>sets node blend mode</p></div><p><p>Set the blend mode of a node.
+Blend mode defines how the node will be blended with the background.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>node<p><span class="type">node</span> node to set blend mode for</p></p><p class='param'>blend_mode<p><span class="type">constant</span> blend mode to set</p>
+<ul>
+<li><code>gui.BLEND_ALPHA</code></li>
+<li><code>gui.BLEND_ADD</code></li>
+<li><code>gui.BLEND_ADD_ALPHA</code></li>
+<li><code>gui.BLEND_MULT</code></li>
+</ul></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.set_clipping_inverted' class='dashAnchor'></a><a class='entry' name='gui.set_clipping_inverted'>gui.set_clipping_inverted()</a></h1><div class='brief'><p>sets node clipping inversion</p></div><p><p>If node is set as an inverted clipping node, it will clip anything inside as opposed to outside.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>node<p><span class="type">node</span> node to set clipping inverted state for</p></p><p class='param'>inverted<p><span class="type">boolean</span> true or false</p></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.set_clipping_mode' class='dashAnchor'></a><a class='entry' name='gui.set_clipping_mode'>gui.set_clipping_mode()</a></h1><div class='brief'><p>sets node clipping mode state</p></div><p><p>Clipping mode defines how the node will clipping it's children nodes</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>node<p><span class="type">node</span> node to set clipping mode for</p></p><p class='param'>clipping_mode<p><span class="type">constant</span> clipping mode to set
+<ul>
+  <li><code>gui.CLIPPING_MODE_NONE</code></li>
+  <li><code>gui.CLIPPING_MODE_STENCIL</code></li>
+</ul></p></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.set_clipping_visible' class='dashAnchor'></a><a class='entry' name='gui.set_clipping_visible'>gui.set_clipping_visible()</a></h1><div class='brief'><p>sets node clipping visibility</p></div><p><p>If node is set as an visible clipping node, it will be shown as well as clipping. Otherwise, it will only clip but not show visually.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>node<p><span class="type">node</span> node to set clipping visibility for</p></p><p class='param'>visible<p><span class="type">boolean</span> true or false</p></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.set_color' class='dashAnchor'></a><a class='entry' name='gui.set_color'>gui.set_color()</a></h1><div class='brief'><p>sets the node color</p></div><p><p>Sets the color of the supplied node. The components
+of the supplied vector3 or vector4 should contain the color channel values:</p>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Color value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>x</td>
+<td>Red value</td>
+</tr>
+<tr>
+<td>y</td>
+<td>Green value</td>
+</tr>
+<tr>
+<td>z</td>
+<td>Blue value</td>
+</tr>
+<tr>
+<td>w <span class="type">vector4</span></td>
+<td>Alpha value</td>
+</tr>
+</tbody>
+</table></p><h3>PARAMETERS</h3><div class='params'><p class='param'>node<p><span class="type">node</span> node to set the color for</p></p><p class='param'>color<p><span class="type">vector3 | vector4</span> new color</p></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.set_enabled' class='dashAnchor'></a><a class='entry' name='gui.set_enabled'>gui.set_enabled()</a></h1><div class='brief'><p>enables/disables a node</p></div><p><p>Sets a node to the disabled or enabled state.
+Disabled nodes are not rendered and animations acting on them are not evaluated.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>node<p><span class="type">node</span> node to be enabled/disabled</p></p><p class='param'>enabled<p><span class="type">boolean</span> whether the node should be enabled or not</p></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.set_fill_angle' class='dashAnchor'></a><a class='entry' name='gui.set_fill_angle'>gui.set_fill_angle()</a></h1><div class='brief'><p>sets the angle for the filled pie sector</p></div><p><p>Set the sector angle of a pie node.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>node<p><span class="type">node</span> node to set the fill angle for</p></p><p class='param'>angle<p><span class="type">number</span> sector angle</p></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.set_font' class='dashAnchor'></a><a class='entry' name='gui.set_font'>gui.set_font()</a></h1><div class='brief'><p>sets the node font</p></div><p><p>This is only useful for text nodes.
+The font must be mapped to the gui scene in the gui editor.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>node<p><span class="type">node</span> node for which to set the font</p></p><p class='param'>font<p><span class="type">string | hash</span> font id</p></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.set_id' class='dashAnchor'></a><a class='entry' name='gui.set_id'>gui.set_id()</a></h1><div class='brief'><p>sets the id of the specified node</p></div><p><p>Set the id of the specicied node to a new value.
+Nodes created with the gui.new_*_node() functions get
+an empty id. This function allows you to give dynamically
+created nodes an id.</p>
+<p><span class="icon-attention"></span> No checking is done on the uniqueness of supplied ids.
+It is up to you to make sure you use unique ids.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>node<p><span class="type">node</span> node to set the id for</p></p><p class='param'>id<p><span class="type">string | hash</span> id to set</p></p></div><h3>EXAMPLES</h3><div class='examples'><p><p>Create a new node and set its id:</p>
+<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">pos</span> <span class="o">=</span> <span class="n">vmath</span><span class="p">.</span><span class="n">vector3</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="kd">local</span> <span class="n">size</span> <span class="o">=</span> <span class="n">vmath</span><span class="p">.</span><span class="n">vector3</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="kd">local</span> <span class="n">node</span> <span class="o">=</span> <span class="n">gui</span><span class="p">.</span><span class="n">new_box_node</span><span class="p">(</span><span class="n">pos</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
+<span class="n">gui</span><span class="p">.</span><span class="n">set_id</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">my_new_node&quot;</span><span class="p">)</span>
+</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.set_inner_radius' class='dashAnchor'></a><a class='entry' name='gui.set_inner_radius'>gui.set_inner_radius()</a></h1><div class='brief'><p>sets the pie inner radius</p></div><p><p>Sets the inner radius of a pie node.
+The radius is defined along the x-axis.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>node<p><span class="type">node</span> node to set the inner radius for</p></p><p class='param'>radius<p><span class="type">number</span> inner radius</p></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.set_layer' class='dashAnchor'></a><a class='entry' name='gui.set_layer'>gui.set_layer()</a></h1><div class='brief'><p>sets the node layer</p></div><p><p>The layer must be mapped to the gui scene in the gui editor.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>node<p><span class="type">node</span> node for which to set the layer</p></p><p class='param'>layer<p><span class="type">string | hash</span> layer id</p></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.set_leading' class='dashAnchor'></a><a class='entry' name='gui.set_leading'>gui.set_leading()</a></h1><div class='brief'><p>sets the leading of the text node</p></div><p><p>Sets the leading value for a text node. This value is used to
+scale the line spacing of text.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>node<p><span class="type">node</span> node for which to set the leading</p></p><p class='param'>leading<p><span class="type">number</span> a scaling value for the line spacing (default=1)</p></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.set_line_break' class='dashAnchor'></a><a class='entry' name='gui.set_line_break'>gui.set_line_break()</a></h1><div class='brief'><p>set line-break mode</p></div><p><p>Sets the line-break mode on a text node.
+This is only useful for text nodes.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>node<p><span class="type">node</span> node to set line-break for</p></p><p class='param'>line-break<p><span class="type">boolean</span> true of false</p></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.set_outer_bounds' class='dashAnchor'></a><a class='entry' name='gui.set_outer_bounds'>gui.set_outer_bounds()</a></h1><div class='brief'><p>sets the pie node outer bounds mode</p></div><p><p>Sets the outer bounds mode for a pie node.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>node<p><span class="type">node</span> node for which to set the outer bounds mode</p></p><p class='param'>bounds_mode<p><span class="type">constant</span> the outer bounds mode of the pie node:</p>
+<ul>
+<li><code>gui.PIEBOUNDS_RECTANGLE</code></li>
+<li><code>gui.PIEBOUNDS_ELLIPSE</code></li>
+</ul></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.set_outline' class='dashAnchor'></a><a class='entry' name='gui.set_outline'>gui.set_outline()</a></h1><div class='brief'><p>sets the node outline color</p></div><p><p>Sets the outline color of the supplied node.
+See <a href="http://www.defold.com/ref/gui#gui.set_color">gui.set_color</a> for info how vectors encode color values.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>node<p><span class="type">node</span> node to set the outline color for</p></p><p class='param'>color<p><span class="type">vector3 | vector4</span> new outline color</p></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.set_parent' class='dashAnchor'></a><a class='entry' name='gui.set_parent'>gui.set_parent()</a></h1><div class='brief'><p>sets the parent of the node</p></div><p><p>Sets the parent node of the specified node.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>node<p><span class="type">node</span> node for which to set its parent</p></p><p class='param'>parent<p><span class="type">node</span> parent node to set</p></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.set_particlefx' class='dashAnchor'></a><a class='entry' name='gui.set_particlefx'>gui.set_particlefx()</a></h1><div class='brief'><p>Sets a particle fx</p></div><p><p>Set the paricle fx for a gui node</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>node<p><span class="type">node</span> node to set particle fx for</p></p><p class='param'>particlefx<p><span class="type">hash | string</span> particle fx id</p></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.set_perimeter_vertices' class='dashAnchor'></a><a class='entry' name='gui.set_perimeter_vertices'>gui.set_perimeter_vertices()</a></h1><div class='brief'><p>sets the number of generated vertices around the perimeter</p></div><p><p>Sets the number of generated vertices around the perimeter of a pie node.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>node<p><span class="type">node</span> pie node</p></p><p class='param'>vertices<p><span class="type">number</span> vertex count</p></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.set_pivot' class='dashAnchor'></a><a class='entry' name='gui.set_pivot'>gui.set_pivot()</a></h1><div class='brief'><p>sets the pivot of a node</p></div><p><p>The pivot specifies how the node is drawn and rotated from its position.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>node<p><span class="type">node</span> node to set pivot for</p></p><p class='param'>pivot<p><span class="type">constant</span> pivot constant
+<ul>
+  <li><code>gui.PIVOT_CENTER</code></li>
+  <li><code>gui.PIVOT_N</code></li>
+  <li><code>gui.PIVOT_NE</code></li>
+  <li><code>gui.PIVOT_E</code></li>
+  <li><code>gui.PIVOT_SE</code></li>
+  <li><code>gui.PIVOT_S</code></li>
+  <li><code>gui.PIVOT_SW</code></li>
+  <li><code>gui.PIVOT_W</code></li>
+  <li><code>gui.PIVOT_NW</code></li>
+</ul></p></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.set_position' class='dashAnchor'></a><a class='entry' name='gui.set_position'>gui.set_position()</a></h1><div class='brief'><p>sets the node position</p></div><p><p>Sets the position of the supplied node.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>node<p><span class="type">node</span> node to set the position for</p></p><p class='param'>position<p><span class="type">vector3 | vector4</span> new position</p></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.set_render_order' class='dashAnchor'></a><a class='entry' name='gui.set_render_order'>gui.set_render_order()</a></h1><div class='brief'><p>sets the render ordering for the current GUI scene</p></div><p><p>Set the order number for the current GUI scene.
+The number dictates the sorting of the "gui" render predicate,
+in other words in which order the scene will be rendered in relation
+to other currently rendered GUI scenes.</p>
+<p>The number must be in the range 0 to 15.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>order<p><span class="type">number</span> rendering order (0-15)</p></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.set_rotation' class='dashAnchor'></a><a class='entry' name='gui.set_rotation'>gui.set_rotation()</a></h1><div class='brief'><p>sets the node rotation</p></div><p><p>Sets the rotation of the supplied node.
+The rotation is expressed in degree Euler angles.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>node<p><span class="type">node</span> node to set the rotation for</p></p><p class='param'>rotation<p><span class="type">vector3 | vector4</span> new rotation</p></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.set_scale' class='dashAnchor'></a><a class='entry' name='gui.set_scale'>gui.set_scale()</a></h1><div class='brief'><p>sets the node scale</p></div><p><p>Sets the scaling of the supplied node.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>node<p><span class="type">node</span> node to set the scale for</p></p><p class='param'>scale<p><span class="type">vector3 | vector4</span> new scale</p></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.set_shadow' class='dashAnchor'></a><a class='entry' name='gui.set_shadow'>gui.set_shadow()</a></h1><div class='brief'><p>sets the node shadow color</p></div><p><p>Sets the shadow color of the supplied node.
+See <a href="http://www.defold.com/ref/gui#gui.set_color">gui.set_color</a> for info how vectors encode color values.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>node<p><span class="type">node</span> node to set the shadow color for</p></p><p class='param'>color<p><span class="type">vector3 | vector4</span> new shadow color</p></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.set_size' class='dashAnchor'></a><a class='entry' name='gui.set_size'>gui.set_size()</a></h1><div class='brief'><p>sets the node size</p></div><p><p>Sets the size of the supplied node.</p>
+<p><span class="icon-attention"></span> You can only set size on nodes with size mode set to SIZE_MODE_MANUAL</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>node<p><span class="type">node</span> node to set the size for</p></p><p class='param'>size<p><span class="type">vector3 | vector4</span> new size</p></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.set_size_mode' class='dashAnchor'></a><a class='entry' name='gui.set_size_mode'>gui.set_size_mode()</a></h1><div class='brief'><p>sets node size mode</p></div><p><p>Sets the size mode of a node.
+The size mode defines how the node will adjust itself in size. Automatic
+size mode alters the node size based on the node's content.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>node<p><span class="type">node</span> node to set size mode for</p></p><p class='param'>size_mode<p><span class="type">constant</span> size mode to set</p>
+<ul>
+<li><code>gui.SIZE_MODE_MANUAL</code></li>
+<li><code>gui.SIZE_MODE_AUTO</code></li>
+</ul></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.set_slice9' class='dashAnchor'></a><a class='entry' name='gui.set_slice9'>gui.set_slice9()</a></h1><div class='brief'><p>set the slice9 configuration for the node</p></div><p><p>Set the slice9 configuration values for the node.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>node<p><span class="type">node</span> node to manipulate</p></p><p class='param'>values<p><span class="type">vector4</span> new values</p></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.set_spine_cursor' class='dashAnchor'></a><a class='entry' name='gui.set_spine_cursor'>gui.set_spine_cursor()</a></h1><div class='brief'><p>sets the normalized cursor of the animation on a spine node</p></div><p><p>This is only useful for spine nodes. The cursor is normalized.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>node<p><span class="type">node</span> spine node to set the cursor for</p></p><p class='param'>cursor<p><span class="type">number</span> cursor value</p></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.set_spine_playback_rate' class='dashAnchor'></a><a class='entry' name='gui.set_spine_playback_rate'>gui.set_spine_playback_rate()</a></h1><div class='brief'><p>sets the playback rate of the animation on a spine node</p></div><p><p>This is only useful for spine nodes. Sets the playback rate of the animation on a spine node. Must be positive.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>node<p><span class="type">node</span> spine node to set the cursor for</p></p><p class='param'>playback_rate<p><span class="type">number</span> playback rate</p></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.set_spine_scene' class='dashAnchor'></a><a class='entry' name='gui.set_spine_scene'>gui.set_spine_scene()</a></h1><div class='brief'><p>sets the spine scene of a node</p></div><p><p>Set the spine scene on a spine node. The spine scene must be mapped to the gui scene in the gui editor.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>node<p><span class="type">node</span> node to set spine scene for</p></p><p class='param'>spine_scene<p><span class="type">string | hash</span> spine scene id</p></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.set_spine_skin' class='dashAnchor'></a><a class='entry' name='gui.set_spine_skin'>gui.set_spine_skin()</a></h1><div class='brief'><p>sets the spine skin</p></div><p><p>Sets the spine skin on a spine node.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>node<p><span class="type">node</span> node to set the spine skin on</p></p><p class='param'>spine_skin<p><span class="type">string | hash</span> spine skin id</p></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.set_text' class='dashAnchor'></a><a class='entry' name='gui.set_text'>gui.set_text()</a></h1><div class='brief'><p>sets the node text</p></div><p><p>Set the text value of a text node. This is only useful for text nodes.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>node<p><span class="type">node</span> node to set text for</p></p><p class='param'>text<p><span class="type">string</span> text to set</p></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.set_texture' class='dashAnchor'></a><a class='entry' name='gui.set_texture'>gui.set_texture()</a></h1><div class='brief'><p>sets the node texture</p></div><p><p>Set the texture on a box or pie node. The texture must be mapped to
+the gui scene in the gui editor. The function points out which texture
+the node should render from. If the texture is an atlas, further
+information is needed to select which image/animation in the atlas
+to render. In such cases, use <code>gui.play_flipbook()</code> in
+addition to this function.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>node<p><span class="type">node</span> node to set texture for</p></p><p class='param'>texture<p><span class="type">string | hash</span> texture id</p></p></div><h3>EXAMPLES</h3><div class='examples'><p><p>To set a texture (or animation) from an atlas:</p>
+<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">node</span> <span class="o">=</span> <span class="n">gui</span><span class="p">.</span><span class="n">get_node</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">box_node&quot;</span><span class="p">)</span>
+<span class="n">gui</span><span class="p">.</span><span class="n">set_texture</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">my_atlas&quot;</span><span class="p">)</span>
+<span class="n">gui</span><span class="p">.</span><span class="n">play_flipbook</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">image&quot;</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Set a dynamically created texture to a node. Note that there is only
+one texture image in this case so <code>gui.set_texture()</code> is
+sufficient.</p>
+<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">w</span> <span class="o">=</span> <span class="mi">200</span>
+<span class="kd">local</span> <span class="n">h</span> <span class="o">=</span> <span class="mi">300</span>
+<span class="c1">-- A nice orange. String with the RGB values.</span>
+<span class="kd">local</span> <span class="n">orange</span> <span class="o">=</span> <span class="nb">string.char</span><span class="p">(</span><span class="mh">0xff</span><span class="p">)</span> <span class="o">..</span> <span class="nb">string.char</span><span class="p">(</span><span class="mh">0x80</span><span class="p">)</span> <span class="o">..</span> <span class="nb">string.char</span><span class="p">(</span><span class="mh">0x10</span><span class="p">)</span>
+<span class="c1">-- Create the texture. Repeat the color string for each pixel.</span>
+<span class="k">if</span> <span class="n">gui</span><span class="p">.</span><span class="n">new_texture</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">orange_tx&quot;</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">rgb&quot;</span><span class="p">,</span> <span class="nb">string.rep</span><span class="p">(</span><span class="n">orange</span><span class="p">,</span> <span class="n">w</span> <span class="o">*</span> <span class="n">h</span><span class="p">))</span> <span class="k">then</span>
+    <span class="kd">local</span> <span class="n">node</span> <span class="o">=</span> <span class="n">gui</span><span class="p">.</span><span class="n">get_node</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">box_node&quot;</span><span class="p">)</span>
+    <span class="n">gui</span><span class="p">.</span><span class="n">set_texture</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">orange_tx&quot;</span><span class="p">)</span>
+<span class="k">end</span>
+</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.set_texture_data' class='dashAnchor'></a><a class='entry' name='gui.set_texture_data'>gui.set_texture_data()</a></h1><div class='brief'><p>set the buffer data for a texture</p></div><p><p>Set the texture buffer data for a dynamically created texture.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>texture<p><span class="type">string | hash</span> texture id</p></p><p class='param'>width<p><span class="type">number</span> texture width</p></p><p class='param'>height<p><span class="type">number</span> texture height</p></p><p class='param'>type<p><span class="type">string | constant</span> texture type
+<ul>
+  <li><code>"rgb"</code> - RGB</li>
+  <li><code>"rgba"</code> - RGBA</li>
+  <li><code>"l"</code> - LUMINANCE</li>
+</ul></p></p><p class='param'>buffer<p><span class="type">string</span> texture data</p></p><p class='param'>flip<p><span class="type">boolean</span> flip texture vertically</p></p></div><h3>RETURN</h3><div class='return'><p>success - <p><span class="type">boolean</span> setting the data was successful</p></p></div><h3>EXAMPLES</h3><div class='examples'><p><div class="codehilite"><pre><span></span><span class="k">function</span> <span class="nf">init</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
+     <span class="kd">local</span> <span class="n">w</span> <span class="o">=</span> <span class="mi">200</span>
+     <span class="kd">local</span> <span class="n">h</span> <span class="o">=</span> <span class="mi">300</span>
+
+     <span class="c1">-- Create a dynamic texture, all white.</span>
+     <span class="k">if</span> <span class="n">gui</span><span class="p">.</span><span class="n">new_texture</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">dynamic_tx&quot;</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">rgb&quot;</span><span class="p">,</span> <span class="nb">string.rep</span><span class="p">(</span><span class="nb">string.char</span><span class="p">(</span><span class="mh">0xff</span><span class="p">),</span> <span class="n">w</span> <span class="o">*</span> <span class="n">h</span> <span class="o">*</span> <span class="mi">3</span><span class="p">))</span> <span class="k">then</span>
+         <span class="c1">-- Create a box node and apply the texture to it.</span>
+         <span class="kd">local</span> <span class="n">n</span> <span class="o">=</span> <span class="n">gui</span><span class="p">.</span><span class="n">new_box_node</span><span class="p">(</span><span class="n">vmath</span><span class="p">.</span><span class="n">vector3</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">vmath</span><span class="p">.</span><span class="n">vector3</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+         <span class="n">gui</span><span class="p">.</span><span class="n">set_texture</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">dynamic_tx&quot;</span><span class="p">)</span>
+
+         <span class="o">...</span>
+
+         <span class="c1">-- Change the data in the texture to a nice orange.</span>
+         <span class="kd">local</span> <span class="n">orange</span> <span class="o">=</span> <span class="nb">string.char</span><span class="p">(</span><span class="mh">0xff</span><span class="p">)</span> <span class="o">..</span> <span class="nb">string.char</span><span class="p">(</span><span class="mh">0x80</span><span class="p">)</span> <span class="o">..</span> <span class="nb">string.char</span><span class="p">(</span><span class="mh">0x10</span><span class="p">)</span>
+         <span class="k">if</span> <span class="n">gui</span><span class="p">.</span><span class="n">set_texture_data</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">dynamic_tx&quot;</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">rgb&quot;</span><span class="p">,</span> <span class="nb">string.rep</span><span class="p">(</span><span class="n">orange</span><span class="p">,</span> <span class="n">w</span> <span class="o">*</span> <span class="n">h</span><span class="p">))</span> <span class="k">then</span>
+             <span class="c1">-- Go on and to more stuff</span>
+             <span class="o">...</span>
+         <span class="k">end</span>
+     <span class="k">else</span>
+         <span class="c1">-- Something went wrong</span>
+         <span class="o">...</span>
+     <span class="k">end</span>
+<span class="k">end</span>
+</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.set_tracking' class='dashAnchor'></a><a class='entry' name='gui.set_tracking'>gui.set_tracking()</a></h1><div class='brief'><p>sets the tracking of the text node</p></div><p><p>Sets the tracking value of a text node. This value is used to
+adjust the vertical spacing of characters in the text.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>node<p><span class="type">node</span> node for which to set the tracking</p></p><p class='param'>tracking<p><span class="type">number</span> a scaling number for the letter spacing (default=0)</p></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.set_xanchor' class='dashAnchor'></a><a class='entry' name='gui.set_xanchor'>gui.set_xanchor()</a></h1><div class='brief'><p>sets the x-anchor of a node</p></div><p><p>The x-anchor specifies how the node is moved when the game is run in a different resolution.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>node<p><span class="type">node</span> node to set x-anchor for</p></p><p class='param'>anchor<p><span class="type">constant</span> anchor constant</p>
+<ul>
+<li><code>gui.ANCHOR_NONE</code></li>
+<li><code>gui.ANCHOR_LEFT</code></li>
+<li><code>gui.ANCHOR_RIGHT</code></li>
+</ul></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.set_yanchor' class='dashAnchor'></a><a class='entry' name='gui.set_yanchor'>gui.set_yanchor()</a></h1><div class='brief'><p>sets the y-anchor of a node</p></div><p><p>The y-anchor specifies how the node is moved when the game is run in a different resolution.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>node<p><span class="type">node</span> node to set y-anchor for</p></p><p class='param'>anchor<p><span class="type">constant</span> anchor constant</p>
+<ul>
+<li><code>gui.ANCHOR_NONE</code></li>
+<li><code>gui.ANCHOR_TOP</code></li>
+<li><code>gui.ANCHOR_BOTTOM</code></li>
+</ul></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.show_keyboard' class='dashAnchor'></a><a class='entry' name='gui.show_keyboard'>gui.show_keyboard()</a></h1><div class='brief'><p>shows the on-display keyboard if available <span class="icon-ios"></span> <span class="icon-android"></span></p></div><p><p>Shows the on-display touch keyboard.
+The specified type of keyboard is displayed if it is available on
+the device.</p>
+<p>This function is only available on iOS and Android. <span class="icon-ios"></span> <span class="icon-android"></span>.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>type<p><span class="type">constant</span> keyboard type</p>
+<ul>
+<li><code>gui.KEYBOARD_TYPE_DEFAULT</code></li>
+<li><code>gui.KEYBOARD_TYPE_EMAIL</code></li>
+<li><code>gui.KEYBOARD_TYPE_NUMBER_PAD</code></li>
+<li><code>gui.KEYBOARD_TYPE_PASSWORD</code></li>
+</ul></p><p class='param'>autoclose<p><span class="type">boolean</span> if the keyboard should automatically close when clicking outside</p></p></div><hr/><h1><a name='//apple_ref/cpp/Function/gui.stop_particlefx' class='dashAnchor'></a><a class='entry' name='gui.stop_particlefx'>gui.stop_particlefx()</a></h1><div class='brief'><p>Stops a particle fx</p></div><p><p>Stops the paricle fx for a gui node</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>node<p><span class="type">node</span> node to stop particle fx for</p></p></div><hr/><h1><a name='//apple_ref/cpp/Function/init' class='dashAnchor'></a><a class='entry' name='init'>init()</a></h1><div class='brief'><p>called when a gui component is initialized</p></div><p><p>This is a callback-function, which is called by the engine when a gui component is initialized. It can be used
+to set the initial state of the script and gui scene.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>self<p><span class="type">object</span> reference to the script state to be used for storing data</p></p></div><h3>EXAMPLES</h3><div class='examples'><p><div class="codehilite"><pre><span></span><span class="k">function</span> <span class="nf">init</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
+    <span class="c1">-- set up useful data</span>
+    <span class="n">self</span><span class="p">.</span><span class="n">my_value</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="k">end</span>
+</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Command/layout_changed' class='dashAnchor'></a><a class='entry' name='layout_changed'>layout_changed</a></h1><div class='brief'><p>reports a layout change</p></div><p><p>This message is broadcast to every GUI component when a layout change has been initiated
+on device.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>id<p><span class="type">hash</span> the id of the layout the engine is changing to</p></p><p class='param'>previous_id<p><span class="type">hash</span> the id of the layout the engine is changing from</p></p></div><h3>EXAMPLES</h3><div class='examples'><p><div class="codehilite"><pre><span></span><span class="k">function</span> <span class="nf">on_message</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">message_id</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">sender</span><span class="p">)</span>
+   <span class="k">if</span> <span class="n">message_id</span> <span class="o">==</span> <span class="n">hash</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">layout_changed&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">message</span><span class="p">.</span><span class="n">id</span> <span class="o">==</span> <span class="n">hash</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">Landscape&quot;</span><span class="p">)</span> <span class="k">then</span>
+       <span class="c1">-- switching layout to &quot;Landscape&quot;...</span>
+       <span class="o">...</span>
+   <span class="k">end</span>
+<span class="k">end</span>
+</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Function/on_input' class='dashAnchor'></a><a class='entry' name='on_input'>on_input()</a></h1><div class='brief'><p>called when user input is received</p></div><p><p>This is a callback-function, which is called by the engine when user input is sent to the instance of the gui component.
+It can be used to take action on the input, e.g. modify the gui according to the input.</p>
+<p>For an instance to obtain user input, it must first acquire input
+focus through the message <code>acquire_input_focus</code>.</p>
+<p>Any instance that has obtained input will be put on top of an
+input stack. Input is sent to all listeners on the stack until the
+end of stack is reached, or a listener returns <code>true</code>
+to signal that it wants input to be consumed.</p>
+<p>See the documentation of <a href="http://www.defold.com/ref/go/#acquire_input_focus">acquire_input_focus</a> for more
+information.</p>
+<p>The <code>action</code> parameter is a table containing data about the input mapped to the
+<code>action_id</code>.
+For mapped actions it specifies the value of the input and if it was just pressed or released.
+Actions are mapped to input in an input_binding-file.</p>
+<p>Mouse movement is specifically handled and uses <code>nil</code> as its <code>action_id</code>.
+The <code>action</code> only contains positional parameters in this case, such as x and y of the pointer.</p>
+<p>Here is a brief description of the available table fields:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>value</code></td>
+<td>The amount of input given by the user. This is usually 1 for buttons and 0-1 for analogue inputs. This is not present for mouse movement.</td>
+</tr>
+<tr>
+<td><code>pressed</code></td>
+<td>If the input was pressed this frame, 0 for false and 1 for true. This is not present for mouse movement.</td>
+</tr>
+<tr>
+<td><code>released</code></td>
+<td>If the input was released this frame, 0 for false and 1 for true. This is not present for mouse movement.</td>
+</tr>
+<tr>
+<td><code>repeated</code></td>
+<td>If the input was repeated this frame, 0 for false and 1 for true. This is similar to how a key on a keyboard is repeated when you hold it down. This is not present for mouse movement.</td>
+</tr>
+<tr>
+<td><code>x</code></td>
+<td>The x value of a pointer device, if present.</td>
+</tr>
+<tr>
+<td><code>y</code></td>
+<td>The y value of a pointer device, if present.</td>
+</tr>
+<tr>
+<td><code>screen_x</code></td>
+<td>The screen space x value of a pointer device, if present.</td>
+</tr>
+<tr>
+<td><code>screen_y</code></td>
+<td>The screen space y value of a pointer device, if present.</td>
+</tr>
+<tr>
+<td><code>dx</code></td>
+<td>The change in x value of a pointer device, if present.</td>
+</tr>
+<tr>
+<td><code>dy</code></td>
+<td>The change in y value of a pointer device, if present.</td>
+</tr>
+<tr>
+<td><code>screen_dx</code></td>
+<td>The change in screen space x value of a pointer device, if present.</td>
+</tr>
+<tr>
+<td><code>screen_dy</code></td>
+<td>The change in screen space y value of a pointer device, if present.</td>
+</tr>
+<tr>
+<td><code>gamepad</code></td>
+<td>The index of the gamepad device that provided the input.</td>
+</tr>
+<tr>
+<td><code>touch</code></td>
+<td>List of touch input, one element per finger, if present. See table below about touch input</td>
+</tr>
+</tbody>
+</table>
+<p>Touch input table:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>A number identifying the touch input during its duration.</td>
+</tr>
+<tr>
+<td><code>pressed</code></td>
+<td>True if the finger was pressed this frame.</td>
+</tr>
+<tr>
+<td><code>released</code></td>
+<td>True if the finger was released this frame.</td>
+</tr>
+<tr>
+<td><code>tap_count</code></td>
+<td>Number of taps, one for single, two for double-tap, etc</td>
+</tr>
+<tr>
+<td><code>x</code></td>
+<td>The x touch location.</td>
+</tr>
+<tr>
+<td><code>y</code></td>
+<td>The y touch location.</td>
+</tr>
+<tr>
+<td><code>dx</code></td>
+<td>The change in x value.</td>
+</tr>
+<tr>
+<td><code>dy</code></td>
+<td>The change in y value.</td>
+</tr>
+<tr>
+<td><code>acc_x</code></td>
+<td>Accelerometer x value (if present).</td>
+</tr>
+<tr>
+<td><code>acc_y</code></td>
+<td>Accelerometer y value (if present).</td>
+</tr>
+<tr>
+<td><code>acc_z</code></td>
+<td>Accelerometer z value (if present).</td>
+</tr>
+</tbody>
+</table></p><h3>PARAMETERS</h3><div class='params'><p class='param'>self<p><span class="type">object</span> reference to the script state to be used for storing data</p></p><p class='param'>action_id<p><span class="type">hash</span> id of the received input action, as mapped in the input_binding-file</p></p><p class='param'>action<p><span class="type">table</span> a table containing the input data, see above for a description</p></p></div><h3>RETURN</h3><div class='return'><p>[consume] - <p><span class="type">boolean</span> optional boolean to signal if the input should be consumed (not passed on to others) or not, default is false</p></p></div><h3>EXAMPLES</h3><div class='examples'><p><div class="codehilite"><pre><span></span><span class="k">function</span> <span class="nf">on_input</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">action_id</span><span class="p">,</span> <span class="n">action</span><span class="p">)</span>
+    <span class="c1">-- check for input</span>
+    <span class="k">if</span> <span class="n">action_id</span> <span class="o">==</span> <span class="n">hash</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">my_action&quot;</span><span class="p">)</span> <span class="k">then</span>
+        <span class="c1">-- take appropritate action</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">my_value</span> <span class="o">=</span> <span class="n">action</span><span class="p">.</span><span class="n">value</span>
+    <span class="k">end</span>
+    <span class="c1">-- consume input</span>
+    <span class="k">return</span> <span class="kc">true</span>
+<span class="k">end</span>
+</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Function/on_message' class='dashAnchor'></a><a class='entry' name='on_message'>on_message()</a></h1><div class='brief'><p>called when a message has been sent to the gui component</p></div><p><p>This is a callback-function, which is called by the engine whenever a message has been sent to the gui component.
+It can be used to take action on the message, e.g. update the gui or send a response back to the sender of the message.</p>
+<p>The <code>message</code> parameter is a table containing the message data. If the message is sent from the engine, the
+documentation of the message specifies which data is supplied.</p>
+<p>See the <a href="#update">update</a> function for examples on how to use this callback-function.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>self<p><span class="type">object</span> reference to the script state to be used for storing data</p></p><p class='param'>message_id<p><span class="type">hash</span> id of the received message</p></p><p class='param'>message<p><span class="type">table</span> a table containing the message data</p></p></div><hr/><h1><a name='//apple_ref/cpp/Function/on_reload' class='dashAnchor'></a><a class='entry' name='on_reload'>on_reload()</a></h1><div class='brief'><p>called when the gui script is reloaded</p></div><p><p>
+This is a callback-function, which is called by the engine when the gui script is reloaded, e.g. from the editor.
+It can be used for live development, e.g. to tweak constants or set up the state properly for the script.
+</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>self<p><span class="type">object</span> reference to the script state to be used for storing data</p></p></div><h3>EXAMPLES</h3><div class='examples'><p><div class="codehilite"><pre><span></span><span class="k">function</span> <span class="nf">on_reload</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
+    <span class="c1">-- restore some color (or similar)</span>
+    <span class="n">gui</span><span class="p">.</span><span class="n">set_color</span><span class="p">(</span><span class="n">gui</span><span class="p">.</span><span class="n">get_node</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">my_node&quot;</span><span class="p">),</span> <span class="n">self</span><span class="p">.</span><span class="n">my_original_color</span><span class="p">)</span>
+<span class="k">end</span>
+</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Function/update' class='dashAnchor'></a><a class='entry' name='update'>update()</a></h1><div class='brief'><p>called every frame to update the gui component</p></div><p><p>This is a callback-function, which is called by the engine every frame to update the state of a gui component.
+It can be used to perform any kind of gui related tasks, e.g. animating nodes.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>self<p><span class="type">object</span> reference to the script state to be used for storing data</p></p><p class='param'>dt<p><span class="type">number</span> the time-step of the frame update</p></p></div><h3>EXAMPLES</h3><div class='examples'><p><p>This example demonstrates how to update a text node that displays game score in a counting fashion.
+It is assumed that the gui component receives messages from the game when a new score is to be shown.</p>
+<div class="codehilite"><pre><span></span><span class="k">function</span> <span class="nf">init</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
+    <span class="c1">-- fetch the score text node for later use (assumes it is called &quot;score&quot;)</span>
+    <span class="n">self</span><span class="p">.</span><span class="n">score_node</span> <span class="o">=</span> <span class="n">gui</span><span class="p">.</span><span class="n">get_node</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">score&quot;</span><span class="p">)</span>
+    <span class="c1">-- keep track of the current score counted up so far</span>
+    <span class="n">self</span><span class="p">.</span><span class="n">current_score</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="c1">-- keep track of the target score we should count up to</span>
+    <span class="n">self</span><span class="p">.</span><span class="n">target_score</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="c1">-- how fast we will update the score, in score/second</span>
+    <span class="n">self</span><span class="p">.</span><span class="n">score_update_speed</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="k">end</span>
+
+<span class="k">function</span> <span class="nf">update</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
+    <span class="c1">-- check if target score is more than current score</span>
+    <span class="k">if</span> <span class="n">self</span><span class="p">.</span><span class="n">current_score</span> <span class="o">&lt;</span> <span class="n">self</span><span class="p">.</span><span class="n">target_score</span>
+        <span class="c1">-- increment current score according to the speed</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">current_score</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">current_score</span> <span class="o">+</span> <span class="n">dt</span> <span class="o">*</span> <span class="n">self</span><span class="p">.</span><span class="n">score_update_speed</span>
+        <span class="c1">-- check if we went past the target score, clamp current score in that case</span>
+        <span class="k">if</span> <span class="n">self</span><span class="p">.</span><span class="n">current_score</span> <span class="o">&gt;</span> <span class="n">self</span><span class="p">.</span><span class="n">target_score</span> <span class="k">then</span>
+            <span class="n">self</span><span class="p">.</span><span class="n">current_score</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">target_score</span>
+        <span class="k">end</span>
+        <span class="c1">-- update the score text node</span>
+        <span class="n">gui</span><span class="p">.</span><span class="n">set_text</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">score_node</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">&quot;</span> <span class="o">..</span> <span class="nb">math.floor</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">current_score</span><span class="p">))</span>
+    <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">function</span> <span class="nf">on_message</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">message_id</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">sender</span><span class="p">)</span>
+    <span class="c1">-- check the message</span>
+    <span class="k">if</span> <span class="n">message_id</span> <span class="o">==</span> <span class="n">hash</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">set_score&quot;</span><span class="p">)</span> <span class="k">then</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">target_score</span> <span class="o">=</span> <span class="n">message</span><span class="p">.</span><span class="n">score</span>
+    <span class="k">end</span>
+<span class="k">end</span>
+</pre></div></p></div><hr/></body></html>

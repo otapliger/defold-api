@@ -1,0 +1,36 @@
+<html><head><link rel='stylesheet' type='text/css' href='../defold.css'></head><body><div class='nav'><a class='chevron' href='../index.html'><img src='../svg/chevron-left.svg' alt='Home'></a></div><h1>Built-ins</h1>
+<p><p>Built-in scripting functions.</p></p>
+<h1><a name='//apple_ref/cpp/Function/hash' class='dashAnchor'></a><a class='entry' name='hash'>hash()</a></h1><div class='brief'><p>hashes a string</p></div><p><p>All ids in the engine are represented as hashes, so a string needs to be hashed
+before it can be compared with an id.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>s<p><span class="type">string</span> string to hash</p></p></div><h3>RETURN</h3><div class='return'><p>hash - <p><span class="type">hash</span> a hashed string</p></p></div><h3>EXAMPLES</h3><div class='examples'><p><p>To compare a message_id in an on-message callback function:</p>
+<div class="codehilite"><pre><span></span><span class="k">function</span> <span class="nf">on_message</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">message_id</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">sender</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">message_id</span> <span class="o">==</span> <span class="n">hash</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">my_message&quot;</span><span class="p">)</span> <span class="k">then</span>
+        <span class="c1">-- Act on the message here</span>
+    <span class="k">end</span>
+<span class="k">end</span>
+</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Function/hash_to_hex' class='dashAnchor'></a><a class='entry' name='hash_to_hex'>hash_to_hex()</a></h1><div class='brief'><p>get hex representation of a hash value as a string</p></div><p><p>Returns a hexadecimal representation of a hash value.
+The returned string is always padded with leading zeros.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>h<p><span class="type">hash</span> hash value to get hex string for</p></p></div><h3>RETURN</h3><div class='return'><p>hex - <p><span class="type">string</span> hex representation of the hash</p></p></div><h3>EXAMPLES</h3><div class='examples'><p><div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">h</span> <span class="o">=</span> <span class="n">hash</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">my_hash&quot;</span><span class="p">)</span>
+<span class="kd">local</span> <span class="n">hexstr</span> <span class="o">=</span> <span class="n">hash_to_hex</span><span class="p">(</span><span class="n">h</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">hexstr</span><span class="p">)</span> <span class="c1">--&gt; a2bc06d97f580aab</span>
+</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Function/pprint' class='dashAnchor'></a><a class='entry' name='pprint'>pprint()</a></h1><div class='brief'><p>pretty printing</p></div><p><p>Pretty printing of Lua values. This function prints Lua values
+in a manner similar to +print()+, but will also recurse into tables
+and pretty print them. There is a limit to how deep the function
+will recurse.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>v<p><span class="type">any</span> value to print</p></p></div><h3>EXAMPLES</h3><div class='examples'><p><p>Pretty printing a Lua table with a nested table:</p>
+<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">t2</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span> <span class="p">}</span>
+<span class="kd">local</span> <span class="n">t</span> <span class="o">=</span> <span class="p">{</span> <span class="n">key</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="s">value&quot;</span><span class="p">,</span> <span class="n">key2</span> <span class="o">=</span> <span class="mi">1234</span><span class="p">,</span> <span class="n">key3</span> <span class="o">=</span> <span class="n">t2</span> <span class="p">}</span>
+<span class="n">pprint</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Resulting in the following output (note that the key order in non array
+Lua tables is undefined):</p>
+<div class="codehilite"><pre><span></span>{
+  key3 = {
+    1 = 1,
+    2 = 2,
+    3 = 3,
+    4 = 4,
+  }
+  key2 = 1234,
+  key = value,
+}
+</pre></div></p></div><hr/></body></html>

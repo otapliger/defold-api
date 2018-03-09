@@ -1,0 +1,31 @@
+<html><head><link rel='stylesheet' type='text/css' href='../defold.css'></head><body><div class='nav'><a class='chevron' href='../index.html'><img src='../svg/chevron-left.svg' alt='Home'></a></div><h1>HTTP</h1>
+<p><p>Functions for performing HTTP and HTTPS requests.</p></p>
+<h1><a name='//apple_ref/cpp/Function/http.request' class='dashAnchor'></a><a class='entry' name='http.request'>http.request()</a></h1><div class='brief'><p>perform a HTTP/HTTPS request</p></div><p><p>Perform a HTTP/HTTPS request.</p>
+<p><span class="icon-attention"></span> If no timeout value is passed, the configuration value "network.http_timeout" is used. If that is not set, the timeout value is <code>0</code> (which blocks indefinitely).</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>url<p><span class="type">string</span> target url</p></p><p class='param'>method<p><span class="type">string</span> HTTP/HTTPS method, e.g. "GET", "PUT", "POST" etc.</p></p><p class='param'>callback<p><span class="type">function(self, id, response)</span> response callback function</p>
+<dl>
+<dt><code>self</code></dt>
+<dd><span class="type">object</span> The current object</dd>
+<dt><code>id</code></dt>
+<dd><span class="type">hash</span> Internal message identifier. Do not use!</dd>
+<dt><code>response</code></dt>
+<dd><span class="type">table</span> The response data. Contains the fields:</dd>
+</dl>
+<ul>
+<li><span class="type">number</span> <code>status</code>: the status of the response</li>
+<li><span class="type">string</span> <code>response</code>: the response data</li>
+<li><span class="type">table</span> <code>headers</code>: all the returned headers</li>
+</ul></p><p class='param'>[headers]<p><span class="type">table</span> optional table with custom headers</p></p><p class='param'>[post_data]<p><span class="type">string</span> optional data to send</p></p><p class='param'>[options]<p><span class="type">table</span> optional table with request parameters. Supported entries:</p>
+<ul>
+<li><span class="type">number</span> <code>timeout</code>: timeout in seconds</li>
+</ul></p></div><h3>EXAMPLES</h3><div class='examples'><p><p>Basic HTTP-GET request. The callback receives a table with the response
+in the fields status, the response (the data) and headers (a table).</p>
+<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="k">function</span> <span class="nf">http_result</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">response</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">status</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">response</span><span class="p">)</span>
+    <span class="n">pprint</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">headers</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="k">function</span> <span class="nf">init</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
+    <span class="n">http</span><span class="p">.</span><span class="n">request</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">http://www.google.com&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">GET&quot;</span><span class="p">,</span> <span class="n">http_result</span><span class="p">)</span>
+<span class="k">end</span>
+</pre></div></p></div><hr/></body></html>

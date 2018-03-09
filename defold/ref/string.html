@@ -1,0 +1,302 @@
+<html><head><link rel='stylesheet' type='text/css' href='../defold.css'></head><body><div class='nav'><a class='chevron' href='../index.html'><img src='../svg/chevron-left.svg' alt='Home'></a></div><h1>String</h1>
+<p><p>Documentation for the Lua string standard library.</p>
+<p>From <a href="https://www.lua.org/manual/5.1/">Lua 5.1 Reference Manual</a>
+by Roberto Ierusalimschy, Luiz Henrique de Figueiredo, Waldemar Celes.</p>
+<p>Copyright &copy; 2006-2012 Lua.org, PUC-Rio.</p>
+<p>Freely available under the terms of the <a href="https://www.lua.org/license.html">Lua license</a>.</p></p>
+<h1><a name='//apple_ref/cpp/Function/string.byte' class='dashAnchor'></a><a class='entry' name='string.byte'>string.byte()</a></h1><div class='brief'><p>converts a character into its ASCII (decimal) equivalent</p></div><p><p>Returns the internal numerical codes of the characters <code>s[i]</code>,
+<code>s[i+1]</code>, ..., <code>s[j]</code>.
+The default value for i is 1;
+the default value for j is i.</p>
+<p>Note that numerical codes are not necessarily portable across platforms.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>s</p><p class='param'>[i]</p><p class='param'>[j]</p></div><hr/><h1><a name='//apple_ref/cpp/Function/string.char' class='dashAnchor'></a><a class='entry' name='string.char'>string.char()</a></h1><div class='brief'><p>converts ASCII codes into their equivalent characters</p></div><p><p>Receives zero or more integers.
+Returns a string with length equal to the number of arguments,
+in which each character has the internal numerical code equal
+to its corresponding argument.</p>
+<p>Note that numerical codes are not necessarily portable across platforms.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>...</p></div><hr/><h1><a name='//apple_ref/cpp/Function/string.dump' class='dashAnchor'></a><a class='entry' name='string.dump'>string.dump()</a></h1><div class='brief'><p>converts a function into binary</p></div><p><p>Returns a string containing a binary representation of the given function,
+so that a later loadstring on this string returns
+a copy of the function.
+function must be a Lua function without upvalues.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>function</p></div><hr/><h1><a name='//apple_ref/cpp/Function/string.find' class='dashAnchor'></a><a class='entry' name='string.find'>string.find()</a></h1><div class='brief'><p>searches a string for a pattern</p></div><p><p>Looks for the first match of
+pattern in the string s.
+If it finds a match, then find returns the indices of <code>s</code>
+where this occurrence starts and ends;
+otherwise, it returns <span class="type"> nil</span>.
+A third, optional numerical argument init specifies
+where to start the search;
+its default value is 1 and can be negative.
+A value of <span class="type"> true</span> as a fourth, optional argument plain
+turns off the pattern matching facilities,
+so the function does a plain "find substring" operation,
+with no characters in pattern being considered "magic".
+Note that if plain is given, then init must be given as well.</p>
+<p>If the pattern has captures,
+then in a successful match
+the captured values are also returned,
+after the two indices.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>s</p><p class='param'>pattern</p><p class='param'>[init]</p><p class='param'>[plain]</p></div><hr/><h1><a name='//apple_ref/cpp/Function/string.format' class='dashAnchor'></a><a class='entry' name='string.format'>string.format()</a></h1><div class='brief'><p>formats a string</p></div><p><p>Returns a formatted version of its variable number of arguments
+following the description given in its first argument (which must be a string).
+The format string follows the same rules as the printf family of
+standard C functions.
+The only differences are that the options/modifiers
+<code>*</code>, l, L, n, p,
+and h are not supported
+and that there is an extra option, q.
+The q option formats a string in a form suitable to be safely read
+back by the Lua interpreter:
+the string is written between double quotes,
+and all double quotes, newlines, embedded zeros,
+and backslashes in the string
+are correctly escaped when written.
+For instance, the call</p>
+<div class="codehilite"><pre><span></span><span class="nb">string.format</span><span class="p">(</span><span class="s1">&#39;</span><span class="s">%q&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="s">a string with &quot;quotes&quot; and </span><span class="se">\n</span><span class="s"> new line&#39;</span><span class="p">)</span>
+</pre></div>
+
+
+<p>will produce the string:</p>
+<div class="codehilite"><pre><span></span><span class="s2">&quot;</span><span class="s">a string with </span><span class="se">\&quot;</span><span class="s">quotes</span><span class="se">\&quot;</span><span class="s"> and \</span>
+ <span class="n">new</span> <span class="n">line</span><span class="s2">&quot;</span>
+</pre></div>
+
+
+<p>The options c, d, E, e, f,
+g, G, i, o, u, X, and x all
+expect a number as argument,
+whereas q and s expect a string.</p>
+<p>This function does not accept string values
+containing embedded zeros,
+except as arguments to the q option.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>formatstring</p><p class='param'>...</p></div><hr/><h1><a name='//apple_ref/cpp/Function/string.gmatch' class='dashAnchor'></a><a class='entry' name='string.gmatch'>string.gmatch()</a></h1><div class='brief'><p>iterate over a string</p></div><p><p>Returns an iterator function that,
+each time it is called,
+returns the next captures from pattern over string s.
+If pattern specifies no captures,
+then the whole match is produced in each call.</p>
+<p>As an example, the following loop</p>
+<div class="codehilite"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="s">hello world from Lua&quot;</span>
+<span class="k">for</span> <span class="n">w</span> <span class="k">in</span> <span class="nb">string.gmatch</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">%a+&quot;</span><span class="p">)</span> <span class="k">do</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
+<span class="k">end</span>
+</pre></div>
+
+
+<p>will iterate over all the words from string s,
+printing one per line.
+The next example collects all pairs <code>key=value</code> from the
+given string into a table:</p>
+<div class="codehilite"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">s</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="s">from=world, to=Lua&quot;</span>
+<span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="k">in</span> <span class="nb">string.gmatch</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">(%w+)=(%w+)&quot;</span><span class="p">)</span> <span class="k">do</span>
+  <span class="n">t</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span>
+<span class="k">end</span>
+</pre></div>
+
+
+<p>For this function, a '^' at the start of a pattern does not
+work as an anchor, as this would prevent the iteration.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>s</p><p class='param'>pattern</p></div><hr/><h1><a name='//apple_ref/cpp/Function/string.gsub' class='dashAnchor'></a><a class='entry' name='string.gsub'>string.gsub()</a></h1><div class='brief'><p>substitute strings inside another string</p></div><p><p>Returns a copy of s
+in which all (or the first n, if given)
+occurrences of the pattern have been
+replaced by a replacement string specified by repl,
+which can be a string, a table, or a function.
+gsub also returns, as its second value,
+the total number of matches that occurred.</p>
+<p>If repl is a string, then its value is used for replacement.
+The character <code>%</code> works as an escape character:
+any sequence in repl of the form <code>%n</code>,
+with n between 1 and 9,
+stands for the value of the n-th captured substring (see below).
+The sequence <code>%0</code> stands for the whole match.
+The sequence <code>%%</code> stands for a single <code>%</code>.</p>
+<p>If repl is a table, then the table is queried for every match,
+using the first capture as the key;
+if the pattern specifies no captures,
+then the whole match is used as the key.</p>
+<p>If repl is a function, then this function is called every time a
+match occurs, with all captured substrings passed as arguments,
+in order;
+if the pattern specifies no captures,
+then the whole match is passed as a sole argument.</p>
+<p>If the value returned by the table query or by the function call
+is a string or a number,
+then it is used as the replacement string;
+otherwise, if it is false or <span class="type"> nil</span>,
+then there is no replacement
+(that is, the original match is kept in the string).</p>
+<p>Here are some examples:</p>
+<div class="codehilite"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="nb">string.gsub</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">hello world&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">(%w+)&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">%1 %1&quot;</span><span class="p">)</span>
+<span class="c1">--&gt; x=&quot;hello hello world world&quot;</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="nb">string.gsub</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">hello world&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">%w+&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">%0 %0&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="c1">--&gt; x=&quot;hello hello world&quot;</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="nb">string.gsub</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">hello world from Lua&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">(%w+)%s*(%w+)&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">%2 %1&quot;</span><span class="p">)</span>
+<span class="c1">--&gt; x=&quot;world hello Lua from&quot;</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="nb">string.gsub</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">home = $HOME, user = $USER&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">%$(%w+)&quot;</span><span class="p">,</span> <span class="nb">os.getenv</span><span class="p">)</span>
+<span class="c1">--&gt; x=&quot;home = /home/roberto, user = roberto&quot;</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="nb">string.gsub</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">4+5 = $return 4+5$&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">%$(.-)%$&quot;</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="n">s</span><span class="p">)</span>
+      <span class="k">return</span> <span class="nb">loadstring</span><span class="p">(</span><span class="n">s</span><span class="p">)()</span>
+    <span class="k">end</span><span class="p">)</span>
+<span class="c1">--&gt; x=&quot;4+5 = 9&quot;</span>
+
+<span class="kd">local</span> <span class="n">t</span> <span class="o">=</span> <span class="p">{</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;</span><span class="s">lua&quot;</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="s2">&quot;</span><span class="s">5.1&quot;</span><span class="p">}</span>
+<span class="n">x</span> <span class="o">=</span> <span class="nb">string.gsub</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">$name-$version.tar.gz&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">%$(%w+)&quot;</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
+<span class="c1">--&gt; x=&quot;lua-5.1.tar.gz&quot;</span>
+</pre></div></p><h3>PARAMETERS</h3><div class='params'><p class='param'>s</p><p class='param'>pattern</p><p class='param'>repl</p><p class='param'>[n]</p></div><hr/><h1><a name='//apple_ref/cpp/Function/string.len' class='dashAnchor'></a><a class='entry' name='string.len'>string.len()</a></h1><div class='brief'><p>return the length of a string</p></div><p><p>Receives a string and returns its length.
+The empty string <code>""</code> has length 0.
+Embedded zeros are counted,
+so <code>"a\000bc\000"</code> has length 5.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>s</p></div><hr/><h1><a name='//apple_ref/cpp/Function/string.lower' class='dashAnchor'></a><a class='entry' name='string.lower'>string.lower()</a></h1><div class='brief'><p>converts a string to lower-case</p></div><p><p>Receives a string and returns a copy of this string with all
+uppercase letters changed to lowercase.
+All other characters are left unchanged.
+The definition of what an uppercase letter is depends on the current locale.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>s</p></div><hr/><h1><a name='//apple_ref/cpp/Function/string.match' class='dashAnchor'></a><a class='entry' name='string.match'>string.match()</a></h1><div class='brief'><p>searches a string for a pattern</p></div><p><p>Looks for the first <em>match</em> of
+pattern in the string s.
+If it finds one, then match returns
+the captures from the pattern;
+otherwise it returns <span class="type"> nil</span>.
+If pattern specifies no captures,
+then the whole match is returned.
+A third, optional numerical argument init specifies
+where to start the search;
+its default value is 1 and can be negative.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>s</p><p class='param'>pattern</p><p class='param'>[init]</p></div><hr/><h1><a name='//apple_ref/cpp/Function/string.rep' class='dashAnchor'></a><a class='entry' name='string.rep'>string.rep()</a></h1><div class='brief'><p>returns repeated copies of a string</p></div><p><p>Returns a string that is the concatenation of n copies of
+the string s.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>s</p><p class='param'>n</p></div><hr/><h1><a name='//apple_ref/cpp/Function/string.reverse' class='dashAnchor'></a><a class='entry' name='string.reverse'>string.reverse()</a></h1><div class='brief'><p>reverses the order of characters in a string</p></div><p><p>Returns a string that is the string s reversed.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>s</p></div><hr/><h1><a name='//apple_ref/cpp/Function/string.sub' class='dashAnchor'></a><a class='entry' name='string.sub'>string.sub()</a></h1><div class='brief'><p>returns a substring of a string</p></div><p><p>Returns the substring of s that
+starts at i  and continues until j;
+i and j can be negative.
+If j is absent, then it is assumed to be equal to -1
+(which is the same as the string length).
+In particular,
+the call <code>string.sub(s,1,j)</code> returns a prefix of s
+with length j,
+and <code>string.sub(s, -i)</code> returns a suffix of s
+with length i.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>s</p><p class='param'>i</p><p class='param'>[j]</p></div><hr/><h1><a name='//apple_ref/cpp/Function/string.upper' class='dashAnchor'></a><a class='entry' name='string.upper'>string.upper()</a></h1><div class='brief'><p>converts a string to upper-case</p></div><p><p>Receives a string and returns a copy of this string with all
+lowercase letters changed to uppercase.
+All other characters are left unchanged.
+The definition of what a lowercase letter is depends on the current locale.</p>
+<p>Patterns</p>
+<p>Character Class:
+A character class is used to represent a set of characters.
+The following combinations are allowed in describing a character class:</p>
+<dl>
+<dt>x</dt>
+<dd>(where x is not one of the <em>magic characters</em>
+<code>^$()%.[]*+-?</code>)
+represents the character <em>x</em> itself.</dd>
+<dt><code>.</code></dt>
+<dd>(a dot) represents all characters.</dd>
+<dt><code>%a</code></dt>
+<dd>represents all letters.</dd>
+<dt><code>%c</code></dt>
+<dd>represents all control characters.</dd>
+<dt><code>%d</code></dt>
+<dd>represents all digits.</dd>
+<dt><code>%l</code></dt>
+<dd>represents all lowercase letters.</dd>
+<dt><code>%p</code></dt>
+<dd>represents all punctuation characters.</dd>
+<dt><code>%s</code></dt>
+<dd>represents all space characters.</dd>
+<dt><code>%u</code></dt>
+<dd>represents all uppercase letters.</dd>
+<dt><code>%w</code></dt>
+<dd>represents all alphanumeric characters.</dd>
+<dt><code>%x</code></dt>
+<dd>represents all hexadecimal digits.</dd>
+<dt><code>%z</code></dt>
+<dd>represents the character with representation 0.</dd>
+<dt><code>%x</code></dt>
+<dd>(where x is any non-alphanumeric character)
+represents the character x.
+This is the standard way to escape the magic characters.
+Any punctuation character (even the non magic)
+can be preceded by a '%'
+when used to represent itself in a pattern.</dd>
+<dt><code>[set]</code></dt>
+<dd>represents the class which is the union of all
+characters in set.
+A range of characters can be specified by
+separating the end characters of the range with a '-'.
+All classes <code>%</code><em>x</em> described above can also be used as
+components in set.
+All other characters in set represent themselves.
+For example, <code>[%w_]</code> (or <code>[_%w]</code>)
+represents all alphanumeric characters plus the underscore,
+<code>[0-7]</code> represents the octal digits,
+and <code>[0-7%l%-]</code> represents the octal digits plus
+the lowercase letters plus the '-' character.</dd>
+</dl>
+<p>The interaction between ranges and classes is not defined.
+Therefore, patterns like <code>[%a-z]</code> or <code>[a-%%]</code>
+have no meaning.</p>
+<dl>
+<dt><code>[^set]</code></dt>
+<dd>represents the complement of set,
+where set is interpreted as above.</dd>
+</dl>
+<p>For all classes represented by single letters (<code>%a</code>, <code>%c</code>, etc.),
+the corresponding uppercase letter represents the complement of the class.
+For instance, <code>%S</code> represents all non-space characters.</p>
+<p>The definitions of letter, space, and other character groups
+depend on the current locale.
+In particular, the class <code>[a-z]</code> may not be equivalent to <code>%l</code>.</p>
+<p>Pattern Item:
+A pattern item can be</p>
+<ul>
+<li>
+<p>a single character class,
+which matches any single character in the class;</p>
+</li>
+<li>
+<p>a single character class followed by '*',
+which matches 0 or more repetitions of characters in the class.
+These repetition items will always match the longest possible sequence;</p>
+</li>
+<li>
+<p>a single character class followed by '+',
+which matches 1 or more repetitions of characters in the class.
+These repetition items will always match the longest possible sequence;</p>
+</li>
+<li>
+<p>a single character class followed by '-',
+which also matches 0 or more repetitions of characters in the class.
+Unlike '*',
+these repetition items will always match the <em>shortest</em> possible sequence;</p>
+</li>
+<li>
+<p>a single character class followed by '?',
+which matches 0 or 1 occurrence of a character in the class;</p>
+</li>
+<li>
+<p><code>%n</code>, for n between 1 and 9;
+such item matches a substring equal to the n-th captured string
+(see below);</p>
+</li>
+<li>
+<p><code>%bxy</code>, where x and y are two distinct characters;
+such item matches strings that start with x, end with y,
+and where the x and y are <em>balanced</em>.
+This means that, if one reads the string from left to right,
+counting +1 for an x and -1 for a y,
+the ending y is the first y where the count reaches 0.
+For instance, the item <code>%b()</code> matches expressions with
+balanced parentheses.</p>
+</li>
+</ul>
+<p>Pattern:
+A pattern is a sequence of pattern items.
+A '^' at the beginning of a pattern anchors the match at the
+beginning of the subject string.
+A '$' at the end of a pattern anchors the match at the
+end of the subject string.
+At other positions,
+'^' and '$' have no special meaning and represent themselves.</p>
+<p>Captures:
+A pattern can contain sub-patterns enclosed in parentheses;
+they describe captures.
+When a match succeeds, the substrings of the subject string
+that match captures are stored (<em>captured</em>) for future use.
+Captures are numbered according to their left parentheses.
+For instance, in the pattern <code>"(a*(.)%w(%s*))"</code>,
+the part of the string matching <code>"a*(.)%w(%s*)"</code> is
+stored as the first capture (and therefore has number 1);
+the character matching "." is captured with number 2,
+and the part matching "%s*" has number 3.</p>
+<p>As a special case, the empty capture <code>()</code> captures
+the current string position (a number).
+For instance, if we apply the pattern <code>"()aa()"</code> on the
+string <code>"flaaap"</code>, there will be two captures: 3 and 5.</p>
+<p>A pattern cannot contain embedded zeros.  Use <code>%z</code> instead.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>s</p></div><hr/></body></html>

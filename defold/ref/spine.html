@@ -1,0 +1,182 @@
+<html><head><link rel='stylesheet' type='text/css' href='../defold.css'></head><body><div class='nav'><a class='chevron' href='../index.html'><img src='../svg/chevron-left.svg' alt='Home'></a></div><h1>Spine</h1>
+<p><p>Functions and messages for interacting with the 'Spine' 2D bone
+animation system.</p></p>
+<h1><a name='//apple_ref/cpp/Property/animation' class='dashAnchor'></a><a class='entry' name='animation'>animation</a></h1><div class='brief'><p><span class="type">hash</span> spine animation</p></div><p><p>The current animation set on the component. The type of the property is hash.</p></p><h3>EXAMPLES</h3><div class='examples'><p><p>How to read the current animation from a spinemodel component:</p>
+<div class="codehilite"><pre><span></span><span class="k">function</span> <span class="nf">init</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
+  <span class="c1">-- Get the current animation on component &quot;spinemodel&quot;</span>
+  <span class="kd">local</span> <span class="n">animation</span> <span class="o">=</span> <span class="n">go</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">#spinemodel&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">animation&quot;</span><span class="p">)</span>
+<span class="k">end</span>
+</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Property/cursor' class='dashAnchor'></a><a class='entry' name='cursor'>cursor</a></h1><div class='brief'><p><span class="type">number</span> spine cursor</p></div><p><p>The normalized animation cursor. The type of the property is number.</p>
+<p><span class="icon-attention"></span> Please note that spine events may not fire as expected when the cursor is manipulated directly.</p></p><h3>EXAMPLES</h3><div class='examples'><p><p>How to get the normalized cursor value:</p>
+<div class="codehilite"><pre><span></span><span class="k">function</span> <span class="nf">init</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
+  <span class="c1">-- Get the cursor value on component &quot;spine&quot;</span>
+  <span class="n">cursor</span> <span class="o">=</span> <span class="n">go</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">#spine&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">cursor&quot;</span><span class="p">)</span>
+<span class="k">end</span>
+</pre></div>
+
+
+<p>How to animate the cursor from 0.0 to 1.0 using linear easing for 2.0 seconds:</p>
+<div class="codehilite"><pre><span></span><span class="k">function</span> <span class="nf">init</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
+  <span class="c1">-- Get the current value on component &quot;spine&quot;</span>
+  <span class="n">go</span><span class="p">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">#spine&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">cursor&quot;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+  <span class="c1">-- Animate the cursor value</span>
+  <span class="n">go</span><span class="p">.</span><span class="n">animate</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">#spine&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">cursor&quot;</span><span class="p">,</span> <span class="n">go</span><span class="p">.</span><span class="n">PLAYBACK_LOOP_FORWARD</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">go</span><span class="p">.</span><span class="n">EASING_LINEAR</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="k">end</span>
+</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Property/playback_rate' class='dashAnchor'></a><a class='entry' name='playback_rate'>playback_rate</a></h1><div class='brief'><p><span class="type">number</span> spine playback_rate</p></div><p><p>The animation playback rate. A multiplier to the animation playback rate. The type of the property is number.</p>
+<p>The playback_rate is a non-negative number, a negative value will be clamped to 0.</p></p><h3>EXAMPLES</h3><div class='examples'><p><p>How to set the playback_rate on component "spine" to play at double the current speed:</p>
+<div class="codehilite"><pre><span></span><span class="k">function</span> <span class="nf">init</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
+  <span class="c1">-- Get the current value on component &quot;spine&quot;</span>
+  <span class="n">playback_rate</span> <span class="o">=</span> <span class="n">go</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">#spine&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">playback_rate&quot;</span><span class="p">)</span>
+  <span class="c1">-- Set the playback_rate to double the previous value.</span>
+  <span class="n">go</span><span class="p">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">#spine&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">playback_rate&quot;</span><span class="p">,</span> <span class="n">playback_rate</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
+<span class="k">end</span>
+</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Property/skin' class='dashAnchor'></a><a class='entry' name='skin'>skin</a></h1><div class='brief'><p><span class="type">hash</span> spine skin</p></div><p><p>The current skin on the component. The type of the property is hash.
+If setting the skin property the skin must be present on the spine
+model or a runtime error is signalled.</p></p><h3>EXAMPLES</h3><div class='examples'><p><p>How to read and write the current skin from a spinemodel component:</p>
+<div class="codehilite"><pre><span></span><span class="k">function</span> <span class="nf">init</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
+  <span class="c1">-- If the hero skin is set to &quot;bruce_banner&quot;, turn him green</span>
+  <span class="kd">local</span> <span class="n">skin</span> <span class="o">=</span> <span class="n">go</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">#hero&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">skin&quot;</span><span class="p">)</span>
+  <span class="k">if</span> <span class="n">skin</span> <span class="o">==</span> <span class="n">hash</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">bruce_banner&quot;</span><span class="p">)</span> <span class="k">then</span>
+    <span class="n">go</span><span class="p">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">#hero&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">skin&quot;</span><span class="p">,</span> <span class="n">hash</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">green&quot;</span><span class="p">))</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Function/spine.cancel' class='dashAnchor'></a><a class='entry' name='spine.cancel'>spine.cancel()</a></h1><div class='brief'><p>cancel all animation on a spine model</p></div><p><p>Cancels all running animations on a specified spine model component.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>url<p><span class="type">string | hash | url</span> the spine model for which to cancel the animation</p></p></div><h3>EXAMPLES</h3><div class='examples'><p><p>The following examples assumes that the spine model has id "spinemodel".</p>
+<p>How to cancel all animation:</p>
+<div class="codehilite"><pre><span></span><span class="k">function</span> <span class="nf">init</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
+  <span class="n">spine</span><span class="p">.</span><span class="n">cancel</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">#spinemodel&quot;</span><span class="p">)</span>
+<span class="k">end</span>
+</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Function/spine.get_go' class='dashAnchor'></a><a class='entry' name='spine.get_go'>spine.get_go()</a></h1><div class='brief'><p>retrieve the game object corresponding to a spine model skeleton bone</p></div><p><p>Returns the id of the game object that corresponds to a specified skeleton bone.
+The returned game object can be used for parenting and transform queries.
+This function has complexity <code>O(n)</code>, where <code>n</code> is the number of bones in the spine model skeleton.
+Game objects corresponding to a spine model skeleton bone can not be individually deleted.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>url<p><span class="type">string | hash | url</span> the spine model to query</p></p><p class='param'>bone_id<p><span class="type">string | hash</span> id of the corresponding bone</p></p></div><h3>RETURN</h3><div class='return'><p>id - <p><span class="type">hash</span> id of the game object</p></p></div><h3>EXAMPLES</h3><div class='examples'><p><p>The following examples assumes that the spine model has id "spinemodel".</p>
+<p>How to parent the game object of the calling script to the "right_hand" bone of the spine model in a player game object:</p>
+<div class="codehilite"><pre><span></span><span class="k">function</span> <span class="nf">init</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
+  <span class="kd">local</span> <span class="n">parent</span> <span class="o">=</span> <span class="n">spine</span><span class="p">.</span><span class="n">get_go</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">player#spinemodel&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">right_hand&quot;</span><span class="p">)</span>
+  <span class="n">msg</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">.&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">set_parent&quot;</span><span class="p">,</span> <span class="p">{</span><span class="n">parent_id</span> <span class="o">=</span> <span class="n">parent</span><span class="p">})</span>
+<span class="k">end</span>
+</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Function/spine.play_anim' class='dashAnchor'></a><a class='entry' name='spine.play_anim'>spine.play_anim()</a></h1><div class='brief'><p>play an animation on a spine model</p></div><p><p>Plays a specified animation on a spine model component with specified playback
+mode and parameters.</p>
+<p>An optional completion callback function can be provided that will be called when
+the animation has completed playing. If no function is provided,
+a <a href="#spine_animation_done">spine_animation_done</a> message is sent to the script that started the animation.</p>
+<p><span class="icon-attention"></span> The callback is not called (or message sent) if the animation is
+cancelled with <a href="http://www.defold.com/ref/spine#spine.cancel">spine.cancel</a>. The callback is called (or message sent) only for
+animations that play with the following playback modes:</p>
+<ul>
+<li><code>go.PLAYBACK_ONCE_FORWARD</code></li>
+<li><code>go.PLAYBACK_ONCE_BACKWARD</code></li>
+<li><code>go.PLAYBACK_ONCE_PINGPONG</code></li>
+</ul></p><h3>PARAMETERS</h3><div class='params'><p class='param'>url<p><span class="type">string | hash | url</span> the spine model for which to play the animation</p></p><p class='param'>anim_id<p><span class="type">string | hash</span> id of the animation to play</p></p><p class='param'>playback<p><span class="type">constant</span> playback mode of the animation</p>
+<ul>
+<li><code>go.PLAYBACK_ONCE_FORWARD</code></li>
+<li><code>go.PLAYBACK_ONCE_BACKWARD</code></li>
+<li><code>go.PLAYBACK_ONCE_PINGPONG</code></li>
+<li><code>go.PLAYBACK_LOOP_FORWARD</code></li>
+<li><code>go.PLAYBACK_LOOP_BACKWARD</code></li>
+<li><code>go.PLAYBACK_LOOP_PINGPONG</code></li>
+</ul></p><p class='param'>[play_properties]<p><span class="type">table</span> optional table with properties:</p>
+<dl>
+<dt><code>blend_duration</code></dt>
+<dd><span class="type">number</span> duration of a linear blend between the current and new animation.</dd>
+<dt><code>offset</code></dt>
+<dd><span class="type">number</span> the normalized initial value of the animation cursor when the animation starts playing.</dd>
+<dt><code>playback_rate</code></dt>
+<dd><span class="type">number</span> the rate with which the animation will be played. Must be positive.</dd>
+</dl></p><p class='param'>[complete_function]<p><span class="type">function(self, message_id, message, sender))</span> function to call when the animation has completed.</p>
+<dl>
+<dt><code>self</code></dt>
+<dd><span class="type">object</span> The current object.</dd>
+<dt><code>message_id</code></dt>
+<dd><span class="type">hash</span> The name of the completion message, <code>"spine_animation_done"</code>.</dd>
+<dt><code>message</code></dt>
+<dd><span class="type">table</span> Information about the completion:</dd>
+</dl>
+<ul>
+<li><span class="type">hash</span> <code>animation_id</code> - the animation that was completed.</li>
+<li><span class="type">constant</span> <code>playback</code> - the playback mode for the animation.</li>
+</ul>
+<dl>
+<dt><code>sender</code></dt>
+<dd><span class="type">url</span> The invoker of the callback: the spine model component.</dd>
+</dl></p></div><h3>EXAMPLES</h3><div class='examples'><p><p>The following examples assumes that the spine model has id "spinemodel".</p>
+<p>How to play the "jump" animation followed by the "run" animation:</p>
+<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="k">function</span> <span class="nf">anim_done</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">message_id</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">sender</span><span class="p">)</span>
+  <span class="k">if</span> <span class="n">message_id</span> <span class="o">==</span> <span class="n">hash</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">spine_animation_done&quot;</span><span class="p">)</span> <span class="k">then</span>
+    <span class="k">if</span> <span class="n">message</span><span class="p">.</span><span class="n">animation_id</span> <span class="o">==</span> <span class="n">hash</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">jump&quot;</span><span class="p">)</span> <span class="k">then</span>
+      <span class="c1">-- open animation done, chain with &quot;run&quot;</span>
+      <span class="kd">local</span> <span class="n">properties</span> <span class="o">=</span> <span class="p">{</span> <span class="n">blend_duration</span> <span class="o">=</span> <span class="mf">0.2</span> <span class="p">}</span>
+      <span class="n">spine</span><span class="p">.</span><span class="n">play_anim</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">run&quot;</span><span class="p">,</span> <span class="n">go</span><span class="p">.</span><span class="n">PLAYBACK_LOOP_FORWARD</span><span class="p">,</span> <span class="n">properties</span><span class="p">,</span> <span class="n">anim_done</span><span class="p">)</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">function</span> <span class="nf">init</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
+    <span class="kd">local</span> <span class="n">url</span> <span class="o">=</span> <span class="n">msg</span><span class="p">.</span><span class="n">url</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">#spinemodel&quot;</span><span class="p">)</span>
+    <span class="kd">local</span> <span class="n">play_properties</span> <span class="o">=</span> <span class="p">{</span> <span class="n">blend_duration</span> <span class="o">=</span> <span class="mf">0.1</span> <span class="p">}</span>
+    <span class="c1">-- first blend during 0.1 sec into the jump, then during 0.2 s into the run animation</span>
+    <span class="n">spine</span><span class="p">.</span><span class="n">play_anim</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">open&quot;</span><span class="p">,</span> <span class="n">go</span><span class="p">.</span><span class="n">PLAYBACK_ONCE_FORWARD</span><span class="p">,</span> <span class="n">play_properties</span><span class="p">,</span> <span class="n">anim_done</span><span class="p">)</span>
+<span class="k">end</span>
+</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Function/spine.reset_constant' class='dashAnchor'></a><a class='entry' name='spine.reset_constant'>spine.reset_constant()</a></h1><div class='brief'><p>reset a shader constant for a spine model</p></div><p><p>Resets a shader constant for a spine model component.
+The constant must be defined in the material assigned to the spine model.
+Resetting a constant through this function implies that the value defined in the material will be used.
+Which spine model to reset a constant for is identified by the URL.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>url<p><span class="type">string | hash | url</span> the spine model that should have a constant reset</p></p><p class='param'>constant<p><span class="type">string | hash</span> name of the constant</p></p></div><h3>EXAMPLES</h3><div class='examples'><p><p>The following examples assumes that the spine model has id "spinemodel" and that the default-material in builtins is used, which defines the constant "tint".
+If you assign a custom material to the sprite, you can reset the constants defined there in the same manner.</p>
+<p>How to reset the tinting of a spine model:</p>
+<div class="codehilite"><pre><span></span><span class="k">function</span> <span class="nf">init</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
+  <span class="n">spine</span><span class="p">.</span><span class="n">reset_constant</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">#spinemodel&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">tint&quot;</span><span class="p">)</span>
+<span class="k">end</span>
+</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Function/spine.set_constant' class='dashAnchor'></a><a class='entry' name='spine.set_constant'>spine.set_constant()</a></h1><div class='brief'><p>set a shader constant for a spine model</p></div><p><p>Sets a shader constant for a spine model component.
+The constant must be defined in the material assigned to the spine model.
+Setting a constant through this function will override the value set for that constant in the material.
+The value will be overridden until spine.reset_constant is called.
+Which spine model to set a constant for is identified by the URL.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>url<p><span class="type">string | hash | url</span> the spine model that should have a constant set</p></p><p class='param'>constant<p><span class="type">string | hash</span> name of the constant</p></p><p class='param'>value<p><span class="type">vector4</span> value of the constant</p></p></div><h3>EXAMPLES</h3><div class='examples'><p><p>The following examples assumes that the spine model has id "spinemodel" and that the default-material in builtins is used, which defines the constant "tint".
+If you assign a custom material to the sprite, you can reset the constants defined there in the same manner.</p>
+<p>How to tint a spine model to red:</p>
+<div class="codehilite"><pre><span></span><span class="k">function</span> <span class="nf">init</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
+  <span class="n">spine</span><span class="p">.</span><span class="n">set_constant</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">#spinemodel&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">tint&quot;</span><span class="p">,</span> <span class="n">vmath</span><span class="p">.</span><span class="n">vector4</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="k">end</span>
+</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Function/spine.set_ik_target' class='dashAnchor'></a><a class='entry' name='spine.set_ik_target'>spine.set_ik_target()</a></h1><div class='brief'><p>set the IK constraint object target position to follow position of a game object</p></div><p><p>Sets a game object as target position of an inverse kinematic (IK) object. As the
+target game object's position is updated, the constraint object is updated with the
+new position.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>url<p><span class="type">string | hash | url</span> the spine model containing the object</p></p><p class='param'>ik_constraint_id<p><span class="type">string | hash</span> id of the corresponding IK constraint object</p></p><p class='param'>target_url<p><span class="type">string | hash | url</span> target game object</p></p></div><h3>EXAMPLES</h3><div class='examples'><p><p>The following example assumes that the spine model has id "spinemodel".</p>
+<p>How to set the target IK position of the right_hand_constraint constraint object of the player object
+to follow the position of game object with url "some_game_object"</p>
+<div class="codehilite"><pre><span></span><span class="k">function</span> <span class="nf">init</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
+  <span class="n">spine</span><span class="p">.</span><span class="n">set_ik_target</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">player#spinemodel&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">right_hand_constraint&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">some_game_object&quot;</span><span class="p">)</span>
+<span class="k">end</span>
+</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Function/spine.set_ik_target_position' class='dashAnchor'></a><a class='entry' name='spine.set_ik_target_position'>spine.set_ik_target_position()</a></h1><div class='brief'><p>set the target position of an IK constraint object</p></div><p><p>Sets a static (vector3) target position of an inverse kinematic (IK) object.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>url<p><span class="type">string | hash | url</span> the spine model containing the object</p></p><p class='param'>ik_constraint_id<p><span class="type">string | hash</span> id of the corresponding IK constraint object</p></p><p class='param'>position<p><span class="type">vector3</span> target position</p></p></div><h3>EXAMPLES</h3><div class='examples'><p><p>The following example assumes that the spine model has id "spinemodel".</p>
+<p>How to set the target IK position of the right_hand_constraint constraint object of the player object</p>
+<div class="codehilite"><pre><span></span><span class="k">function</span> <span class="nf">init</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
+  <span class="kd">local</span> <span class="n">pos</span> <span class="o">=</span> <span class="n">vmath</span><span class="p">.</span><span class="n">vector3</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+  <span class="n">spine</span><span class="p">.</span><span class="n">set_ik_target_position</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">player#spinemodel&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">right_hand_constraint&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="p">)</span>
+<span class="k">end</span>
+</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Command/spine_animation_done' class='dashAnchor'></a><a class='entry' name='spine_animation_done'>spine_animation_done</a></h1><div class='brief'><p>reports the completion of a Spine animation</p></div><p><p>This message is sent when a Spine animation has finished playing back to the script
+that started the animation.</p>
+<p><span class="icon-attention"></span> No message is sent if a completion callback function was supplied
+when the animation was started. No message is sent if the animation is cancelled with
+model.cancel(). This message is sent only for animations that play with
+the following playback modes:</p>
+<ul>
+<li><code>go.PLAYBACK_ONCE_FORWARD</code></li>
+<li><code>go.PLAYBACK_ONCE_BACKWARD</code></li>
+<li><code>go.PLAYBACK_ONCE_PINGPONG</code></li>
+</ul></p><h3>PARAMETERS</h3><div class='params'><p class='param'>animation_id<p><span class="type">hash</span> the id of the completed animation</p></p><p class='param'>playback<p><span class="type">constant</span> the playback mode of the completed animation</p></p></div><h3>EXAMPLES</h3><div class='examples'><p><div class="codehilite"><pre><span></span><span class="k">function</span> <span class="nf">on_message</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">message_id</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">sender</span><span class="p">)</span>
+  <span class="k">if</span> <span class="n">message_id</span> <span class="o">==</span> <span class="n">hash</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">spine_animation_done&quot;</span><span class="p">)</span> <span class="k">then</span>
+    <span class="k">if</span> <span class="n">message</span><span class="p">.</span><span class="n">animation_id</span> <span class="o">==</span> <span class="n">hash</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">run&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">message</span><span class="p">.</span><span class="n">playback</span> <span class="o">==</span> <span class="n">go</span><span class="p">.</span><span class="n">PLAYBACK_ONCE_FORWARD</span> <span class="k">then</span>
+      <span class="c1">-- The animation &quot;run&quot; has finished running forward.</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Command/spine_event' class='dashAnchor'></a><a class='entry' name='spine_event'>spine_event</a></h1><div class='brief'><p>reports an incoming event from the Spine animation</p></div><p><p>This message is sent when Spine animation playback fires events. These events
+has to be defined on the animation track in the Spine animation editor. An event
+can contain custom values expressed in the fields <code>integer</code>, <code>float</code> and <code>string</code>.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>event_id<p><span class="type">hash</span> the id of the event.</p></p><p class='param'>animation_id<p><span class="type">hash</span> the id of the animation.</p></p><p class='param'>t<p><span class="type">number</span> the time of the event in seconds, relative to the start of the animation.</p></p><p class='param'>blend_weight<p>[type:number the blend weight (between 0.0-1.0) of the current animation at time t.</p></p><p class='param'>integer<p><span class="type">number</span> user defined integer value for the event</p></p><p class='param'>float<p><span class="type">number</span> user defined floating point value for the event</p></p><p class='param'>string<p><span class="type">hash</span> user defined string value (hashed) for the event</p></p></div><h3>EXAMPLES</h3><div class='examples'><p><p>The following example assumes that an animation sends event messages with the id <code>"footstep"</code>
+and that the <code>integer</code> field is used to distinguish between left and right foot (values 0 and 1).</p>
+<div class="codehilite"><pre><span></span><span class="k">function</span> <span class="nf">on_message</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">message_id</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">sender</span><span class="p">)</span>
+  <span class="k">if</span> <span class="n">message_id</span> <span class="o">==</span> <span class="n">hash</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">spine_event&quot;</span><span class="p">)</span> <span class="k">then</span>
+    <span class="c1">-- Receiving animation event from Spine. Play footsteps.</span>
+    <span class="k">if</span> <span class="n">message</span><span class="p">.</span><span class="n">event_id</span> <span class="o">==</span> <span class="n">hash</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">footstep&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">message</span><span class="p">.</span><span class="n">integer</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">then</span>
+      <span class="n">msg</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">#sound_footstep_right&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">play_sound&quot;</span><span class="p">)</span>
+    <span class="k">elseif</span> <span class="n">message</span><span class="p">.</span><span class="n">event_id</span> <span class="o">==</span> <span class="n">hash</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">footstep&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">message</span><span class="p">.</span><span class="n">integer</span> <span class="o">==</span> <span class="mi">1</span> <span class="k">then</span>
+      <span class="n">msg</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">#sound_footstep_left&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">play_sound&quot;</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div></p></div><hr/></body></html>

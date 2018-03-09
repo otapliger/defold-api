@@ -1,0 +1,125 @@
+<html><head><link rel='stylesheet' type='text/css' href='../defold.css'></head><body><div class='nav'><a class='chevron' href='../index.html'><img src='../svg/chevron-left.svg' alt='Home'></a></div><h1>Push notifications</h1>
+<p><p>Functions and constants for interacting with local, as well as
+Apple's and Google's push notification services. These API:s only exist on mobile platforms.
+<span class="icon-ios"></span> <span class="icon-android"></span></p></p>
+<h1><a name='//apple_ref/cpp/Variable/push.NOTIFICATION_ALERT' class='dashAnchor'></a><a class='entry' name='push.NOTIFICATION_ALERT'>push.NOTIFICATION_ALERT</a></h1><div class='brief'><p>alert notification type</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/push.NOTIFICATION_BADGE' class='dashAnchor'></a><a class='entry' name='push.NOTIFICATION_BADGE'>push.NOTIFICATION_BADGE</a></h1><div class='brief'><p>badge notification type</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/push.NOTIFICATION_SOUND' class='dashAnchor'></a><a class='entry' name='push.NOTIFICATION_SOUND'>push.NOTIFICATION_SOUND</a></h1><div class='brief'><p>sound notification type</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/push.ORIGIN_LOCAL' class='dashAnchor'></a><a class='entry' name='push.ORIGIN_LOCAL'>push.ORIGIN_LOCAL</a></h1><div class='brief'><p>local push origin</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/push.ORIGIN_REMOTE' class='dashAnchor'></a><a class='entry' name='push.ORIGIN_REMOTE'>push.ORIGIN_REMOTE</a></h1><div class='brief'><p>remote push origin</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/push.ORIGIN_REMOTE' class='dashAnchor'></a><a class='entry' name='push.ORIGIN_REMOTE'>push.ORIGIN_REMOTE</a></h1><div class='brief'><p>remote push origin</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/push.PRIORITY_DEFAULT' class='dashAnchor'></a><a class='entry' name='push.PRIORITY_DEFAULT'>push.PRIORITY_DEFAULT</a></h1><div class='brief'><p>default notification priority <span class="icon-android"></span></p></div><p><p>The default notification priority. Only available on Android. <span class="icon-android"></span></p></p><hr/><h1><a name='//apple_ref/cpp/Variable/push.PRIORITY_HIGH' class='dashAnchor'></a><a class='entry' name='push.PRIORITY_HIGH'>push.PRIORITY_HIGH</a></h1><div class='brief'><p>higher notification priority <span class="icon-android"></span></p></div><p><p>Priority for more important notifications or alerts. Only available on Android. <span class="icon-android"></span></p></p><hr/><h1><a name='//apple_ref/cpp/Variable/push.PRIORITY_LOW' class='dashAnchor'></a><a class='entry' name='push.PRIORITY_LOW'>push.PRIORITY_LOW</a></h1><div class='brief'><p>lower notification priority <span class="icon-android"></span></p></div><p><p>Priority for items that are less important. Only available on Android. <span class="icon-android"></span></p></p><hr/><h1><a name='//apple_ref/cpp/Variable/push.PRIORITY_MAX' class='dashAnchor'></a><a class='entry' name='push.PRIORITY_MAX'>push.PRIORITY_MAX</a></h1><div class='brief'><p>highest notification priority <span class="icon-android"></span></p></div><p><p>Set this priority for your application's most important items that require the user's prompt attention or input. Only available on Android. <span class="icon-android"></span></p></p><hr/><h1><a name='//apple_ref/cpp/Variable/push.PRIORITY_MIN' class='dashAnchor'></a><a class='entry' name='push.PRIORITY_MIN'>push.PRIORITY_MIN</a></h1><div class='brief'><p>lowest notification priority <span class="icon-android"></span></p></div><p><p>This priority is for items might not be shown to the user except under special circumstances, such as detailed notification logs. Only available on Android. <span class="icon-android"></span></p></p><hr/><h1><a name='//apple_ref/cpp/Function/push.cancel' class='dashAnchor'></a><a class='entry' name='push.cancel'>push.cancel()</a></h1><div class='brief'><p>Cancel a scheduled local push notification</p></div><p><p>Use this function to cancel a previously scheduled local push notification. The
+notification is identified by a numeric id as returned by <code>push.schedule()</code>.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>id<p><span class="type">number</span> the numeric id of the local push notification</p></p></div><hr/><h1><a name='//apple_ref/cpp/Function/push.get_all_scheduled' class='dashAnchor'></a><a class='entry' name='push.get_all_scheduled'>push.get_all_scheduled()</a></h1><div class='brief'><p>Retrieve data on all scheduled local push notifications</p></div><p><p>Returns a table with all data associated with all scheduled local push notifications.
+The table contains key, value pairs where the key is the push notification id and the
+value is a table with the notification data, corresponding to the data given by
+<code>push.get_scheduled(id)</code>.</p></p><h3>RETURN</h3><div class='return'><p>data - <p><span class="type">table</span> table with all data associated with all scheduled notifications</p></p></div><hr/><h1><a name='//apple_ref/cpp/Function/push.get_scheduled' class='dashAnchor'></a><a class='entry' name='push.get_scheduled'>push.get_scheduled()</a></h1><div class='brief'><p>Retrieve data on a scheduled local push notification</p></div><p><p>Returns a table with all data associated with a specified local push notification.
+The notification is identified by a numeric id as returned by <code>push.schedule()</code>.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>id<p><span class="type">number</span> the numeric id of the local push notification</p></p></div><h3>RETURN</h3><div class='return'><p>data - <p><span class="type">table</span> table with all data associated with the notification</p></p></div><hr/><h1><a name='//apple_ref/cpp/Function/push.register' class='dashAnchor'></a><a class='entry' name='push.register'>push.register()</a></h1><div class='brief'><p>Register for push notifications</p></div><p><p>Send a request for push notifications. Note that the notifications table parameter
+is iOS only and will be ignored on Android.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>notifications<p><span class="type">table</span> the types of notifications to listen to. <span class="icon-ios"></span></p></p><p class='param'>callback<p><span class="type">function(self, token, error)</span> register callback function.</p>
+<dl>
+<dt>self</dt>
+<dd>
+<p><span class="type">object</span> The current object.</p>
+</dd>
+<dt>token</dt>
+<dd>
+<p><span class="type">string</span> The returned push token if registration is successful.</p>
+</dd>
+<dt>error</dt>
+<dd>
+<p><span class="type">table</span> A table containing eventual error information.</p>
+</dd>
+</dl></p></div><h3>EXAMPLES</h3><div class='examples'><p><p>Register for push notifications on iOS. Note that the token needs to be converted on this platform.</p>
+<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="k">function</span> <span class="nf">push_listener</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">payload</span><span class="p">,</span> <span class="n">origin</span><span class="p">)</span>
+     <span class="c1">-- The payload arrives here.</span>
+<span class="k">end</span>
+
+<span class="k">function</span> <span class="nf">init</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
+     <span class="kd">local</span> <span class="n">alerts</span> <span class="o">=</span> <span class="p">{</span><span class="n">push</span><span class="p">.</span><span class="n">NOTIFICATION_BADGE</span><span class="p">,</span> <span class="n">push</span><span class="p">.</span><span class="n">NOTIFICATION_SOUND</span><span class="p">,</span> <span class="n">push</span><span class="p">.</span><span class="n">NOTIFICATION_ALERT</span><span class="p">}</span>
+     <span class="n">push</span><span class="p">.</span><span class="n">register</span><span class="p">(</span><span class="n">alerts</span><span class="p">,</span> <span class="k">function</span> <span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">token</span><span class="p">,</span> <span class="nb">error</span><span class="p">)</span>
+     <span class="k">if</span> <span class="n">token</span> <span class="k">then</span>
+          <span class="c1">-- NOTE: %02x to pad byte with leading zero</span>
+          <span class="kd">local</span> <span class="n">token_string</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="s">&quot;</span>
+          <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span><span class="o">#</span><span class="n">token</span> <span class="k">do</span>
+              <span class="n">token_string</span> <span class="o">=</span> <span class="n">token_string</span> <span class="o">..</span> <span class="nb">string.format</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">%02x&quot;</span><span class="p">,</span> <span class="nb">string.byte</span><span class="p">(</span><span class="n">token</span><span class="p">,</span> <span class="n">i</span><span class="p">))</span>
+          <span class="k">end</span>
+          <span class="nb">print</span><span class="p">(</span><span class="n">token_string</span><span class="p">)</span>
+          <span class="n">push</span><span class="p">.</span><span class="n">set_listener</span><span class="p">(</span><span class="n">push_listener</span><span class="p">)</span>
+     <span class="k">else</span>
+          <span class="c1">-- Push registration failed.</span>
+          <span class="nb">print</span><span class="p">(</span><span class="n">error</span><span class="p">.</span><span class="n">error</span><span class="p">)</span>
+     <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+
+
+<p>Register for push notifications on Android.</p>
+<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="k">function</span> <span class="nf">push_listener</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">payload</span><span class="p">,</span> <span class="n">origin</span><span class="p">)</span>
+     <span class="c1">-- The payload arrives here.</span>
+<span class="k">end</span>
+
+<span class="k">function</span> <span class="nf">init</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
+     <span class="n">push</span><span class="p">.</span><span class="n">register</span><span class="p">({},</span> <span class="k">function</span> <span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">token</span><span class="p">,</span> <span class="nb">error</span><span class="p">)</span>
+         <span class="k">if</span> <span class="n">token</span> <span class="k">then</span>
+              <span class="nb">print</span><span class="p">(</span><span class="n">token</span><span class="p">)</span>
+              <span class="n">push</span><span class="p">.</span><span class="n">set_listener</span><span class="p">(</span><span class="n">push_listener</span><span class="p">)</span>
+         <span class="k">else</span>
+              <span class="c1">-- Push registration failed.</span>
+              <span class="nb">print</span><span class="p">(</span><span class="n">error</span><span class="p">.</span><span class="n">error</span><span class="p">)</span>
+         <span class="k">end</span>
+    <span class="k">end</span><span class="p">)</span>
+<span class="k">end</span>
+</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Function/push.schedule' class='dashAnchor'></a><a class='entry' name='push.schedule'>push.schedule()</a></h1><div class='brief'><p>Schedule a local push notification to be triggered at a specific time in the future</p></div><p><p>Local push notifications are scheduled with this function.
+The returned <code>id</code> value is uniquely identifying the scheduled notification
+and can be stored for later reference.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>time<p><span class="type">number</span> number of seconds into the future until the notification should be triggered</p></p><p class='param'>title<p><span class="type">string</span> localized title to be displayed to the user if the application is not running</p></p><p class='param'>alert<p><span class="type">string</span> localized body message of the notification to be displayed to the user if the application is not running</p></p><p class='param'>payload<p><span class="type">string</span> JSON string to be passed to the registered listener function</p></p><p class='param'>notification_settings<p><span class="type">table</span> table with notification and platform specific fields</p>
+<dl>
+<dt>action <span class="icon-ios"></span></dt>
+<dd><span class="type">string</span>
+ The alert action string to be used as the title of the right button of the
+ alert or the value of the unlock slider, where the value replaces
+ "unlock" in "slide to unlock" text.</dd>
+<dt>badge_count <span class="icon-ios"></span></dt>
+<dd><span class="type">number</span> The numeric value of the icon badge.</dd>
+<dt><s>badge_number</s></dt>
+<dd>Deprecated! Use badge_count instead</dd>
+<dt>priority <span class="icon-android"></span></dt>
+<dd><span class="type">number</span>
+ The priority is a hint to the device UI about how the notification
+ should be displayed. There are five priority levels, from -2 to 2 where -1 is the
+ lowest priority and 2 the highest. Unless specified, a default priority level of 2
+ is used.</dd>
+</dl></p></div><h3>RETURN</h3><div class='return'><p>id - <p><span class="type">number</span> unique id that can be used to cancel or inspect the notification</p></p><p>err - <p><span class="type">string</span> error string if something went wrong, otherwise nil</p></p></div><h3>EXAMPLES</h3><div class='examples'><p><p>This example demonstrates how to schedule a local notification:</p>
+<div class="codehilite"><pre><span></span><span class="c1">-- Schedule a local push in 3 seconds</span>
+<span class="kd">local</span> <span class="n">payload</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="s">{ &quot;data&quot; : { &quot;field&quot; : &quot;Some value&quot;, &quot;field2&quot; : &quot;Other value&quot; } }&#39;</span>
+<span class="n">id</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">push</span><span class="p">.</span><span class="n">schedule</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">Update!&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">There are new stuff in the app&quot;</span><span class="p">,</span> <span class="n">payload</span><span class="p">,</span> <span class="p">{</span> <span class="n">action</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="s">check it out&quot;</span> <span class="p">})</span>
+<span class="k">if</span> <span class="n">err</span> <span class="k">then</span>
+     <span class="c1">-- Something went wrong</span>
+     <span class="o">...</span>
+<span class="k">end</span>
+</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Function/push.set_badge_count' class='dashAnchor'></a><a class='entry' name='push.set_badge_count'>push.set_badge_count()</a></h1><div class='brief'><p>set badge icon count <span class="icon-ios"></span></p></div><p><p>Set the badge count for application icon.
+This function is only available on iOS. <span class="icon-ios"></span></p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>count<p><span class="type">number</span> badge count</p></p></div><hr/><h1><a name='//apple_ref/cpp/Function/push.set_listener' class='dashAnchor'></a><a class='entry' name='push.set_listener'>push.set_listener()</a></h1><div class='brief'><p>set push listener</p></div><p><p>Sets a listener function to listen to push notifications.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>listener<p><span class="type">function(self, payload, origin, activated)</span> listener callback function.
+Pass an empty function if you no longer wish to receive callbacks.</p>
+<dl>
+<dt><code>self</code></dt>
+<dd><span class="type">object</span> The current object</dd>
+<dt><code>payload</code></dt>
+<dd><span class="type">function</span> the push payload</dd>
+<dt><code>origin</code></dt>
+<dd><span class="type">constant</span> push.ORIGIN_LOCAL or push.ORIGIN_REMOTE</dd>
+<dt><code>activated</code></dt>
+<dd><span class="type">boolean</span> true or false depending on if the application was
+ activated via the notification.</dd>
+</dl></p></div><h3>EXAMPLES</h3><div class='examples'><p><p>Set the push notification listener.</p>
+<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="k">function</span> <span class="nf">push_listener</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">payload</span><span class="p">,</span> <span class="n">origin</span><span class="p">,</span> <span class="n">activated</span><span class="p">)</span>
+     <span class="c1">-- The payload arrives here.</span>
+     <span class="n">pprint</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+     <span class="k">if</span> <span class="n">origin</span> <span class="o">==</span> <span class="n">push</span><span class="p">.</span><span class="n">ORIGIN_LOCAL</span> <span class="k">then</span>
+         <span class="c1">-- This was a local push</span>
+         <span class="o">...</span>
+     <span class="k">end</span>
+
+     <span class="k">if</span> <span class="n">origin</span> <span class="o">==</span> <span class="n">push</span><span class="p">.</span><span class="n">ORIGIN_REMOTE</span> <span class="k">then</span>
+         <span class="c1">-- This was a remote push</span>
+         <span class="o">...</span>
+     <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="kd">local</span> <span class="n">init</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
+     <span class="o">...</span>
+     <span class="c1">-- Assuming that push.register() has been successfully called earlier</span>
+     <span class="n">push</span><span class="p">.</span><span class="n">set_listener</span><span class="p">(</span><span class="n">push_listener</span><span class="p">)</span>
+<span class="k">end</span>
+</pre></div></p></div><hr/></body></html>

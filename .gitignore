@@ -1,0 +1,38 @@
+npm-debug.log
+node_modules
+
+
+# ignore files created by windows
+# ------------------------------
+Desktop.ini
+Thumbs.db
+ehthumbs.db
+
+*.cab
+*.msi
+*.msm
+*.msp
+*.lnk
+
+$RECYCLE.BIN/
+
+
+# ignore files created by macos
+# ------------------------------
+.DocumentRevisions-V100
+.VolumeIcon.icns
+.Spotlight-V100
+.TemporaryItems
+.AppleDesktop
+.AppleDouble
+.LSOverride
+.fseventsd
+.DS_Store
+.Trashes
+.AppleDB
+.apdisk
+._*
+
+Network Trash Folder
+Temporary Items
+Icon

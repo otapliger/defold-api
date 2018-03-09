@@ -1,0 +1,36 @@
+<html><head><link rel='stylesheet' type='text/css' href='../defold.css'></head><body><div class='nav'><a class='chevron' href='../index.html'><img src='../svg/chevron-left.svg' alt='Home'></a></div><h1>Extension</h1>
+<p><p><span class="file">&lt;dmsdk/extension/extension.h&gt;</span></p>
+<p>Functions for creating and controlling engine native extension libraries.</p></p>
+<h1><a name='//apple_ref/cpp/Macro/DM_DECLARE_EXTENSION' class='dashAnchor'></a><a class='entry' name='DM_DECLARE_EXTENSION'>DM_DECLARE_EXTENSION</a></h1><div class='brief'><p>declare a new extension</p></div><p><p>Declare and register new extension to the engine.
+This macro is used to declare the extension callback functions used by the engine to communicate with the extension.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>symbol<p><span class="type">symbol</span> external extension symbol description (no quotes).</p></p><p class='param'>name<p><span class="type">const char*</span> extension name. Human readable.</p></p><p class='param'>appinit<p><span class="type">function(dmExtension::AppParams* app_params)</span> app-init function. May be null.</p>
+<dl>
+<dt><code>app_params</code></dt>
+<dd><span class="type">dmExtension::AppParams*</span> Pointer to an <code>AppParams</code> structure.</dd>
+</dl></p><p class='param'>appfinal<p><span class="type">function(dmExtension::AppParams* app_params)</span> app-final function. May be null.</p>
+<dl>
+<dt><code>app_params</code></dt>
+<dd><span class="type">dmExtension::AppParams*</span> Pointer to an <code>AppParams</code> structure.</dd>
+</dl></p><p class='param'>init<p><span class="type">function(dmExtension::Params* params)</span> init function. May not be null.</p>
+<dl>
+<dt><code>params</code></dt>
+<dd><span class="type">dmExtension::Params*</span> Pointer to a <code>Params</code> structure</dd>
+</dl></p><p class='param'>update<p><span class="type">function(dmExtension::Params* params)</span> update function. May be null.</p>
+<dl>
+<dt><code>params</code></dt>
+<dd><span class="type">dmExtension::Params*</span> Pointer to a <code>Params</code> structure</dd>
+</dl></p><p class='param'>on_event<p><span class="type">function(dmExtension::Params* params, const dmExtension::Event* event)</span> event callback function. May be null.</p>
+<dl>
+<dt><code>params</code></dt>
+<dd><span class="type">dmExtension::Params*</span> Pointer to a <code>Params</code> structure</dd>
+<dt><code>event</code></dt>
+<dd><span class="type">dmExtension::Event*</span> const Pointer to an <code>Event</code> structure</dd>
+</dl></p><p class='param'>final<p><span class="type">function(dmExtension::Params* params)</span> function. May not be null.</p>
+<dl>
+<dt><code>params</code></dt>
+<dd><span class="type">dmExtension::Params*</span> Pointer to an <code>Params</code> structure.</dd>
+</dl></p></div><h3>EXAMPLES</h3><div class='examples'><p><p>Register a new extension:</p>
+<div class="codehilite"><pre><span></span><span class="n">DM_DECLARE_EXTENSION</span><span class="p">(</span><span class="n">MyExt</span><span class="p">,</span> <span class="s">&quot;MyExt&quot;</span><span class="p">,</span> <span class="n">AppInitializeMyExt</span><span class="p">,</span> <span class="n">AppFinalizeMyExt</span><span class="p">,</span> <span class="n">InitializeMyExt</span><span class="p">,</span> <span class="n">UpdateMyExt</span><span class="p">,</span> <span class="n">OnEventMyExt</span><span class="p">,</span> <span class="n">FinalizeMyExt</span><span class="p">);</span>
+</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Function/dmExtension::AppParams' class='dashAnchor'></a><a class='entry' name='dmExtension::AppParams'>dmExtension::AppParams()</a></h1><div class='brief'><p>application level callback data</p></div><p><p>Extension application entry callback data.
+This is the data structure passed as parameter by extension Application entry callbacks (AppInit and AppFinalize) functions</p></p><h3>MEMBERS</h3><div class='params'><p class='param'>m_ConfigFile - <p><span class="type">dmConfigFile::HConfig</span></p></p></div><hr/><h1><a name='//apple_ref/cpp/Function/dmExtension::Event' class='dashAnchor'></a><a class='entry' name='dmExtension::Event'>dmExtension::Event()</a></h1><div class='brief'><p>event callback data</p></div><p><p>Extension event callback data.
+This is the data structure passed as parameter by extension event callbacks (OnEvent)</p></p><h3>MEMBERS</h3><div class='params'><p class='param'>m_Event - <p><span class="type">dmExtension::EventID</span></p></p></div><hr/><h1><a name='//apple_ref/cpp/Enum/dmExtension::EventID' class='dashAnchor'></a><a class='entry' name='dmExtension::EventID'>dmExtension::EventID</a></h1><div class='brief'><p>event id enumeration</p></div><p><p>Event id enumeration.</p></p><h3>MEMBERS</h3><div class='params'><p class='param'>dmExtension::EVENT_ID_ACTIVATEAPP - </p><p class='param'>dmExtension::EVENT_ID_DEACTIVATEAPP - </p></div><hr/><h1><a name='//apple_ref/cpp/Function/dmExtension::Params' class='dashAnchor'></a><a class='entry' name='dmExtension::Params'>dmExtension::Params()</a></h1><div class='brief'><p>extension level callback data</p></div><p><p>Extension callback data.
+This is the data structure passed as parameter by extension callbacks (Init, Finalize, Update, OnEvent)</p></p><h3>MEMBERS</h3><div class='params'><p class='param'>m_ConfigFile - <p><span class="type">dmConfigFile::HConfig</span></p></p><p class='param'>m_L - <p><span class="type">lua_State*</span></p></p></div><hr/><h1><a name='//apple_ref/cpp/Enum/dmExtension::Result' class='dashAnchor'></a><a class='entry' name='dmExtension::Result'>dmExtension::Result</a></h1><div class='brief'><p>result enumeration</p></div><p><p>Result enumeration.</p></p><h3>MEMBERS</h3><div class='params'><p class='param'>dmExtension::RESULT_OK - </p><p class='param'>dmExtension::RESULT_INIT_ERROR - </p></div><hr/></body></html>

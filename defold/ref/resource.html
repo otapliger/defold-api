@@ -1,0 +1,96 @@
+<html><head><link rel='stylesheet' type='text/css' href='../defold.css'></head><body><div class='nav'><a class='chevron' href='../index.html'><img src='../svg/chevron-left.svg' alt='Home'></a></div><h1>Resource</h1>
+<p><p>Functions and constants to access resources.</p></p>
+<h1><a name='//apple_ref/cpp/Variable/resource.TEXTURE_FORMAT_LUMINANCE' class='dashAnchor'></a><a class='entry' name='resource.TEXTURE_FORMAT_LUMINANCE'>resource.TEXTURE_FORMAT_LUMINANCE</a></h1><div class='brief'><p>luminance type texture format</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/resource.TEXTURE_FORMAT_RGB' class='dashAnchor'></a><a class='entry' name='resource.TEXTURE_FORMAT_RGB'>resource.TEXTURE_FORMAT_RGB</a></h1><div class='brief'><p>RGB type texture format</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/resource.TEXTURE_FORMAT_RGBA' class='dashAnchor'></a><a class='entry' name='resource.TEXTURE_FORMAT_RGBA'>resource.TEXTURE_FORMAT_RGBA</a></h1><div class='brief'><p>RGBA type texture format</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/resource.TEXTURE_TYPE_2D' class='dashAnchor'></a><a class='entry' name='resource.TEXTURE_TYPE_2D'>resource.TEXTURE_TYPE_2D</a></h1><div class='brief'><p>2D texture type</p></div><hr/><h1><a name='//apple_ref/cpp/Function/resource.get_current_manifest' class='dashAnchor'></a><a class='entry' name='resource.get_current_manifest'>resource.get_current_manifest()</a></h1><div class='brief'><p>return a reference to the Manifest that is currently loaded</p></div><p><p>Return a reference to the Manifest that is currently loaded.</p></p><h3>RETURN</h3><div class='return'><p>manifest_reference - <p><span class="type">number</span> reference to the Manifest that is currently loaded</p></p></div><hr/><h1><a name='//apple_ref/cpp/Function/resource.load' class='dashAnchor'></a><a class='entry' name='resource.load'>resource.load()</a></h1><div class='brief'><p>load a resource</p></div><p><p>Loads the resource data for a specific resource.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>path<p><span class="type">string | hash</span> The path to the resource</p></p></div><h3>RETURN</h3><div class='return'><p>buffer - <p><span class="type">buffer</span> Returns the buffer stored on disc</p></p></div><h3>EXAMPLES</h3><div class='examples'><p><div class="codehilite"><pre><span></span><span class="c1">-- read custom resource data into buffer</span>
+<span class="kd">local</span> <span class="n">buffer</span> <span class="o">=</span> <span class="n">resource</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">/resources/datafile&quot;</span><span class="p">)</span>
+</pre></div>
+
+
+<p>In order for the engine to include custom resources in the build process, you need
+to specify them in the "game.project" settings file:</p>
+<div class="codehilite"><pre><span></span><span class="k">[project]</span>
+<span class="na">title</span> <span class="o">=</span> <span class="s">My project</span>
+<span class="na">version</span> <span class="o">=</span> <span class="s">0.1</span>
+<span class="na">custom_resources</span> <span class="o">=</span> <span class="s">resources/,assets/level_data.json</span>
+</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Function/resource.set' class='dashAnchor'></a><a class='entry' name='resource.set'>resource.set()</a></h1><div class='brief'><p>Set a resource</p></div><p><p>Sets the resource data for a specific resource</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>path<p><span class="type">string | hash</span> The path to the resource</p></p><p class='param'>buffer<p><span class="type">buffer</span> The buffer of precreated data, suitable for the intended resource type</p></p></div><h3>EXAMPLES</h3><div class='examples'><p><p>Assuming the folder "/res" is added to the project custom resources:</p>
+<div class="codehilite"><pre><span></span><span class="c1">-- load a texture resource and set it on a sprite</span>
+<span class="kd">local</span> <span class="n">buffer</span> <span class="o">=</span> <span class="n">resource</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">/res/new.texturec&quot;</span><span class="p">)</span>
+<span class="n">resource</span><span class="p">.</span><span class="n">set</span><span class="p">(</span><span class="n">go</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">#sprite&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">texture0&quot;</span><span class="p">),</span> <span class="n">buffer</span><span class="p">)</span>
+</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Function/resource.set_texture' class='dashAnchor'></a><a class='entry' name='resource.set_texture'>resource.set_texture()</a></h1><div class='brief'><p>set a texture</p></div><p><p>Sets the pixel data for a specific texture.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>path<p><span class="type">hash | string</span> The path to the resource</p></p><p class='param'>table<p><span class="type">table</span> A table containing info about the texture. Supported entries:</p>
+<dl>
+<dt><code>type</code></dt>
+<dd><span class="type">number</span> The texture type. Supported values:</dd>
+</dl>
+<ul>
+<li><code>resource.TEXTURE_TYPE_2D</code></li>
+</ul>
+<dl>
+<dt><code>width</code></dt>
+<dd><span class="type">number</span> The width of the texture (in pixels)</dd>
+<dt><code>height</code></dt>
+<dd><span class="type">number</span> The width of the texture (in pixels)</dd>
+<dt><code>format</code></dt>
+<dd><span class="type">number</span> The texture format. Supported values:</dd>
+</dl>
+<ul>
+<li><code>resource.TEXTURE_FORMAT_LUMINANCE</code></li>
+<li><code>resource.TEXTURE_FORMAT_RGB</code></li>
+<li><code>resource.TEXTURE_FORMAT_RGBA</code></li>
+</ul></p><p class='param'>buffer<p><span class="type">buffer</span> The buffer of precreated pixel data</p>
+<p><span class="icon-attention"></span> Currently, only 1 mipmap is generated.</p></p></div><h3>EXAMPLES</h3><div class='examples'><p><p>How to set all pixels of an atlas</p>
+<div class="codehilite"><pre><span></span><span class="k">function</span> <span class="nf">init</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
+  <span class="n">self</span><span class="p">.</span><span class="n">height</span> <span class="o">=</span> <span class="mi">128</span>
+  <span class="n">self</span><span class="p">.</span><span class="n">width</span> <span class="o">=</span> <span class="mi">128</span>
+  <span class="n">self</span><span class="p">.</span><span class="n">buffer</span> <span class="o">=</span> <span class="n">buffer</span><span class="p">.</span><span class="n">create</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">width</span> <span class="o">*</span> <span class="n">self</span><span class="p">.</span><span class="n">height</span><span class="p">,</span> <span class="p">{</span> <span class="p">{</span><span class="n">name</span><span class="o">=</span><span class="n">hash</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">rgb&quot;</span><span class="p">),</span> <span class="nb">type</span><span class="o">=</span><span class="n">buffer</span><span class="p">.</span><span class="n">VALUE_TYPE_UINT8</span><span class="p">,</span> <span class="n">count</span><span class="o">=</span><span class="mi">3</span><span class="p">}</span> <span class="p">}</span> <span class="p">)</span>
+  <span class="n">self</span><span class="p">.</span><span class="n">stream</span> <span class="o">=</span> <span class="n">buffer</span><span class="p">.</span><span class="n">get_stream</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">buffer</span><span class="p">,</span> <span class="n">hash</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">rgb&quot;</span><span class="p">))</span>
+
+  <span class="k">for</span> <span class="n">y</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">self</span><span class="p">.</span><span class="n">height</span> <span class="k">do</span>
+      <span class="k">for</span> <span class="n">x</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">self</span><span class="p">.</span><span class="n">width</span> <span class="k">do</span>
+          <span class="kd">local</span> <span class="n">index</span> <span class="o">=</span> <span class="p">(</span><span class="n">y</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">self</span><span class="p">.</span><span class="n">width</span> <span class="o">*</span> <span class="mi">3</span> <span class="o">+</span> <span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mi">3</span> <span class="o">+</span> <span class="mi">1</span>
+          <span class="n">self</span><span class="p">.</span><span class="n">stream</span><span class="p">[</span><span class="n">index</span> <span class="o">+</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mh">0xff</span>
+          <span class="n">self</span><span class="p">.</span><span class="n">stream</span><span class="p">[</span><span class="n">index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mh">0x80</span>
+          <span class="n">self</span><span class="p">.</span><span class="n">stream</span><span class="p">[</span><span class="n">index</span> <span class="o">+</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mh">0x10</span>
+      <span class="k">end</span>
+  <span class="k">end</span>
+
+  <span class="kd">local</span> <span class="n">resource_path</span> <span class="o">=</span> <span class="n">go</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">#sprite&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">texture0&quot;</span><span class="p">)</span>
+  <span class="kd">local</span> <span class="n">header</span> <span class="o">=</span> <span class="p">{</span> <span class="n">width</span><span class="o">=</span><span class="n">self</span><span class="p">.</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="n">self</span><span class="p">.</span><span class="n">height</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="n">resource</span><span class="p">.</span><span class="n">TEXTURE_TYPE_2D</span><span class="p">,</span> <span class="n">format</span><span class="o">=</span><span class="n">resource</span><span class="p">.</span><span class="n">TEXTURE_FORMAT_RGB</span><span class="p">,</span> <span class="n">num_mip_maps</span><span class="o">=</span><span class="mi">1</span> <span class="p">}</span>
+  <span class="n">resource</span><span class="p">.</span><span class="n">set_texture</span><span class="p">(</span> <span class="n">resource_path</span><span class="p">,</span> <span class="n">header</span><span class="p">,</span> <span class="n">self</span><span class="p">.</span><span class="n">buffer</span> <span class="p">)</span>
+<span class="k">end</span>
+</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Function/resource.store_resource' class='dashAnchor'></a><a class='entry' name='resource.store_resource'>resource.store_resource()</a></h1><div class='brief'><p>add a resource to the data archive and runtime index</p></div><p><p>add a resource to the data archive and runtime index. The resource will be verified
+internally before being added to the data archive.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>manifest_reference<p><span class="type">number</span> The manifest to check against.</p></p><p class='param'>data<p><span class="type">string</span> The resource data that should be stored.</p></p><p class='param'>hexdigest<p><span class="type">string</span> The expected hash for the resource,
+retrieved through collectionproxy.missing_resources.</p></p><p class='param'>callback<p><span class="type">function(self, hexdigest, status)</span> The callback
+function that is executed once the engine has been attempted to store
+the resource.</p>
+<dl>
+<dt><code>self</code></dt>
+<dd><span class="type">object</span> The current object.</dd>
+<dt><code>hexdigest</code></dt>
+<dd><span class="type">string</span> The hexdigest of the resource.</dd>
+<dt><code>status</code></dt>
+<dd><span class="type">boolean</span> Whether or not the resource was successfully stored.</dd>
+</dl></p></div><h3>EXAMPLES</h3><div class='examples'><p><div class="codehilite"><pre><span></span><span class="k">function</span> <span class="nf">init</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
+    <span class="n">self</span><span class="p">.</span><span class="n">manifest</span> <span class="o">=</span> <span class="n">resource</span><span class="p">.</span><span class="n">get_current_manifest</span><span class="p">()</span>
+<span class="k">end</span>
+
+<span class="kd">local</span> <span class="k">function</span> <span class="nf">callback_store_resource</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">hexdigest</span><span class="p">,</span> <span class="n">status</span><span class="p">)</span>
+     <span class="k">if</span> <span class="n">status</span> <span class="o">==</span> <span class="kc">true</span> <span class="k">then</span>
+          <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">Successfully stored resource: &quot;</span> <span class="o">..</span> <span class="n">hexdigest</span><span class="p">)</span>
+     <span class="k">else</span>
+          <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">Failed to store resource: &quot;</span> <span class="o">..</span> <span class="n">hexdigest</span><span class="p">)</span>
+     <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="kd">local</span> <span class="k">function</span> <span class="nf">load_resources</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
+     <span class="kd">local</span> <span class="n">resources</span> <span class="o">=</span> <span class="n">collectionproxy</span><span class="p">.</span><span class="n">missing_resources</span><span class="p">(</span><span class="n">target</span><span class="p">)</span>
+     <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">resource_hash</span> <span class="k">in</span> <span class="nb">ipairs</span><span class="p">(</span><span class="n">resources</span><span class="p">)</span> <span class="k">do</span>
+          <span class="kd">local</span> <span class="n">baseurl</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="s">http://example.defold.com:8000/&quot;</span>
+          <span class="n">http</span><span class="p">.</span><span class="n">request</span><span class="p">(</span><span class="n">baseurl</span> <span class="o">..</span> <span class="n">resource_hash</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">GET&quot;</span><span class="p">,</span> <span class="k">function</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">id</span><span class="p">,</span> <span class="n">response</span><span class="p">)</span>
+               <span class="k">if</span> <span class="n">response</span><span class="p">.</span><span class="n">status</span> <span class="o">==</span> <span class="mi">200</span> <span class="k">then</span>
+                    <span class="n">resource</span><span class="p">.</span><span class="n">store_resource</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">manifest</span><span class="p">,</span> <span class="n">response</span><span class="p">.</span><span class="n">response</span><span class="p">,</span> <span class="n">resource_hash</span><span class="p">,</span> <span class="n">callback_store_resource</span><span class="p">)</span>
+               <span class="k">else</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">Failed to download resource: &quot;</span> <span class="o">..</span> <span class="n">resource_hash</span><span class="p">)</span>
+               <span class="k">end</span>
+          <span class="k">end</span><span class="p">)</span>
+     <span class="k">end</span>
+<span class="k">end</span>
+</pre></div></p></div><hr/></body></html>

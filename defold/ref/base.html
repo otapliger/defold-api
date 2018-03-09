@@ -1,0 +1,277 @@
+<html><head><link rel='stylesheet' type='text/css' href='../defold.css'></head><body><div class='nav'><a class='chevron' href='../index.html'><img src='../svg/chevron-left.svg' alt='Home'></a></div><h1>Base</h1>
+<p><p>Documentation for the Lua base standard library.</p>
+<p>From <a href="https://www.lua.org/manual/5.1/">Lua 5.1 Reference Manual</a>
+by Roberto Ierusalimschy, Luiz Henrique de Figueiredo, Waldemar Celes.</p>
+<p>Copyright &copy; 2006-2012 Lua.org, PUC-Rio.</p>
+<p>Freely available under the terms of the <a href="https://www.lua.org/license.html">Lua license</a>.</p></p>
+<h1><a name='//apple_ref/cpp/Variable/_G' class='dashAnchor'></a><a class='entry' name='_G'>_G</a></h1><div class='brief'><p>global variable that holds the global environment</p></div><p><p>A global variable (not a function) that
+holds the global environment (that is, <code>_G._G = _G</code>).
+Lua itself does not use this variable;
+changing its value does not affect any environment,
+nor vice-versa.
+(Use setfenv to change environments.)</p></p><hr/><h1><a name='//apple_ref/cpp/Variable/_VERSION' class='dashAnchor'></a><a class='entry' name='_VERSION'>_VERSION</a></h1><div class='brief'><p>global variable containing the running Lua version</p></div><p><p>A global variable (not a function) that
+holds a string containing the current interpreter version.
+The current contents of this variable is "Lua 5.1".</p></p><hr/><h1><a name='//apple_ref/cpp/Function/assert' class='dashAnchor'></a><a class='entry' name='assert'>assert()</a></h1><div class='brief'><p>asserts that condition is not nil and not false</p></div><p><p>Issues an  error when
+the value of its argument v is false (i.e., <span class="type"> nil</span> or <span class="type"> false</span>);
+otherwise, returns all its arguments.
+message is an error message;
+when absent, it defaults to "assertion failed!"</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>v</p><p class='param'>[message]</p></div><hr/><h1><a name='//apple_ref/cpp/Function/collectgarbage' class='dashAnchor'></a><a class='entry' name='collectgarbage'>collectgarbage()</a></h1><div class='brief'><p>collects garbage</p></div><p><p>This function is a generic interface to the garbage collector.
+It performs different functions according to its first argument, opt:</p>
+<dl>
+<dt>"collect"</dt>
+<dd>performs a full garbage-collection cycle.
+This is the default option.</dd>
+<dt>"stop"</dt>
+<dd>stops the garbage collector.</dd>
+<dt>"restart"</dt>
+<dd>restarts the garbage collector.</dd>
+<dt>"count"</dt>
+<dd>returns the total memory in use by Lua (in Kbytes).</dd>
+<dt>"step"</dt>
+<dd>performs a garbage-collection step.
+The step "size" is controlled by arg
+(larger values mean more steps) in a non-specified way.
+If you want to control the step size
+you must experimentally tune the value of arg.
+Returns true if the step finished a collection cycle.</dd>
+<dt>"setpause"</dt>
+<dd>sets arg as the new value for the <em>pause</em> of
+the collector .
+Returns the previous value for <em>pause</em>.</dd>
+<dt>"setstepmul"</dt>
+<dd>sets arg as the new value for the <em>step multiplier</em> of
+the collector .
+Returns the previous value for <em>step</em>.</dd>
+</dl></p><h3>PARAMETERS</h3><div class='params'><p class='param'>[opt]</p><p class='param'>[arg]</p></div><hr/><h1><a name='//apple_ref/cpp/Function/dofile' class='dashAnchor'></a><a class='entry' name='dofile'>dofile()</a></h1><div class='brief'><p>executes a Lua file</p></div><p><p>Opens the named file and executes its contents as a Lua chunk.
+When called without arguments,
+dofile executes the contents of the standard input (stdin).
+Returns all values returned by the chunk.
+In case of errors, dofile propagates the error
+to its caller (that is, dofile does not run in protected mode).</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>[filename]</p></div><hr/><h1><a name='//apple_ref/cpp/Function/error' class='dashAnchor'></a><a class='entry' name='error'>error()</a></h1><div class='brief'><p>raises an error message</p></div><p><p>Terminates the last protected function called
+and returns message as the error message.
+Function error never returns.</p>
+<p>Usually, error adds some information about the error position
+at the beginning of the message.
+The level argument specifies how to get the error position.
+With level 1 (the default), the error position is where the
+error function was called.
+Level 2 points the error to where the function
+that called error was called; and so on.
+Passing a level 0 avoids the addition of error position information
+to the message.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>message</p><p class='param'>[level]</p></div><hr/><h1><a name='//apple_ref/cpp/Function/getfenv' class='dashAnchor'></a><a class='entry' name='getfenv'>getfenv()</a></h1><div class='brief'><p>returns the current environment table</p></div><p><p>Returns the current environment in use by the function.
+f can be a Lua function or a number
+that specifies the function at that stack level:
+Level 1 is the function calling getfenv.
+If the given function is not a Lua function,
+or if f is 0,
+getfenv returns the global environment.
+The default for f is 1.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>[f]</p></div><hr/><h1><a name='//apple_ref/cpp/Function/getmetatable' class='dashAnchor'></a><a class='entry' name='getmetatable'>getmetatable()</a></h1><div class='brief'><p>returns the metatable for the object</p></div><p><p>If object does not have a metatable, returns <span class="type"> nil</span>.
+Otherwise,
+if the object's metatable has a <code>"__metatable"</code> field,
+returns the associated value.
+Otherwise, returns the metatable of the given object.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>object</p></div><hr/><h1><a name='//apple_ref/cpp/Function/ipairs' class='dashAnchor'></a><a class='entry' name='ipairs'>ipairs()</a></h1><div class='brief'><p>iterates over a numerically keyed table</p></div><p><p>Returns three values: an iterator function, the table t, and 0,
+so that the construction</p>
+<div class="codehilite"><pre><span></span><span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">v</span> <span class="k">in</span> <span class="nb">ipairs</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="k">do</span> <span class="n">body</span> <span class="k">end</span>
+</pre></div>
+
+
+<p>will iterate over the pairs (<code>1,t[1]</code>), (<code>2,t[2]</code>), ...,
+up to the first integer key absent from the table.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>t</p></div><hr/><h1><a name='//apple_ref/cpp/Function/load' class='dashAnchor'></a><a class='entry' name='load'>load()</a></h1><div class='brief'><p>loads a chunk by calling a function repeatedly</p></div><p><p>Loads a chunk using function func to get its pieces.
+Each call to func must return a string that concatenates
+with previous results.
+A return of an empty string, <span class="type"> nil</span>, or no value signals the end of the chunk.</p>
+<p>If there are no errors,
+returns the compiled chunk as a function;
+otherwise, returns <span class="type"> nil</span> plus the error message.
+The environment of the returned function is the global environment.</p>
+<p>chunkname is used as the chunk name for error messages
+and debug information.
+When absent,
+it defaults to "=(load)".</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>func</p><p class='param'>[chunkname]</p></div><hr/><h1><a name='//apple_ref/cpp/Function/loadfile' class='dashAnchor'></a><a class='entry' name='loadfile'>loadfile()</a></h1><div class='brief'><p>loads a Lua file and parses it</p></div><p><p>Similar to load,
+but gets the chunk from file filename
+or from the standard input,
+if no file name is given.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>[filename]</p></div><hr/><h1><a name='//apple_ref/cpp/Function/loadstring' class='dashAnchor'></a><a class='entry' name='loadstring'>loadstring()</a></h1><div class='brief'><p>compiles a string of Lua code</p></div><p><p>Similar to load,
+but gets the chunk from the given string.</p>
+<p>To load and run a given string, use the idiom</p>
+<div class="codehilite"><pre><span></span><span class="nb">assert</span><span class="p">(</span><span class="nb">loadstring</span><span class="p">(</span><span class="n">s</span><span class="p">))()</span>
+</pre></div>
+
+
+<p>When absent,
+chunkname defaults to the given string.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>string</p><p class='param'>[chunkname]</p></div><hr/><h1><a name='//apple_ref/cpp/Function/module' class='dashAnchor'></a><a class='entry' name='module'>module()</a></h1><div class='brief'><p>creates a Lua module</p></div><p><p>Creates a module.
+If there is a table in <code>package.loaded[name]</code>,
+this table is the module.
+Otherwise, if there is a global table t with the given name,
+this table is the module.
+Otherwise creates a new table t and
+sets it as the value of the global name and
+the value of <code>package.loaded[name]</code>.
+This function also initializes t._NAME with the given name,
+t._M with the module (t itself),
+and t._PACKAGE with the package name
+(the full module name minus last component; see below).
+Finally, module sets t as the new environment
+of the current function and the new value of <code>package.loaded[name]</code>,
+so that require returns t.</p>
+<p>If name is a compound name
+(that is, one with components separated by dots),
+module creates (or reuses, if they already exist)
+tables for each component.
+For instance, if name is a.b.c,
+then module stores the module table in field c of
+field b of global a.</p>
+<p>This function can receive optional <em>options</em> after
+the module name,
+where each option is a function to be applied over the module.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>name</p><p class='param'>[...]</p></div><hr/><h1><a name='//apple_ref/cpp/Function/next' class='dashAnchor'></a><a class='entry' name='next'>next()</a></h1><div class='brief'><p>returns next key / value pair in a table</p></div><p><p>Allows a program to traverse all fields of a table.
+Its first argument is a table and its second argument
+is an index in this table.
+next returns the next index of the table
+and its associated value.
+When called with <span class="type"> nil</span> as its second argument,
+next returns an initial index
+and its associated value.
+When called with the last index,
+or with <span class="type"> nil</span> in an empty table,
+next returns <span class="type"> nil</span>.
+If the second argument is absent, then it is interpreted as <span class="type"> nil</span>.
+In particular,
+you can use <code>next(t)</code> to check whether a table is empty.</p>
+<p>The order in which the indices are enumerated is not specified,
+<em>even for numeric indices</em>.
+(To traverse a table in numeric order,
+use a numerical for or the ipairs function.)</p>
+<p>The behavior of next is <em>undefined</em> if,
+during the traversal,
+you assign any value to a non-existent field in the table.
+You may however modify existing fields.
+In particular, you may clear existing fields.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>table</p><p class='param'>[index]</p></div><hr/><h1><a name='//apple_ref/cpp/Function/pairs' class='dashAnchor'></a><a class='entry' name='pairs'>pairs()</a></h1><div class='brief'><p>traverse all items in a table</p></div><p><p>Returns three values: the next function, the table t, and <span class="type"> nil</span>,
+so that the construction</p>
+<div class="codehilite"><pre><span></span><span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="k">in</span> <span class="nb">pairs</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="k">do</span> <span class="n">body</span> <span class="k">end</span>
+</pre></div>
+
+
+<p>will iterate over all key-{}value pairs of table t.</p>
+<p>See function next for the caveats of modifying
+the table during its traversal.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>t</p></div><hr/><h1><a name='//apple_ref/cpp/Function/pcall' class='dashAnchor'></a><a class='entry' name='pcall'>pcall()</a></h1><div class='brief'><p>calls a function in protected mode</p></div><p><p>Calls function f with
+the given arguments in <em>protected mode</em>.
+This means that any error inside <code>f</code> is not propagated;
+instead, pcall catches the error
+and returns a status code.
+Its first result is the status code (a boolean),
+which is true if the call succeeds without errors.
+In such case, pcall also returns all results from the call,
+after this first result.
+In case of any error, pcall returns <span class="type"> false</span> plus the error message.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>f</p><p class='param'>arg1</p><p class='param'>...</p></div><hr/><h1><a name='//apple_ref/cpp/Function/print' class='dashAnchor'></a><a class='entry' name='print'>print()</a></h1><div class='brief'><p>prints its arguments</p></div><p><p>Receives any number of arguments,
+and prints their values to stdout,
+using the tostring function to convert them to strings.
+print is not intended for formatted output,
+but only as a quick way to show a value,
+typically for debugging.
+For formatted output, use string.format.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>...</p></div><hr/><h1><a name='//apple_ref/cpp/Function/rawequal' class='dashAnchor'></a><a class='entry' name='rawequal'>rawequal()</a></h1><div class='brief'><p>compares two values for equality without invoking metamethods</p></div><p><p>Checks whether v1 is equal to v2,
+without invoking any metamethod.
+Returns a boolean.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>v1</p><p class='param'>v2</p></div><hr/><h1><a name='//apple_ref/cpp/Function/rawget' class='dashAnchor'></a><a class='entry' name='rawget'>rawget()</a></h1><div class='brief'><p>gets the value of a table item without invoking metamethods</p></div><p><p>Gets the real value of <code>table[index]</code>,
+without invoking any metamethod.
+table must be a table;
+index may be any value.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>table</p><p class='param'>index</p></div><hr/><h1><a name='//apple_ref/cpp/Function/rawset' class='dashAnchor'></a><a class='entry' name='rawset'>rawset()</a></h1><div class='brief'><p>sets the value of a table item without invoking metamethods</p></div><p><p>Sets the real value of <code>table[index]</code> to value,
+without invoking any metamethod.
+table must be a table,
+index any value different from <span class="type"> nil</span>,
+and value any Lua value.</p>
+<p>This function returns table.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>table</p><p class='param'>index</p><p class='param'>value</p></div><hr/><h1><a name='//apple_ref/cpp/Function/require' class='dashAnchor'></a><a class='entry' name='require'>require()</a></h1><div class='brief'><p>loads a module</p></div><p><p>Loads the given module.
+The function starts by looking into the package.loaded table
+to determine whether modname is already loaded.
+If it is, then require returns the value stored
+at <code>package.loaded[modname]</code>.
+Otherwise, it tries to find a <em>loader</em> for the module.</p>
+<p>To find a loader,
+require is guided by the package.loaders array.
+By changing this array,
+we can change how require looks for a module.
+The following explanation is based on the default configuration
+for package.loaders.</p>
+<p>First require queries <code>package.preload[modname]</code>.
+If it has a value,
+this value (which should be a function) is the loader.
+Otherwise require searches for a Lua loader using the
+path stored in package.path.
+If that also fails, it searches for a C loader using the
+path stored in package.cpath.
+If that also fails,
+it tries an <em>all-in-one</em> loader .</p>
+<p>Once a loader is found,
+require calls the loader with a single argument, modname.
+If the loader returns any value,
+require assigns the returned value to <code>package.loaded[modname]</code>.
+If the loader returns no value and
+has not assigned any value to <code>package.loaded[modname]</code>,
+then require assigns true to this entry.
+In any case, require returns the
+final value of <code>package.loaded[modname]</code>.</p>
+<p>If there is any error loading or running the module,
+or if it cannot find any loader for the module,
+then require signals an error.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>modname</p></div><hr/><h1><a name='//apple_ref/cpp/Function/select' class='dashAnchor'></a><a class='entry' name='select'>select()</a></h1><div class='brief'><p>returns items in a list</p></div><p><p>If index is a number,
+returns all arguments after argument number index.
+Otherwise, index must be the string <code>"#"</code>,
+and select returns the total number of extra arguments it received.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>index</p><p class='param'>...</p></div><hr/><h1><a name='//apple_ref/cpp/Function/setfenv' class='dashAnchor'></a><a class='entry' name='setfenv'>setfenv()</a></h1><div class='brief'><p>sets a function's environment</p></div><p><p>Sets the environment to be used by the given function.
+f can be a Lua function or a number
+that specifies the function at that stack level:
+Level 1 is the function calling setfenv.
+setfenv returns the given function.</p>
+<p>As a special case, when f is 0 setfenv changes
+the environment of the running thread.
+In this case, setfenv returns no values.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>f</p><p class='param'>table</p></div><hr/><h1><a name='//apple_ref/cpp/Function/setmetatable' class='dashAnchor'></a><a class='entry' name='setmetatable'>setmetatable()</a></h1><div class='brief'><p>sets the metatable for a table</p></div><p><p>Sets the metatable for the given table.
+(You cannot change the metatable of other types from Lua, only from C.)
+If metatable is <span class="type"> nil</span>,
+removes the metatable of the given table.
+If the original metatable has a <code>"__metatable"</code> field,
+raises an error.</p>
+<p>This function returns table.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>table</p><p class='param'>metatable</p></div><hr/><h1><a name='//apple_ref/cpp/Function/tonumber' class='dashAnchor'></a><a class='entry' name='tonumber'>tonumber()</a></h1><div class='brief'><p>converts a string (of the given base) to a number</p></div><p><p>Tries to convert its argument to a number.
+If the argument is already a number or a string convertible
+to a number, then tonumber returns this number;
+otherwise, it returns <span class="type"> nil</span>.</p>
+<p>An optional argument specifies the base to interpret the numeral.
+The base may be any integer between 2 and 36, inclusive.
+In bases above 10, the letter 'A' (in either upper or lower case)
+represents 10, 'B' represents 11, and so forth,
+with 'Z' representing 35.
+In base 10 (the default), the number can have a decimal part,
+as well as an optional exponent part .
+In other bases, only unsigned integers are accepted.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>e</p><p class='param'>[base]</p></div><hr/><h1><a name='//apple_ref/cpp/Function/tostring' class='dashAnchor'></a><a class='entry' name='tostring'>tostring()</a></h1><div class='brief'><p>converts its argument to a string</p></div><p><p>Receives an argument of any type and
+converts it to a string in a reasonable format.
+For complete control of how numbers are converted,
+use string.format.</p>
+<p>If the metatable of e has a <code>"__tostring"</code> field,
+then tostring calls the corresponding value
+with e as argument,
+and uses the result of the call as its result.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>e</p></div><hr/><h1><a name='//apple_ref/cpp/Function/type' class='dashAnchor'></a><a class='entry' name='type'>type()</a></h1><div class='brief'><p>returns the type of a variable</p></div><p><p>Returns the type of its only argument, coded as a string.
+The possible results of this function are
+"nil" (a string, not the value <span class="type"> nil</span>),
+"number",
+"string",
+"boolean",
+"table",
+"function",
+"thread",
+and "userdata".</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>v</p></div><hr/><h1><a name='//apple_ref/cpp/Function/unpack' class='dashAnchor'></a><a class='entry' name='unpack'>unpack()</a></h1><div class='brief'><p>unpacks a table into individual items</p></div><p><p>Returns the elements from the given table.
+This function is equivalent to</p>
+<div class="codehilite"><pre><span></span><span class="k">return</span> <span class="n">list</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">list</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span> <span class="o">...</span><span class="p">,</span> <span class="n">list</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+</pre></div>
+
+
+<p>except that the above code can be written only for a fixed number
+of elements.
+By default, i is 1 and j is the length of the list,
+as defined by the length operator .</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>list</p><p class='param'>[i]</p><p class='param'>[j]</p></div><hr/><h1><a name='//apple_ref/cpp/Function/xpcall' class='dashAnchor'></a><a class='entry' name='xpcall'>xpcall()</a></h1><div class='brief'><p>calls a function with a custom error handler</p></div><p><p>This function is similar to pcall,
+except that you can set a new error handler.</p>
+<p>xpcall calls function f in protected mode,
+using err as the error handler.
+Any error inside f is not propagated;
+instead, xpcall catches the error,
+calls the err function with the original error object,
+and returns a status code.
+Its first result is the status code (a boolean),
+which is true if the call succeeds without errors.
+In this case, xpcall also returns all results from the call,
+after this first result.
+In case of any error,
+xpcall returns <span class="type"> false</span> plus the result from err.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>f</p><p class='param'>err</p></div><hr/></body></html>

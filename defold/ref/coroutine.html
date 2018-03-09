@@ -1,0 +1,43 @@
+<html><head><link rel='stylesheet' type='text/css' href='../defold.css'></head><body><div class='nav'><a class='chevron' href='../index.html'><img src='../svg/chevron-left.svg' alt='Home'></a></div><h1>Coroutine</h1>
+<p><p>Documentation for the Lua coroutine standard library.</p>
+<p>From <a href="https://www.lua.org/manual/5.1/">Lua 5.1 Reference Manual</a>
+by Roberto Ierusalimschy, Luiz Henrique de Figueiredo, Waldemar Celes.</p>
+<p>Copyright &copy; 2006-2012 Lua.org, PUC-Rio.</p>
+<p>Freely available under the terms of the <a href="https://www.lua.org/license.html">Lua license</a>.</p></p>
+<h1><a name='//apple_ref/cpp/Function/coroutine.create' class='dashAnchor'></a><a class='entry' name='coroutine.create'>coroutine.create()</a></h1><div class='brief'><p>creates a new coroutine thread</p></div><p><p>Creates a new coroutine, with body f.
+f must be a Lua function.
+Returns this new coroutine,
+an object with type <code>"thread"</code>.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>f</p></div><hr/><h1><a name='//apple_ref/cpp/Function/coroutine.resume' class='dashAnchor'></a><a class='entry' name='coroutine.resume'>coroutine.resume()</a></h1><div class='brief'><p>start or resume a thread</p></div><p><p>Starts or continues the execution of coroutine co.
+The first time you resume a coroutine,
+it starts running its body.
+The values val1, ... are passed
+as the arguments to the body function.
+If the coroutine has yielded,
+resume restarts it;
+the values val1, ... are passed
+as the results from the yield.</p>
+<p>If the coroutine runs without any errors,
+resume returns <span class="type"> true</span> plus any values passed to yield
+(if the coroutine yields) or any values returned by the body function
+(if the coroutine terminates).
+If there is any error,
+resume returns <span class="type"> false</span> plus the error message.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>co</p><p class='param'>[val1]</p><p class='param'>[...]</p></div><hr/><h1><a name='//apple_ref/cpp/Function/coroutine.running' class='dashAnchor'></a><a class='entry' name='coroutine.running'>coroutine.running()</a></h1><div class='brief'><p>returns the running coroutine</p></div><p><p>Returns the running coroutine,
+or <span class="type"> nil</span> when called by the main thread.</p></p><hr/><h1><a name='//apple_ref/cpp/Function/coroutine.status' class='dashAnchor'></a><a class='entry' name='coroutine.status'>coroutine.status()</a></h1><div class='brief'><p>returns the status of a thread</p></div><p><p>Returns the status of coroutine co, as a string:
+<code>"running"</code>,
+if the coroutine is running (that is, it called status);
+<code>"suspended"</code>, if the coroutine is suspended in a call to yield,
+or if it has not started running yet;
+<code>"normal"</code> if the coroutine is active but not running
+(that is, it has resumed another coroutine);
+and <code>"dead"</code> if the coroutine has finished its body function,
+or if it has stopped with an error.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>co</p></div><hr/><h1><a name='//apple_ref/cpp/Function/coroutine.wrap' class='dashAnchor'></a><a class='entry' name='coroutine.wrap'>coroutine.wrap()</a></h1><div class='brief'><p>creates a thread and returns a function to resume it</p></div><p><p>Creates a new coroutine, with body f.
+f must be a Lua function.
+Returns a function that resumes the coroutine each time it is called.
+Any arguments passed to the function behave as the
+extra arguments to resume.
+Returns the same values returned by resume,
+except the first boolean.
+In case of error, propagates the error.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>f</p></div><hr/><h1><a name='//apple_ref/cpp/Function/coroutine.yield' class='dashAnchor'></a><a class='entry' name='coroutine.yield'>coroutine.yield()</a></h1><div class='brief'><p>yields execution of thread back to the caller</p></div><p><p>Suspends the execution of the calling coroutine.
+The coroutine cannot be running a C function,
+a metamethod, or an iterator.
+Any arguments to yield are passed as extra results to resume.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>...</p></div><hr/></body></html>

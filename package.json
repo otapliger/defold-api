@@ -1,0 +1,28 @@
+{
+  "name": "defold-api",
+  "main": "./lib/defold-api",
+  "version": "1.1.0",
+  "description": "Defold API Reference inside Atom",
+  "keywords": [
+    "defold",
+    "api",
+    "reference"
+  ],
+  "repository": "https://github.com/otapliger/defold-api",
+  "license": "MIT",
+  "engines": {
+    "atom": ">=1.0.0 <2.0.0"
+  },
+  "dependencies": {
+    "live-server": "^1.2.0",
+    "loophole": "^1.1.0",
+    "open": "0.0.5"
+  },
+  "consumedServices": {
+    "tool-bar": {
+      "versions": {
+        "^0 || ^1": "consumeToolBar"
+      }
+    }
+  }
+}

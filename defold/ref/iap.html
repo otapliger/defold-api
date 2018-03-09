@@ -1,0 +1,97 @@
+<html><head><link rel='stylesheet' type='text/css' href='../defold.css'></head><body><div class='nav'><a class='chevron' href='../index.html'><img src='../svg/chevron-left.svg' alt='Home'></a></div><h1>In-app purchases</h1>
+<p><p>Functions and constants for interacting with Apple's In-app purchases
+and Google's In-app billing.</p></p>
+<h1><a name='//apple_ref/cpp/Variable/iap.PROVIDER_ID_AMAZON' class='dashAnchor'></a><a class='entry' name='iap.PROVIDER_ID_AMAZON'>iap.PROVIDER_ID_AMAZON</a></h1><div class='brief'><p>provider id for Amazon</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/iap.PROVIDER_ID_APPLE' class='dashAnchor'></a><a class='entry' name='iap.PROVIDER_ID_APPLE'>iap.PROVIDER_ID_APPLE</a></h1><div class='brief'><p>provider id for Apple</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/iap.PROVIDER_ID_FACEBOOK' class='dashAnchor'></a><a class='entry' name='iap.PROVIDER_ID_FACEBOOK'>iap.PROVIDER_ID_FACEBOOK</a></h1><div class='brief'><p>provider id for Facebook</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/iap.PROVIDER_ID_GOOGLE' class='dashAnchor'></a><a class='entry' name='iap.PROVIDER_ID_GOOGLE'>iap.PROVIDER_ID_GOOGLE</a></h1><div class='brief'><p>iap provider id for Google</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/iap.REASON_UNSPECIFIED' class='dashAnchor'></a><a class='entry' name='iap.REASON_UNSPECIFIED'>iap.REASON_UNSPECIFIED</a></h1><div class='brief'><p>unspecified error reason</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/iap.REASON_USER_CANCELED' class='dashAnchor'></a><a class='entry' name='iap.REASON_USER_CANCELED'>iap.REASON_USER_CANCELED</a></h1><div class='brief'><p>user canceled reason</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/iap.TRANS_STATE_FAILED' class='dashAnchor'></a><a class='entry' name='iap.TRANS_STATE_FAILED'>iap.TRANS_STATE_FAILED</a></h1><div class='brief'><p>transaction failed state</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/iap.TRANS_STATE_PURCHASED' class='dashAnchor'></a><a class='entry' name='iap.TRANS_STATE_PURCHASED'>iap.TRANS_STATE_PURCHASED</a></h1><div class='brief'><p>transaction purchased state</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/iap.TRANS_STATE_PURCHASING' class='dashAnchor'></a><a class='entry' name='iap.TRANS_STATE_PURCHASING'>iap.TRANS_STATE_PURCHASING</a></h1><div class='brief'><p>transaction purchasing state</p></div><p><p>This is an intermediate mode followed by TRANS_STATE_PURCHASED.
+Store provider support dependent.</p></p><hr/><h1><a name='//apple_ref/cpp/Variable/iap.TRANS_STATE_RESTORED' class='dashAnchor'></a><a class='entry' name='iap.TRANS_STATE_RESTORED'>iap.TRANS_STATE_RESTORED</a></h1><div class='brief'><p>transaction restored state</p></div><p><p>This is only available on store providers supporting restoring purchases.</p></p><hr/><h1><a name='//apple_ref/cpp/Variable/iap.TRANS_STATE_UNVERIFIED' class='dashAnchor'></a><a class='entry' name='iap.TRANS_STATE_UNVERIFIED'>iap.TRANS_STATE_UNVERIFIED</a></h1><div class='brief'><p>transaction unverified state, requires verification of purchase</p></div><hr/><h1><a name='//apple_ref/cpp/Function/iap.buy' class='dashAnchor'></a><a class='entry' name='iap.buy'>iap.buy()</a></h1><div class='brief'><p>buy product</p></div><p><p>Perform a product purchase.</p>
+<p><span class="icon-attention"></span> Calling <code>iap.finish</code> is required on a successful transaction if auto_finish_transactions is disabled in project settings.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>id<p><span class="type">string</span> product to buy</p></p><p class='param'>[options]<p><span class="type">table</span> optional parameters as properties.</p>
+<p>The options table has the following members:</p>
+<ul>
+<li>request_id <span class="icon-facebook"></span>: optional custom unique request id to set for this transaction. The id becomes attached to the payment within the Graph API. Only available for Facebook IAP transactions.</li>
+</ul></p></div><h3>EXAMPLES</h3><div class='examples'><p><div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="k">function</span> <span class="nf">iap_listener</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">transaction</span><span class="p">,</span> <span class="nb">error</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">error</span> <span class="o">==</span> <span class="kc">nil</span> <span class="k">then</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">transaction</span><span class="p">.</span><span class="n">ident</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">transaction</span><span class="p">.</span><span class="n">state</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">transaction</span><span class="p">.</span><span class="n">date</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">transaction</span><span class="p">.</span><span class="n">trans_ident</span><span class="p">)</span> <span class="c1">-- only available when state == TRANS_STATE_PURCHASED, TRANS_STATE_UNVERIFIED or TRANS_STATE_RESTORED</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">transaction</span><span class="p">.</span><span class="n">receipt</span><span class="p">)</span>     <span class="c1">-- only available when state == TRANS_STATE_PURCHASED or TRANS_STATE_UNVERIFIED</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">transaction</span><span class="p">.</span><span class="n">request_id</span><span class="p">)</span>  <span class="c1">-- only available for Facebook IAP transactions (and if used in the iap.buy call parameters)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">transaction</span><span class="p">.</span><span class="n">user_id</span><span class="p">)</span>     <span class="c1">-- only available for Amazon IAP transactions</span>
+
+        <span class="c1">-- required if auto finish transactions is disabled in project settings</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">transaction</span><span class="p">.</span><span class="n">state</span> <span class="o">==</span> <span class="n">iap</span><span class="p">.</span><span class="n">TRANS_STATE_PURCHASED</span><span class="p">)</span> <span class="k">then</span>
+            <span class="c1">-- do server-side verification of purchase here..</span>
+            <span class="n">iap</span><span class="p">.</span><span class="n">finish</span><span class="p">(</span><span class="n">transaction</span><span class="p">)</span>
+        <span class="k">end</span>
+    <span class="k">else</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">error</span><span class="p">.</span><span class="n">error</span><span class="p">,</span> <span class="n">error</span><span class="p">.</span><span class="n">reason</span><span class="p">)</span>
+    <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">function</span> <span class="nf">init</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
+    <span class="n">iap</span><span class="p">.</span><span class="n">set_listener</span><span class="p">(</span><span class="n">iap_listener</span><span class="p">)</span>
+    <span class="n">iap</span><span class="p">.</span><span class="n">buy</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">my_iap&quot;</span><span class="p">)</span>
+<span class="k">end</span>
+</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Function/iap.finish' class='dashAnchor'></a><a class='entry' name='iap.finish'>iap.finish()</a></h1><div class='brief'><p>finish buying product</p></div><p><p>Explicitly finish a product transaction.</p>
+<p><span class="icon-attention"></span> Calling iap.finish is required on a successful transaction
+if auto_finish_transactions is disabled in project settings (otherwise ignored).
+The transaction.state field must equal iap.TRANS_STATE_PURCHASED.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>transaction<p><span class="type">table</span> transaction table parameter as supplied in listener callback</p></p></div><hr/><h1><a name='//apple_ref/cpp/Function/iap.get_provider_id' class='dashAnchor'></a><a class='entry' name='iap.get_provider_id'>iap.get_provider_id()</a></h1><div class='brief'><p>get current provider id</p></div><h3>RETURN</h3><div class='return'><p>id - <p><span class="type">constant</span> provider id.</p>
+<ul>
+<li><code>iap.PROVIDER_ID_GOOGLE</code></li>
+<li><code>iap.PROVIDER_ID_AMAZON</code></li>
+<li><code>iap.PROVIDER_ID_APPLE</code></li>
+<li><code>iap.PROVIDER_ID_FACEBOOK</code></li>
+</ul></p></div><hr/><h1><a name='//apple_ref/cpp/Function/iap.list' class='dashAnchor'></a><a class='entry' name='iap.list'>iap.list()</a></h1><div class='brief'><p>list in-app products</p></div><p><p>Get a list of all avaliable iap products.</p>
+<p><span class="icon-attention"></span> Nested calls, that is calling iap.list from within callback is not supported.
+Doing so will result in call being ignored with the engine reporting "Unexpected callback set".</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>ids<p><span class="type">table</span> table (array) of identifiers to get products from</p></p><p class='param'>callback<p><span class="type">function(self, products, error)</span> result callback</p>
+<dl>
+<dt>self</dt>
+<dd>
+<p><span class="type">object</span> The current object.</p>
+</dd>
+<dt>products</dt>
+<dd>
+<p><span class="type">table</span> The available iap products.</p>
+</dd>
+<dt>error</dt>
+<dd>
+<p><span class="type">table</span> Any error message. <span class="type">nil</span> if there is no error.</p>
+</dd>
+</dl></p></div><h3>EXAMPLES</h3><div class='examples'><p><div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="k">function</span> <span class="nf">iap_callback</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">products</span><span class="p">,</span> <span class="nb">error</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">error</span> <span class="o">==</span> <span class="kc">nil</span> <span class="k">then</span>
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="k">in</span> <span class="nb">pairs</span><span class="p">(</span><span class="n">products</span><span class="p">)</span> <span class="k">do</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">ident</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">title</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">description</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">price</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">price_string</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">currency_code</span><span class="p">)</span> <span class="c1">-- only available on iOS</span>
+        <span class="k">end</span>
+    <span class="k">else</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">error</span><span class="p">.</span><span class="n">error</span><span class="p">)</span>
+    <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">function</span> <span class="nf">init</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
+    <span class="n">iap</span><span class="p">.</span><span class="n">list</span><span class="p">({</span><span class="s2">&quot;</span><span class="s">my_iap&quot;</span><span class="p">},</span> <span class="n">iap_callback</span><span class="p">)</span>
+<span class="k">end</span>
+</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Function/iap.restore' class='dashAnchor'></a><a class='entry' name='iap.restore'>iap.restore()</a></h1><div class='brief'><p>restore products (non-consumable)</p></div><h3>RETURN</h3><div class='return'><p>success - <p><span class="type">boolean</span> false if current store doesn't support handling restored transactions, otherwise true</p></p></div><hr/><h1><a name='//apple_ref/cpp/Function/iap.set_listener' class='dashAnchor'></a><a class='entry' name='iap.set_listener'>iap.set_listener()</a></h1><div class='brief'><p>set transaction listener</p></div><p><p>Set the callback function to receive transaction events.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>listener<p><span class="type">function(self, transaction, error)</span> listener callback function.
+Pass an empty function if you no longer wish to receive callbacks.</p>
+<dl>
+<dt><code>self</code></dt>
+<dd><span class="type">object</span> The current object.</dd>
+<dt><code>transaction</code></dt>
+<dd><span class="type">table</span> a table describing the transaction. The table contains the following fields:</dd>
+</dl>
+<ul>
+<li><code>ident</code>: product identifier</li>
+<li><code>state</code>: transaction state</li>
+<li><code>date</code>: transaction date</li>
+<li><code>original_trans</code>: original transaction (only set when state == TRANS_STATE_RESTORED)</li>
+<li><code>trans_ident</code> : transaction identifier (only set when state == TRANS_STATE_RESTORED, TRANS_STATE_UNVERIFIED or TRANS_STATE_PURCHASED)</li>
+<li><code>request_id</code>: transaction request id. (only if receipt is set and for Facebook IAP transactions when used in the iap.buy call parameters)</li>
+<li><code>receipt</code>: receipt (only set when state == TRANS_STATE_PURCHASED or TRANS_STATE_UNVERIFIED)</li>
+</ul>
+<dl>
+<dt><code>error</code></dt>
+<dd><span class="type">table</span> a table containing any error information. The error parameter is <code>nil</code> on success.</dd>
+</dl></p></div><hr/></body></html>

@@ -1,0 +1,146 @@
+<html><head><link rel='stylesheet' type='text/css' href='../defold.css'></head><body><div class='nav'><a class='chevron' href='../index.html'><img src='../svg/chevron-left.svg' alt='Home'></a></div><h1>Io</h1>
+<p><p>Documentation for the Lua io standard library.</p>
+<p>From <a href="https://www.lua.org/manual/5.1/">Lua 5.1 Reference Manual</a>
+by Roberto Ierusalimschy, Luiz Henrique de Figueiredo, Waldemar Celes.</p>
+<p>Copyright &copy; 2006-2012 Lua.org, PUC-Rio.</p>
+<p>Freely available under the terms of the <a href="https://www.lua.org/license.html">Lua license</a>.</p></p>
+<h1><a name='//apple_ref/cpp/Function/file:close' class='dashAnchor'></a><a class='entry' name='file:close'>file:close()</a></h1><div class='brief'><p>closes a file</p></div><p><p>Closes file.
+Note that files are automatically closed when
+their handles are garbage collected,
+but that takes an unpredictable amount of time to happen.</p></p><hr/><h1><a name='//apple_ref/cpp/Function/file:flush' class='dashAnchor'></a><a class='entry' name='file:flush'>file:flush()</a></h1><div class='brief'><p>flushes outstanding data to disk</p></div><p><p>Saves any written data to file.</p></p><hr/><h1><a name='//apple_ref/cpp/Function/file:lines' class='dashAnchor'></a><a class='entry' name='file:lines'>file:lines()</a></h1><div class='brief'><p>returns an iterator function for reading the file line-by-line</p></div><p><p>Returns an iterator function that,
+each time it is called,
+returns a new line from the file.
+Therefore, the construction</p>
+<div class="codehilite"><pre><span></span><span class="k">for</span> <span class="n">line</span> <span class="k">in</span> <span class="n">file</span><span class="p">:</span><span class="n">lines</span><span class="p">()</span> <span class="k">do</span> <span class="n">body</span> <span class="k">end</span>
+</pre></div>
+
+
+<p>will iterate over all lines of the file.
+(Unlike io.lines, this function does not close the file
+when the loop ends.)</p></p><hr/><h1><a name='//apple_ref/cpp/Function/file:read' class='dashAnchor'></a><a class='entry' name='file:read'>file:read()</a></h1><div class='brief'><p>reads the file according to the specified formats</p></div><p><p>Reads the file file,
+according to the given formats, which specify what to read.
+For each format,
+the function returns a string (or a number) with the characters read,
+or <span class="type"> nil</span> if it cannot read data with the specified format.
+When called without formats,
+it uses a default format that reads the entire next line
+(see below).</p>
+<p>The available formats are</p>
+<dl>
+<dt>"*n"</dt>
+<dd>reads a number;
+this is the only format that returns a number instead of a string.</dd>
+<dt>"*a"</dt>
+<dd>reads the whole file, starting at the current position.
+On end of file, it returns the empty string.</dd>
+<dt>"*l"</dt>
+<dd>reads the next line (skipping the end of line),
+returning <span class="type"> nil</span> on end of file.
+This is the default format.</dd>
+<dt><em>number</em></dt>
+<dd>reads a string with up to this number of characters,
+returning <span class="type"> nil</span> on end of file.
+If number is zero,
+it reads nothing and returns an empty string,
+or <span class="type"> nil</span> on end of file.</dd>
+</dl></p><h3>PARAMETERS</h3><div class='params'><p class='param'>...</p></div><hr/><h1><a name='//apple_ref/cpp/Function/file:seek' class='dashAnchor'></a><a class='entry' name='file:seek'>file:seek()</a></h1><div class='brief'><p>sets and gets the current file position</p></div><p><p>Sets and gets the file position,
+measured from the beginning of the file,
+to the position given by offset plus a base
+specified by the string whence, as follows:</p>
+<dl>
+<dt>"set"</dt>
+<dd>base is position 0 (beginning of the file);</dd>
+<dt>"cur"</dt>
+<dd>base is current position;</dd>
+<dt>"end"</dt>
+<dd>base is end of file;</dd>
+</dl>
+<p>In case of success, function seek returns the final file position,
+measured in bytes from the beginning of the file.
+If this function fails, it returns <span class="type"> nil</span>,
+plus a string describing the error.</p>
+<p>The default value for whence is <code>"cur"</code>,
+and for offset is 0.
+Therefore, the call <code>file:seek()</code> returns the current
+file position, without changing it;
+the call <code>file:seek("set")</code> sets the position to the
+beginning of the file (and returns 0);
+and the call <code>file:seek("end")</code> sets the position to the
+end of the file, and returns its size.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>[whence]</p><p class='param'>[offset]</p></div><hr/><h1><a name='//apple_ref/cpp/Function/file:setvbuf' class='dashAnchor'></a><a class='entry' name='file:setvbuf'>file:setvbuf()</a></h1><div class='brief'><p>sets the buffering mode for an output file</p></div><p><p>Sets the buffering mode for an output file.
+There are three available modes:</p>
+<dl>
+<dt>"no"</dt>
+<dd>no buffering; the result of any output operation appears immediately.</dd>
+<dt>"full"</dt>
+<dd>full buffering; output operation is performed only
+when the buffer is full (or when you explicitly <code>flush</code> the file
+).</dd>
+<dt>"line"</dt>
+<dd>line buffering; output is buffered until a newline is output
+or there is any input from some special files
+(such as a terminal device).</dd>
+</dl>
+<p>For the last two cases, size
+specifies the size of the buffer, in bytes.
+The default is an appropriate size.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>mode</p><p class='param'>[size]</p></div><hr/><h1><a name='//apple_ref/cpp/Function/file:write' class='dashAnchor'></a><a class='entry' name='file:write'>file:write()</a></h1><div class='brief'><p>writes to a file</p></div><p><p>Writes the value of each of its arguments to
+the file.
+The arguments must be strings or numbers.
+To write other values,
+use tostring or string.format before write.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>...</p></div><hr/><h1><a name='//apple_ref/cpp/Function/io.close' class='dashAnchor'></a><a class='entry' name='io.close'>io.close()</a></h1><div class='brief'><p>closes a file</p></div><p><p>Equivalent to <code>file:close()</code>.
+Without a file, closes the default output file.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>[file]</p></div><hr/><h1><a name='//apple_ref/cpp/Function/io.flush' class='dashAnchor'></a><a class='entry' name='io.flush'>io.flush()</a></h1><div class='brief'><p>flushes outstanding data to disk for the default output file</p></div><p><p>Equivalent to <code>file:flush</code> over the default output file.</p></p><hr/><h1><a name='//apple_ref/cpp/Function/io.input' class='dashAnchor'></a><a class='entry' name='io.input'>io.input()</a></h1><div class='brief'><p>opens filename for input in text mode</p></div><p><p>When called with a file name, it opens the named file (in text mode),
+and sets its handle as the default input file.
+When called with a file handle,
+it simply sets this file handle as the default input file.
+When called without parameters,
+it returns the current default input file.</p>
+<p>In case of errors this function raises the error,
+instead of returning an error code.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>[file]</p></div><hr/><h1><a name='//apple_ref/cpp/Function/io.lines' class='dashAnchor'></a><a class='entry' name='io.lines'>io.lines()</a></h1><div class='brief'><p>returns an iterator function for reading a named file line-by-line</p></div><p><p>Opens the given file name in read mode
+and returns an iterator function that,
+each time it is called,
+returns a new line from the file.
+Therefore, the construction</p>
+<div class="codehilite"><pre><span></span><span class="k">for</span> <span class="n">line</span> <span class="k">in</span> <span class="nb">io.lines</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span> <span class="k">do</span> <span class="n">body</span> <span class="k">end</span>
+</pre></div>
+
+
+<p>will iterate over all lines of the file.
+When the iterator function detects the end of file,
+it returns <span class="type"> nil</span> (to finish the loop) and automatically closes the file.</p>
+<p>The call <code>io.lines()</code> (with no file name) is equivalent
+to <code>io.input():lines()</code>;
+that is, it iterates over the lines of the default input file.
+In this case it does not close the file when the loop ends.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>[filename]</p></div><hr/><h1><a name='//apple_ref/cpp/Function/io.open' class='dashAnchor'></a><a class='entry' name='io.open'>io.open()</a></h1><div class='brief'><p>opens a file</p></div><p><p>This function opens a file,
+in the mode specified in the string mode.
+It returns a new file handle,
+or, in case of errors, <span class="type"> nil</span> plus an error message.</p>
+<p>The mode string can be any of the following:</p>
+<dl>
+<dt>"r"</dt>
+<dd>read mode (the default);</dd>
+<dt>"w"</dt>
+<dd>write mode;</dd>
+<dt>"a"</dt>
+<dd>append mode;</dd>
+<dt>"r+"</dt>
+<dd>update mode, all previous data is preserved;</dd>
+<dt>"w+"</dt>
+<dd>update mode, all previous data is erased;</dd>
+<dt>"a+"</dt>
+<dd>append update mode, previous data is preserved,
+  writing is only allowed at the end of file.</dd>
+</dl>
+<p>The mode string can also have a 'b' at the end,
+which is needed in some systems to open the file in binary mode.
+This string is exactly what is used in the
+standard C function fopen.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>filename</p><p class='param'>[mode]</p></div><hr/><h1><a name='//apple_ref/cpp/Function/io.output' class='dashAnchor'></a><a class='entry' name='io.output'>io.output()</a></h1><div class='brief'><p>opens a file for output</p></div><p><p>Similar to io.input, but operates over the default output file.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>[file]</p></div><hr/><h1><a name='//apple_ref/cpp/Function/io.popen' class='dashAnchor'></a><a class='entry' name='io.popen'>io.popen()</a></h1><div class='brief'><p>creates a pipe and executes a command</p></div><p><p>Starts program prog in a separated process and returns
+a file handle that you can use to read data from this program
+(if mode is <code>"r"</code>, the default)
+or to write data to this program
+(if mode is <code>"w"</code>).</p>
+<p>This function is system dependent and is not available
+on all platforms.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>prog</p><p class='param'>[mode]</p></div><hr/><h1><a name='//apple_ref/cpp/Function/io.read' class='dashAnchor'></a><a class='entry' name='io.read'>io.read()</a></h1><div class='brief'><p>reads from the default input file</p></div><p><p>Equivalent to <code>io.input():read</code>.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>...</p></div><hr/><h1><a name='//apple_ref/cpp/Function/io.tmpfile' class='dashAnchor'></a><a class='entry' name='io.tmpfile'>io.tmpfile()</a></h1><div class='brief'><p>returns a handle to a temporary file</p></div><p><p>Returns a handle for a temporary file.
+This file is opened in update mode
+and it is automatically removed when the program ends.</p></p><hr/><h1><a name='//apple_ref/cpp/Function/io.type' class='dashAnchor'></a><a class='entry' name='io.type'>io.type()</a></h1><div class='brief'><p>returns type of file handle</p></div><p><p>Checks whether obj is a valid file handle.
+Returns the string <code>"file"</code> if obj is an open file handle,
+<code>"closed file"</code> if obj is a closed file handle,
+or <span class="type"> nil</span> if obj is not a file handle.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>obj</p></div><hr/><h1><a name='//apple_ref/cpp/Function/io.write' class='dashAnchor'></a><a class='entry' name='io.write'>io.write()</a></h1><div class='brief'><p>writes to the default output file</p></div><p><p>Equivalent to <code>io.output():write</code>.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>...</p></div><hr/></body></html>

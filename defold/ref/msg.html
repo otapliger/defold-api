@@ -1,0 +1,53 @@
+<html><head><link rel='stylesheet' type='text/css' href='../defold.css'></head><body><div class='nav'><a class='chevron' href='../index.html'><img src='../svg/chevron-left.svg' alt='Home'></a></div><h1>Message</h1>
+<p><p>Functions for passing messages and constructing URL objects.</p></p>
+<h1><a name='//apple_ref/cpp/Function/msg.post' class='dashAnchor'></a><a class='entry' name='msg.post'>msg.post()</a></h1><div class='brief'><p>posts a message to a receiving URL</p></div><p><p>Post a message to a receiving URL. The most common case is to send messages
+to a component. If the component part of the receiver is omitted, the message
+is broadcast to all components in the game object.</p>
+<p>The following receiver shorthands are available:</p>
+<ul>
+<li><code>"."</code> the current game object</li>
+<li><code>"#"</code> the current component</li>
+<li><code>nil</code> the current component</li>
+</ul>
+<p><span class="icon-attention"></span> There is a 2 kilobyte limit to the message parameter table size.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>receiver<p><span class="type">string | url | hash | nil</span> The receiver must be a string in URL-format, a URL object, a hashed string or <code>nil</code>.</p></p><p class='param'>message_id<p><span class="type">string | hash</span> The id must be a string or a hashed string.</p></p><p class='param'>[message]<p><span class="type">table</span> a lua table with message parameters to send.</p></p></div><h3>EXAMPLES</h3><div class='examples'><p><p>Send "enable" to the sprite "my_sprite" in "my_gameobject":</p>
+<div class="codehilite"><pre><span></span><span class="n">msg</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">my_gameobject#my_sprite&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">enable&quot;</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Send a "my_message" to an url with some additional data:</p>
+<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="n">my_parameter</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="s">my_value&quot;</span><span class="p">}</span>
+<span class="n">msg</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="n">my_url</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">my_message&quot;</span><span class="p">,</span> <span class="n">params</span><span class="p">)</span>
+</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Function/msg.url' class='dashAnchor'></a><a class='entry' name='msg.url'>msg.url()</a></h1><div class='brief'><p>creates a new URL</p></div><p><p>This is equivalent to <code>msg.url(nil)</code> or <code>msg.url("#")</code>, which creates an url to the current
+script component.</p></p><h3>RETURN</h3><div class='return'><p>url - <p><span class="type">url</span> a new URL</p></p></div><h3>EXAMPLES</h3><div class='examples'><p><p>Create a new URL which will address the current script:</p>
+<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">my_url</span> <span class="o">=</span> <span class="n">msg</span><span class="p">.</span><span class="n">url</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">my_url</span><span class="p">)</span> <span class="c1">--&gt; url: [current_collection:/my_instance#my_component]</span>
+</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Function/msg.url' class='dashAnchor'></a><a class='entry' name='msg.url'>msg.url()</a></h1><div class='brief'><p>creates a new URL from a string</p></div><p><p>The format of the string must be <code>[socket:][path][#fragment]</code>, which is similar to a HTTP URL.
+When addressing instances:</p>
+<ul>
+<li><code>socket</code> is the name of a valid world (a collection)</li>
+<li><code>path</code> is the id of the instance, which can either be relative the instance of the calling script or global</li>
+<li><code>fragment</code> would be the id of the desired component</li>
+</ul>
+<p>In addition, the following shorthands are available:</p>
+<ul>
+<li><code>"."</code> the current game object</li>
+<li><code>"#"</code> the current component</li>
+<li><code>nil</code> the current component</li>
+</ul></p><h3>PARAMETERS</h3><div class='params'><p class='param'>urlstring<p><span class="type">string</span> string to create the url from</p></p></div><h3>RETURN</h3><div class='return'><p>url - <p><span class="type">url</span> a new URL</p></p></div><h3>EXAMPLES</h3><div class='examples'><p><div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">my_url</span> <span class="o">=</span> <span class="n">msg</span><span class="p">.</span><span class="n">url</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">#my_component&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">my_url</span><span class="p">)</span> <span class="c1">--&gt; url: [current_collection:/my_instance#my_component]</span>
+
+<span class="kd">local</span> <span class="n">my_url</span> <span class="o">=</span> <span class="n">msg</span><span class="p">.</span><span class="n">url</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">my_collection:/my_sub_collection/my_instance#my_component&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">my_url</span><span class="p">)</span> <span class="c1">--&gt; url: [my_collection:/my_sub_collection/my_instance#my_component]</span>
+
+<span class="kd">local</span> <span class="n">my_url</span> <span class="o">=</span> <span class="n">msg</span><span class="p">.</span><span class="n">url</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">my_socket:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">my_url</span><span class="p">)</span> <span class="c1">--&gt; url: [my_collection:]</span>
+</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Function/msg.url' class='dashAnchor'></a><a class='entry' name='msg.url'>msg.url()</a></h1><div class='brief'><p>creates a new URL from separate arguments</p></div><h3>PARAMETERS</h3><div class='params'><p class='param'>[socket]<p><span class="type">string | hash</span> socket of the URL</p></p><p class='param'>[path]<p><span class="type">string | hash</span> path of the URL</p></p><p class='param'>[fragment]<p><span class="type">string | hash</span> fragment of the URL</p></p></div><h3>RETURN</h3><div class='return'><p>url - <p><span class="type">url</span> a new URL</p></p></div><h3>EXAMPLES</h3><div class='examples'><p><div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">my_socket</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="s">main&quot;</span> <span class="c1">-- specify by valid name</span>
+<span class="kd">local</span> <span class="n">my_path</span> <span class="o">=</span> <span class="n">hash</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">/my_collection/my_gameobject&quot;</span><span class="p">)</span> <span class="c1">-- specify as string or hash</span>
+<span class="kd">local</span> <span class="n">my_fragment</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="s">component&quot;</span> <span class="c1">-- specify as string or hash</span>
+<span class="kd">local</span> <span class="n">my_url</span> <span class="o">=</span> <span class="n">msg</span><span class="p">.</span><span class="n">url</span><span class="p">(</span><span class="n">my_socket</span><span class="p">,</span> <span class="n">my_path</span><span class="p">,</span> <span class="n">my_fragment</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">my_url</span><span class="p">)</span> <span class="c1">--&gt; url: [main:/my_collection/my_gameobject#component]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">my_url</span><span class="p">.</span><span class="n">socket</span><span class="p">)</span> <span class="c1">--&gt; 786443 (internal numeric value)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">my_url</span><span class="p">.</span><span class="n">path</span><span class="p">)</span> <span class="c1">--&gt; hash: [/my_collection/my_gameobject]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">my_url</span><span class="p">.</span><span class="n">fragment</span><span class="p">)</span> <span class="c1">--&gt; hash: [component]</span>
+</pre></div></p></div><hr/></body></html>
