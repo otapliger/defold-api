@@ -60,18 +60,18 @@ enabled.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>render_t
 </ul></p></div><h3>EXAMPLES</h3><div class='examples'><p><p>Disable face culling when drawing the tile predicate:</p>
 <div class="codehilite"><pre><span></span><span class="n">render</span><span class="p">.</span><span class="n">disable_state</span><span class="p">(</span><span class="n">render</span><span class="p">.</span><span class="n">STATE_CULL_FACE</span><span class="p">)</span>
 <span class="n">render</span><span class="p">.</span><span class="n">draw</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">tile_pred</span><span class="p">)</span>
-</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Function/render.disable_texture' class='dashAnchor'></a><a class='entry' name='render.disable_texture'>render.disable_texture()</a></h1><div class='brief'><p>disables a texture for a render target</p></div><p><p>Disables a texture unit for a render target that has previourly been enabled.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>unit<p><span class="type">number</span> texture unit to disable</p></p><p class='param'>render_target<p><span class="type">render_target</span> render target for which to disable the specified texture unit</p></p></div><h3>EXAMPLES</h3><div class='examples'><p><div class="codehilite"><pre><span></span><span class="k">function</span> <span class="nf">update</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
+</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Function/render.disable_texture' class='dashAnchor'></a><a class='entry' name='render.disable_texture'>render.disable_texture()</a></h1><div class='brief'><p>disables a texture for a render target</p></div><p><p>Disables a texture unit for a render target that has previourly been enabled.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>unit<p><span class="type">number</span> texture unit to disable</p></p></div><h3>EXAMPLES</h3><div class='examples'><p><div class="codehilite"><pre><span></span><span class="k">function</span> <span class="nf">update</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
     <span class="n">render</span><span class="p">.</span><span class="n">enable_texture</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">self</span><span class="p">.</span><span class="n">my_render_target</span><span class="p">,</span> <span class="n">render</span><span class="p">.</span><span class="n">BUFFER_COLOR_BIT</span><span class="p">)</span>
     <span class="c1">-- draw a predicate with the render target available as texture 0 in the predicate</span>
     <span class="c1">-- material shader.</span>
     <span class="n">render</span><span class="p">.</span><span class="n">draw</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">my_pred</span><span class="p">)</span>
     <span class="c1">-- done, disable the texture</span>
-    <span class="n">render</span><span class="p">.</span><span class="n">disable_texture</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">self</span><span class="p">.</span><span class="n">my_render_target</span><span class="p">)</span>
+    <span class="n">render</span><span class="p">.</span><span class="n">disable_texture</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="k">end</span>
-</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Function/render.draw' class='dashAnchor'></a><a class='entry' name='render.draw'>render.draw()</a></h1><div class='brief'><p>draws all objects matching a predicate</p></div><p><p>Draws all objects that match a specified predicate. An optional constants buffer can be
+</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Function/render.draw' class='dashAnchor'></a><a class='entry' name='render.draw'>render.draw()</a></h1><div class='brief'><p>draws all objects matching a predicate</p></div><p><p>Draws all objects that match a specified predicate. An optional constant buffer can be
 provided to override the default constants. If no constants buffer is provided, a default
 system constants buffer is used containing constants as defined in materials and set through
-<code>*.set_constant()</code> and <code>*.reset_constant()</code> on visual components.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>predicate<p><span class="type">predicate</span> predicate to draw for</p></p><p class='param'>[constants]<p><span class="type">constants_buffer</span> optional constants to use while rendering</p></p></div><h3>EXAMPLES</h3><div class='examples'><p><div class="codehilite"><pre><span></span><span class="k">function</span> <span class="nf">init</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
+<code>*.set_constant()</code> and <code>*.reset_constant()</code> on visual components.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>predicate<p><span class="type">predicate</span> predicate to draw for</p></p><p class='param'>[constants]<p><span class="type">constant_buffer</span> optional constants to use while rendering</p></p></div><h3>EXAMPLES</h3><div class='examples'><p><div class="codehilite"><pre><span></span><span class="k">function</span> <span class="nf">init</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
     <span class="c1">-- define a predicate matching anything with material tag &quot;my_tag&quot;</span>
     <span class="n">self</span><span class="p">.</span><span class="n">my_pred</span> <span class="o">=</span> <span class="n">render</span><span class="p">.</span><span class="n">predicate</span><span class="p">({</span><span class="n">hash</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">my_tag&quot;</span><span class="p">)})</span>
 <span class="k">end</span>
@@ -80,6 +80,13 @@ system constants buffer is used containing constants as defined in materials and
     <span class="c1">-- draw everything in the my_pred predicate</span>
     <span class="n">render</span><span class="p">.</span><span class="n">draw</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">my_pred</span><span class="p">)</span>
 <span class="k">end</span>
+</pre></div>
+
+
+<p>Draw predicate with constant:</p>
+<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">constants</span> <span class="o">=</span> <span class="n">render</span><span class="p">.</span><span class="n">constant_buffer</span><span class="p">()</span>
+<span class="n">constants</span><span class="p">.</span><span class="n">tint</span> <span class="o">=</span> <span class="n">vmath</span><span class="p">.</span><span class="n">vector4</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">render</span><span class="p">.</span><span class="n">draw</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">my_pred</span><span class="p">,</span> <span class="n">constants</span><span class="p">)</span>
 </pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Function/render.draw_debug3d' class='dashAnchor'></a><a class='entry' name='render.draw_debug3d'>render.draw_debug3d()</a></h1><div class='brief'><p>draws all 3d debug graphics</p></div><p><p>Draws all 3d debug graphics such as lines drawn with "draw_line" messages and physics visualization.</p></p><h3>EXAMPLES</h3><div class='examples'><p><div class="codehilite"><pre><span></span><span class="k">function</span> <span class="nf">update</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
     <span class="c1">-- draw debug visualization</span>
     <span class="n">render</span><span class="p">.</span><span class="n">draw_debug3d</span><span class="p">()</span>
@@ -356,11 +363,11 @@ the conditions under which a pixel will be drawn.</p>
 <ul>
 <li><code>render.COMPARE_FUNC_NEVER</code> (never passes)</li>
 <li><code>render.COMPARE_FUNC_LESS</code> (passes if the incoming depth value is less than the stored value)</li>
-<li><code>render.COMPARE_FUNC_LEQUAL</code> (passes if the incoming depth value is less than or equal to )the stored value
-<code>render.COMPARE_FUNC_GREATER</code> (passes if the incoming depth value is greater than the stored )v- alue
-<code>render.COMPARE_FUNC_GEQUAL</code> (passes if the incoming depth value is greater than or equal to )t- he stored value</li>
+<li><code>render.COMPARE_FUNC_LEQUAL</code> (passes if the incoming depth value is less than or equal to the stored value)</li>
+<li><code>render.COMPARE_FUNC_GREATER</code> (passes if the incoming depth value is greater than the stored value)</li>
+<li><code>render.COMPARE_FUNC_GEQUAL</code> (passes if the incoming depth value is greater than or equal to the stored value)</li>
 <li><code>render.COMPARE_FUNC_EQUAL</code> (passes if the incoming depth value is equal to the stored value)</li>
-<li><code>render.COMPARE_FUNC_NOTEQUAL</code> (passes if the incoming depth value is not equal to the )stored value</li>
+<li><code>render.COMPARE_FUNC_NOTEQUAL</code> (passes if the incoming depth value is not equal to the stored value)</li>
 <li><code>render.COMPARE_FUNC_ALWAYS</code> (always passes)</li>
 </ul>
 <p>The depth function is initially set to <code>render.COMPARE_FUNC_LESS</code>.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>func<p><span class="type">constant</span> depth test function, see the description for available values</p></p></div><h3>EXAMPLES</h3><div class='examples'><p><p>Enable depth test and set the depth test function to "not equal".</p>

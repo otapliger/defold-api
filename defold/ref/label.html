@@ -6,6 +6,17 @@
    <span class="c1">-- Animate the color</span>
    <span class="n">go</span><span class="p">.</span><span class="n">animate</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">#label&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">color&quot;</span><span class="p">,</span> <span class="n">go</span><span class="p">.</span><span class="n">PLAYBACK_LOOP_PINGPONG</span><span class="p">,</span> <span class="n">vmath</span><span class="p">.</span><span class="n">vector4</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="n">go</span><span class="p">.</span><span class="n">EASING_INOUTSINE</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 <span class="k">end</span>
+</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Function/label.get_text_metrics' class='dashAnchor'></a><a class='entry' name='label.get_text_metrics'>label.get_text_metrics()</a></h1><div class='brief'><p>gets the text metrics for a label</p></div><p><p>Gets the text metrics from a label component</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>url<p><span class="type">string | hash | url</span> the label to get the (unscaled) metrics from</p></p></div><h3>RETURN</h3><div class='return'><p>metrics - <p><span class="type">table</span> a table with the following fields:</p>
+<ul>
+<li>width</li>
+<li>height</li>
+<li>max_ascent</li>
+<li>max_descent</li>
+</ul>
+<div class="codehilite"><pre><span></span><span class="k">function</span> <span class="nf">init</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
+    <span class="kd">local</span> <span class="n">metrics</span> <span class="o">=</span> <span class="n">label</span><span class="p">.</span><span class="n">get_text_metrics</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">#label&quot;</span><span class="p">)</span>
+    <span class="n">pprint</span><span class="p">(</span><span class="n">metrics</span><span class="p">)</span>
+<span class="k">end</span>
 </pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Function/label.set_text' class='dashAnchor'></a><a class='entry' name='label.set_text'>label.set_text()</a></h1><div class='brief'><p>set the text for a label</p></div><p><p>Sets the text of a label component</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>url<p><span class="type">string | hash | url</span> the label that should have a constant set</p></p><p class='param'>text<p><span class="type">string</span> the text</p></p></div><h3>EXAMPLES</h3><div class='examples'><p><div class="codehilite"><pre><span></span><span class="k">function</span> <span class="nf">init</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
     <span class="n">label</span><span class="p">.</span><span class="n">set_text</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">#label&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">Hello World!&quot;</span><span class="p">)</span>
 <span class="k">end</span>

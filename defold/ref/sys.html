@@ -21,11 +21,23 @@ project root.</p>
 the "game.project" settings but set in run-time.</p>
 <p>This message can only be sent to the designated <code>@system</code> socket.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>frequency<p>target frequency. 60 for 60 fps</p></p></div><h3>EXAMPLES</h3><div class='examples'><p><pre>
 msg.post("@system:", "set_update_frequency", { frequency = 60 } )
+</pre></p></div><hr/><h1><a name='//apple_ref/cpp/Command/set_vsync' class='dashAnchor'></a><a class='entry' name='set_vsync'>set_vsync</a></h1><div class='brief'><p>set vsync swap interval</p></div><p><p>Set the vsync swap interval. The interval with which to swap the front and back buffers
+in sync with vertical blanks (v-blank), the hardware event where the screen image is updated
+with data from the front buffer. A value of 1 swaps the buffers at every v-blank, a value of
+2 swaps the buffers every other v-blank and so on. A value of 0 disables waiting for v-blank
+before swapping the buffers. Default value is 1.</p>
+<p>When setting the swap interval to 0 on desktop platforms and having <code>variable_dt</code> disabled in
+"game.project", the engine will try to respect the set <code>update_frequency</code> value from
+"game.project" in software instead.</p>
+<p>This setting may be overridden by driver settings.</p>
+<p>This message can only be sent to the designated <code>@system</code> socket.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>swap_interval<p>target swap interval.</p></p></div><h3>EXAMPLES</h3><div class='examples'><p><pre>
+msg.post("@system:", "set_vsync", { swap_interval = 1 } )
 </pre></p></div><hr/><h1><a name='//apple_ref/cpp/Command/start_record' class='dashAnchor'></a><a class='entry' name='start_record'>start_record</a></h1><div class='brief'><p>starts video recording</p></div><p><p>Starts video recording of the game frame-buffer to file. Current video format is the
 open vp8 codec in the ivf container. It's possible to upload this format directly
 to YouTube. The VLC video player has native support but with the known issue that
-not the entirely files is played back. It's probably an issue with VLC.
+not the entire file is played back. It's probably an issue with VLC.
 The Miro Video Converter has support for vp8/ivf.</p>
+<p><span class="icon-macos"></span> <span class="icon-windows"></span> <span class="icon-linux"></span> Video recording is only supported on desktop platforms.</p>
 <p><span class="icon-attention"></span> Audio is currently not supported</p>
 <p>This message can only be sent to the designated <code>@system</code> socket.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>file_name<p><span class="type">string</span> file name to write the video to</p></p><p class='param'>frame_period<p><span class="type">number</span> frame period to record, ie write every nth frame. Default value is <code>2</code></p></p><p class='param'>fps<p><span class="type">number</span> frames per second. Playback speed for the video. Default value is <code>30</code>. The fps value doens't affect the recording. It's only meta-data in the written video file.</p></p></div><h3>EXAMPLES</h3><div class='examples'><p><p>Record a video in 30 fps given that the native game fps is 60:</p>
 <div class="codehilite"><pre><span></span><span class="n">msg</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">@system:&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">start_record&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="n">file_name</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="s">test_rec.ivf&quot;</span> <span class="p">}</span> <span class="p">)</span>
@@ -35,6 +47,7 @@ The Miro Video Converter has support for vp8/ivf.</p>
 <p>To write a video in 60 fps given that the native game fps is 60:</p>
 <div class="codehilite"><pre><span></span><span class="n">msg</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">@system:&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">start_record&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="n">file_name</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="s">test_rec.ivf&quot;</span><span class="p">,</span> <span class="n">frame_period</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">fps</span> <span class="o">=</span> <span class="mi">60</span> <span class="p">}</span> <span class="p">)</span>
 </pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Command/stop_record' class='dashAnchor'></a><a class='entry' name='stop_record'>stop_record</a></h1><div class='brief'><p>stop current video recording</p></div><p><p>Stops the currently active video recording.</p>
+<p><span class="icon-macos"></span> <span class="icon-windows"></span> <span class="icon-linux"></span> Video recording is only supported on desktop platforms.</p>
 <p>This message can only be sent to the designated <code>@system</code> socket.</p></p><h3>EXAMPLES</h3><div class='examples'><p><div class="codehilite"><pre><span></span><span class="n">msg</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">@system:&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">stop_record&quot;</span><span class="p">)</span>
 </pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Variable/sys.NETWORK_CONNECTED' class='dashAnchor'></a><a class='entry' name='sys.NETWORK_CONNECTED'>sys.NETWORK_CONNECTED</a></h1><div class='brief'><p>network connected through other, non cellular, connection</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/sys.NETWORK_CONNECTED_CELLULAR' class='dashAnchor'></a><a class='entry' name='sys.NETWORK_CONNECTED_CELLULAR'>sys.NETWORK_CONNECTED_CELLULAR</a></h1><div class='brief'><p>network connected through mobile cellular</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/sys.NETWORK_DISCONNECTED' class='dashAnchor'></a><a class='entry' name='sys.NETWORK_DISCONNECTED'>sys.NETWORK_DISCONNECTED</a></h1><div class='brief'><p>no network connection found</p></div><hr/><h1><a name='//apple_ref/cpp/Function/sys.get_application_info' class='dashAnchor'></a><a class='entry' name='sys.get_application_info'>sys.get_application_info()</a></h1><div class='brief'><p>get application information</p></div><p><p>Returns a table with application information for the requested app.</p>
 <p><span class="icon-ios"></span> On iOS, the <code>app_string</code> is an url scheme for the app that is queried. Your
@@ -88,12 +101,14 @@ on mobile platforms.</p>
 <dd><span class="type">string</span> The current Defold engine version, i.e. "1.2.96"</dd>
 <dt><code>version_sha1</code></dt>
 <dd><span class="type">string</span> The SHA1 for the current engine build, i.e. "0060183cce2e29dbd09c85ece83cbb72068ee050"</dd>
+<dt><code>is_debug</code></dt>
+<dd><span class="type">boolean</span> If the engine is a debug or release version</dd>
 </dl></p></div><h3>EXAMPLES</h3><div class='examples'><p><p>How to retrieve engine information:</p>
 <div class="codehilite"><pre><span></span><span class="c1">-- Update version text label so our testers know what version we&#39;re running</span>
 <span class="kd">local</span> <span class="n">engine_info</span> <span class="o">=</span> <span class="n">sys</span><span class="p">.</span><span class="n">get_engine_info</span><span class="p">()</span>
 <span class="kd">local</span> <span class="n">version_str</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="s">Defold &quot;</span> <span class="o">..</span> <span class="n">engine_info</span><span class="p">.</span><span class="n">version</span> <span class="o">..</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s">&quot;</span> <span class="o">..</span> <span class="n">engine_info</span><span class="p">.</span><span class="n">version_sha1</span>
 <span class="n">gui</span><span class="p">.</span><span class="n">set_text</span><span class="p">(</span><span class="n">gui</span><span class="p">.</span><span class="n">get_node</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">version&quot;</span><span class="p">),</span> <span class="n">version_str</span><span class="p">)</span>
-</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Function/sys.get_ifaddrs' class='dashAnchor'></a><a class='entry' name='sys.get_ifaddrs'>sys.get_ifaddrs()</a></h1><div class='brief'><p>enumerate network interfaces</p></div><p><p>Returns an array of tables with information on network interfaces.</p></p><h3>RETURN</h3><div class='return'><p>ifaddrs - <p><span class="type">table</span> an array of tables. Each table entry contain the followind fields:</p>
+</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Function/sys.get_ifaddrs' class='dashAnchor'></a><a class='entry' name='sys.get_ifaddrs'>sys.get_ifaddrs()</a></h1><div class='brief'><p>enumerate network interfaces</p></div><p><p>Returns an array of tables with information on network interfaces.</p></p><h3>RETURN</h3><div class='return'><p>ifaddrs - <p><span class="type">table</span> an array of tables. Each table entry contain the following fields:</p>
 <dl>
 <dt><code>name</code></dt>
 <dd><span class="type">string</span> Interface name</dd>
@@ -174,9 +189,12 @@ included:</p>
 <span class="k">end</span>
 </pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Function/sys.save' class='dashAnchor'></a><a class='entry' name='sys.save'>sys.save()</a></h1><div class='brief'><p>saves a lua table to a file stored on disk</p></div><p><p>The table can later be loaded by <code>sys.load</code>.
 Use <code>sys.get_save_file</code> to obtain a valid location for the file.
-Internally, this function uses a workspace buffer sized output file sized 128kb. This size reflects the output file size which must not exceed this limit.
-Additionally, the total number of rows that any one table may contain is limited to 65536 (i.e. a 16 bit range). When tables are used to represent arrays, the values of
-keys are permitted to fall within a 32 bit range, supporting sparse arrays, however the limit on the total number of rows remains in effect.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>filename<p><span class="type">string</span> file to write to</p></p><p class='param'>table<p><span class="type">table</span> lua table to save</p></p></div><h3>RETURN</h3><div class='return'><p>success - <p><span class="type">boolean</span> a boolean indicating if the table could be saved or not</p></p></div><h3>EXAMPLES</h3><div class='examples'><p><p>Save data:</p>
+Internally, this function uses a workspace buffer sized output file sized 512kb.
+This size reflects the output file size which must not exceed this limit.
+Additionally, the total number of rows that any one table may contain is limited to 65536
+(i.e. a 16 bit range). When tables are used to represent arrays, the values of
+keys are permitted to fall within a 32 bit range, supporting sparse arrays, however
+the limit on the total number of rows remains in effect.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>filename<p><span class="type">string</span> file to write to</p></p><p class='param'>table<p><span class="type">table</span> lua table to save</p></p></div><h3>RETURN</h3><div class='return'><p>success - <p><span class="type">boolean</span> a boolean indicating if the table could be saved or not</p></p></div><h3>EXAMPLES</h3><div class='examples'><p><p>Save data:</p>
 <div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">my_table</span> <span class="o">=</span> <span class="p">{}</span>
 <span class="nb">table.insert</span><span class="p">(</span><span class="n">my_table</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">my_value&quot;</span><span class="p">)</span>
 <span class="kd">local</span> <span class="n">my_file_path</span> <span class="o">=</span> <span class="n">sys</span><span class="p">.</span><span class="n">get_save_file</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">my_game&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">my_file&quot;</span><span class="p">)</span>

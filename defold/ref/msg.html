@@ -7,7 +7,6 @@ is broadcast to all components in the game object.</p>
 <ul>
 <li><code>"."</code> the current game object</li>
 <li><code>"#"</code> the current component</li>
-<li><code>nil</code> the current component</li>
 </ul>
 <p><span class="icon-attention"></span> There is a 2 kilobyte limit to the message parameter table size.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>receiver<p><span class="type">string | url | hash | nil</span> The receiver must be a string in URL-format, a URL object, a hashed string or <code>nil</code>.</p></p><p class='param'>message_id<p><span class="type">string | hash</span> The id must be a string or a hashed string.</p></p><p class='param'>[message]<p><span class="type">table</span> a lua table with message parameters to send.</p></p></div><h3>EXAMPLES</h3><div class='examples'><p><p>Send "enable" to the sprite "my_sprite" in "my_gameobject":</p>
 <div class="codehilite"><pre><span></span><span class="n">msg</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">my_gameobject#my_sprite&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">enable&quot;</span><span class="p">)</span>
@@ -32,7 +31,6 @@ When addressing instances:</p>
 <ul>
 <li><code>"."</code> the current game object</li>
 <li><code>"#"</code> the current component</li>
-<li><code>nil</code> the current component</li>
 </ul></p><h3>PARAMETERS</h3><div class='params'><p class='param'>urlstring<p><span class="type">string</span> string to create the url from</p></p></div><h3>RETURN</h3><div class='return'><p>url - <p><span class="type">url</span> a new URL</p></p></div><h3>EXAMPLES</h3><div class='examples'><p><div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">my_url</span> <span class="o">=</span> <span class="n">msg</span><span class="p">.</span><span class="n">url</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">#my_component&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">my_url</span><span class="p">)</span> <span class="c1">--&gt; url: [current_collection:/my_instance#my_component]</span>
 
