@@ -55,7 +55,7 @@ and be a part of the simulation. A component is disabled when it receives the <c
 </ul></p><h3>EXAMPLES</h3><div class='examples'><p><p>Enable the component "my_component":</p>
 <div class="codehilite"><pre><span></span><span class="n">msg</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">#my_component&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">enable&quot;</span><span class="p">)</span>
 </pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Property/euler' class='dashAnchor'></a><a class='entry' name='euler'>euler</a></h1><div class='brief'><p><span class="type">vector3</span> game object euler rotation</p></div><p><p>The rotation of the game object expressed in Euler angles.
-Euler angles are specified in degrees.
+Euler angles are specified in degrees in the interval (-360, 360).
 The type of the property is vector3.</p></p><h3>EXAMPLES</h3><div class='examples'><p><p>How to set a game object's rotation with euler angles, either as a vector3 or selecting a specific dimension:</p>
 <div class="codehilite"><pre><span></span><span class="k">function</span> <span class="nf">init</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
   <span class="c1">-- set &quot;player&quot; euler z rotation component to 45 degrees around z.</span>
