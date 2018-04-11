@@ -1,7 +1,7 @@
 {
   "name": "defold-api",
   "main": "./lib/defold-api",
-  "version": "1.2.124",
+  "version": "1.2.125",
   "description": "Defold API Reference inside Atom",
   "keywords": [
     "defold",
