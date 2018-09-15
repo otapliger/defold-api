@@ -80,8 +80,20 @@ in a custom "Info.plist".</p>
    <span class="nt">&lt;string&gt;</span>twitter<span class="nt">&lt;/string&gt;</span>
  <span class="nt">&lt;/array&gt;</span>
 ...
-</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Function/sys.get_config' class='dashAnchor'></a><a class='entry' name='sys.get_config'>sys.get_config()</a></h1><div class='brief'><p>get config value</p></div><p><p>Get config value from the game.project configuration file.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>key<p><span class="type">string</span> key to get value for. The syntax is SECTION.KEY</p></p></div><h3>RETURN</h3><div class='return'><p>value - <p><span class="type">string</span> config value as a string. nil if the config key doesn't exists</p></p></div><h3>EXAMPLES</h3><div class='examples'><p><p>Get display width</p>
+</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Function/sys.get_config' class='dashAnchor'></a><a class='entry' name='sys.get_config'>sys.get_config()</a></h1><div class='brief'><p>get config value</p></div><p><p>Get config value from the game.project configuration file.</p>
+<p>In addition to the project file, configuration values can also be passed
+to the runtime as command line arguments with the <code>--config</code> argument.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>key<p><span class="type">string</span> key to get value for. The syntax is SECTION.KEY</p></p></div><h3>RETURN</h3><div class='return'><p>value - <p><span class="type">string</span> config value as a string. nil if the config key doesn't exists</p></p></div><h3>EXAMPLES</h3><div class='examples'><p><p>Get display width</p>
 <div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">width</span> <span class="o">=</span> <span class="nb">tonumber</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">get_config</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">display.width&quot;</span><span class="p">))</span>
+</pre></div>
+
+
+<p>Start the engine with a bootstrap config override and a custom config value</p>
+<div class="codehilite"><pre><span></span>$ mygame --config<span class="o">=</span>bootstrap.main_collection<span class="o">=</span>/mytest.collectionc --config<span class="o">=</span>mygame.testmode<span class="o">=</span>1
+</pre></div>
+
+
+<p>Set and read a custom config value</p>
+<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">testmode</span> <span class="o">=</span> <span class="nb">tonumber</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">get_config</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">mygame.testmode&quot;</span><span class="p">))</span>
 </pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Function/sys.get_config' class='dashAnchor'></a><a class='entry' name='sys.get_config'>sys.get_config()</a></h1><div class='brief'><p>get config value with default value</p></div><p><p>Get config value from the game.project configuration file with default value</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>key<p><span class="type">string</span> key to get value for. The syntax is SECTION.KEY</p></p><p class='param'>default_value<p><span class="type">string</span> default value to return if the value does not exist</p></p></div><h3>RETURN</h3><div class='return'><p>value - <p><span class="type">string</span> config value as a string. default_value if the config key does not exist</p></p></div><h3>EXAMPLES</h3><div class='examples'><p><p>Get user config value</p>
 <div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">speed</span> <span class="o">=</span> <span class="nb">tonumber</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">get_config</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">my_game.speed&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">10.23&quot;</span><span class="p">))</span>
 </pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Function/sys.get_connectivity' class='dashAnchor'></a><a class='entry' name='sys.get_connectivity'>sys.get_connectivity()</a></h1><div class='brief'><p>get current network connectivity status</p></div><p><p><span class="icon-ios"></span> <span class="icon-android"></span> Returns the current network connectivity status
@@ -151,7 +163,7 @@ on mobile platforms.</p>
 <dt><code>gmt_offset</code></dt>
 <dd><span class="type">number</span> The current offset from GMT (Greenwich Mean Time), in minutes.</dd>
 <dt><code>device_ident</code></dt>
-<dd><span class="type">string</span> <span class="icon-ios"></span> "identifierForVendor" on iOS. <span class="icon-andriod"></span> "android_id" on Android.</dd>
+<dd><span class="type">string</span> <span class="icon-ios"></span> "identifierForVendor" on iOS. <span class="icon-android"></span> "android_id" on Android.</dd>
 <dt><code>ad_ident</code></dt>
 <dd><span class="type">string</span> <span class="icon-ios"></span> "advertisingIdentifier" on iOS. <span class="icon-android"></span> advertising ID provided by Google Play on Android.</dd>
 <dt><code>ad_tracking_enabled</code></dt>

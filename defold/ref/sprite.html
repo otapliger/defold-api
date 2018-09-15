@@ -40,6 +40,39 @@ The type of the property is vector3.</p></p><h3>EXAMPLES</h3><div class='example
   <span class="c1">-- do something useful</span>
   <span class="nb">assert</span><span class="p">(</span><span class="n">size</span><span class="p">.</span><span class="n">x</span> <span class="o">==</span> <span class="n">sx</span><span class="p">)</span>
 <span class="k">end</span>
+</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Function/sprite.play_flipbook' class='dashAnchor'></a><a class='entry' name='sprite.play_flipbook'>sprite.play_flipbook()</a></h1><div class='brief'><p>Play an animation on a sprite component</p></div><p><p>Play an animation on a sprite component from its tile set</p>
+<p>An optional completion callback function can be provided that will be called when
+the animation has completed playing. If no function is provided,
+a <a href="#animation_done">animation_done</a> message is sent to the script that started the animation.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>url<p><span class="type">string | hash | url</span> the sprite that should play the animation</p></p><p class='param'>id<p>hash name hash of the animation to play</p></p><p class='param'>[complete_function]<p><span class="type">function(self, message_id, message, sender))</span> function to call when the animation has completed.</p>
+<dl>
+<dt><code>self</code></dt>
+<dd><span class="type">object</span> The current object.</dd>
+<dt><code>message_id</code></dt>
+<dd><span class="type">hash</span> The name of the completion message, <code>"animation_done"</code>.</dd>
+<dt><code>message</code></dt>
+<dd><span class="type">table</span> Information about the completion:</dd>
+</dl>
+<ul>
+<li><span class="type">number</span> <code>current_tile</code> - the current tile of the sprite.</li>
+<li><span class="type">hash</span> <code>id</code> - id of the animation that was completed.</li>
+</ul>
+<dl>
+<dt><code>sender</code></dt>
+<dd><span class="type">url</span> The invoker of the callback: the sprite component.</dd>
+</dl></p></div><h3>EXAMPLES</h3><div class='examples'><p><p>The following examples assumes that the model has id "sprite".</p>
+<p>How to play the "jump" animation followed by the "run" animation:</p>
+<p>local function anim_done(self, message_id, message, sender)
+  if message_id == hash("model_animation_done") then
+    if message.id == hash("jump") then
+      -- open animation done, chain with "run"
+      sprite.play_flipbook(url, "run")
+    end
+  end
+end</p>
+<div class="codehilite"><pre><span></span><span class="k">function</span> <span class="nf">init</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
+  <span class="kd">local</span> <span class="n">url</span> <span class="o">=</span> <span class="n">msg</span><span class="p">.</span><span class="n">url</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">#sprite&quot;</span><span class="p">)</span>
+  <span class="n">sprite</span><span class="p">.</span><span class="n">play_flipbook</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">jump&quot;</span><span class="p">,</span> <span class="n">anim_done</span><span class="p">)</span>
+<span class="k">end</span>
 </pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Function/sprite.reset_constant' class='dashAnchor'></a><a class='entry' name='sprite.reset_constant'>sprite.reset_constant()</a></h1><div class='brief'><p>reset a shader constant for a sprite</p></div><p><p>Resets a shader constant for a sprite component.
 The constant must be defined in the material assigned to the sprite.
 Resetting a constant through this function implies that the value defined in the material will be used.

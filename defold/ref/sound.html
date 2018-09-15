@@ -72,6 +72,24 @@ this function always return <code>false</code>.</p></p><h3>RETURN</h3><div class
 <div class="codehilite"><pre><span></span><span class="k">if</span> <span class="n">sound</span><span class="p">.</span><span class="n">is_phone_call_active</span><span class="p">()</span> <span class="k">then</span>
     <span class="c1">-- do something sensible.</span>
 <span class="k">end</span>
+</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Function/sound.play' class='dashAnchor'></a><a class='entry' name='sound.play'>sound.play()</a></h1><div class='brief'><p>plays a sound</p></div><p><p>Make the sound component play its sound. Multiple voices is supported. The limit is set to 32 voices per sound component.</p>
+<p><span class="icon-attention"></span> Note that gain is in linear scale, between 0 and 1.
+To get the dB value from the gain, use the formula <code>20 * log(gain)</code>.
+Inversely, to find the linear value from a dB value, use the formula
+<code>10<sup>db/20</sup></code>.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>url<p><span class="type">string | hash | url</span> the sound that should play</p></p><p class='param'>[play_properties]<dl>
+<dt><span class="type">table</span> optional table with properties:</dt>
+<dt><code>delay</code></dt>
+<dd><span class="type">number</span> delay in seconds before the sound starts playing, default is 0.</dd>
+<dt><code>gain</code></dt>
+<dd><span class="type">number</span> sound gain between 0 and 1, default is 1. The final gain of the sound will be a combination of this gain, the group gain and the master gain.</dd>
+</dl></p></div><h3>EXAMPLES</h3><div class='examples'><p><p>Assuming the script belongs to an instance with a sound-component with id "sound", this will make the component play its sound after 1 second:</p>
+<div class="codehilite"><pre><span></span><span class="n">sound</span><span class="p">.</span><span class="n">play</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">#sound&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="n">delay</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">gain</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="p">}</span> <span class="p">)</span>
+</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Function/sound.set_gain' class='dashAnchor'></a><a class='entry' name='sound.set_gain'>sound.set_gain()</a></h1><div class='brief'><p>set sound gain</p></div><p><p>Set gain on all active playing voices of a sound.</p>
+<p><span class="icon-attention"></span> Note that gain is in linear scale, between 0 and 1.
+To get the dB value from the gain, use the formula <code>20 * log(gain)</code>.
+Inversely, to find the linear value from a dB value, use the formula
+<code>10<sup>db/20</sup></code>.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>url<p><span class="type">string | hash | url</span> the sound to set the gain of</p></p><p class='param'>[gain]<p><span class="type">number</span> sound gain between 0 and 1. The final gain of the sound will be a combination of this gain, the group gain and the master gain.</p></p></div><h3>EXAMPLES</h3><div class='examples'><p><p>Assuming the script belongs to an instance with a sound-component with id "sound", this will set the gain to 0.5</p>
+<div class="codehilite"><pre><span></span><span class="n">sound</span><span class="p">.</span><span class="n">set_gain</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">#sound&quot;</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
 </pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Function/sound.set_group_gain' class='dashAnchor'></a><a class='entry' name='sound.set_group_gain'>sound.set_group_gain()</a></h1><div class='brief'><p>set mixer group gain</p></div><p><p>Set mixer group gain</p>
 <p><span class="icon-attention"></span> Note that gain is in linear scale, between 0 and 1.
 To get the dB value from the gain, use the formula <code>20 * log(gain)</code>.
@@ -80,6 +98,8 @@ Inversely, to find the linear value from a dB value, use the formula
 <div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">gain_db</span> <span class="o">=</span> <span class="o">-</span><span class="mi">4</span>
 <span class="kd">local</span> <span class="n">gain</span> <span class="o">=</span> <span class="mi">10</span><span class="o">^</span><span class="n">gain_db</span><span class="o">/</span><span class="mi">20</span> <span class="c1">-- 0.63095734448019</span>
 <span class="n">sound</span><span class="p">.</span><span class="n">set_group_gain</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">soundfx&quot;</span><span class="p">,</span> <span class="n">gain</span><span class="p">)</span>
+</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Function/sound.stop' class='dashAnchor'></a><a class='entry' name='sound.stop'>sound.stop()</a></h1><div class='brief'><p>stop a playing a sound(s)</p></div><p><p>Stop playing all active voices</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>url<p><span class="type">string | hash | url</span> the sound that should stop</p></p></div><h3>EXAMPLES</h3><div class='examples'><p><p>Assuming the script belongs to an instance with a sound-component with id "sound", this will make the component stop all playing voices:</p>
+<div class="codehilite"><pre><span></span><span class="n">sound</span><span class="p">.</span><span class="n">stop</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">#sound&quot;</span><span class="p">)</span>
 </pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Command/stop_sound' class='dashAnchor'></a><a class='entry' name='stop_sound'>stop_sound</a></h1><div class='brief'><p>stop a playing a sound(s)</p></div><p><p>Post this message to a sound-component to make it stop playing all active voices</p></p><h3>EXAMPLES</h3><div class='examples'><p><p>Assuming the script belongs to an instance with a sound-component with id "sound", this will make the component stop all playing voices:</p>
 <div class="codehilite"><pre><span></span><span class="n">msg</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">#sound&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">stop_sound&quot;</span><span class="p">)</span>
 </pre></div></p></div><hr/></body></html>

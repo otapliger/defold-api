@@ -1,0 +1,20 @@
+<html><head><link rel='stylesheet' type='text/css' href='../defold.css'></head><body><div class='nav'><a class='chevron' href='../index.html'><img src='../svg/chevron-left.svg' alt='Home'></a></div><h1>Timer</h1>
+<p><p>Timers allow you to set a delay and a callback to be called when the timer completes.</p>
+<p>The timers created with this API are updated with the collection timer where they
+are created. If you pause or speed up the collection (using <code>set_time_step</code>) it will
+also affect the new timer.</p></p>
+<h1><a name='//apple_ref/cpp/Variable/timer.INVALID_TIMER_HANDLE' class='dashAnchor'></a><a class='entry' name='timer.INVALID_TIMER_HANDLE'>timer.INVALID_TIMER_HANDLE</a></h1><div class='brief'><p>Indicates an invalid timer handle</p></div><hr/><h1><a name='//apple_ref/cpp/Function/timer.cancel' class='dashAnchor'></a><a class='entry' name='timer.cancel'>timer.cancel()</a></h1><div class='brief'><p>cancel a timer</p></div><p><p>You may cancel a timer from inside a timer callback.
+Cancelling a timer that is already executed or cancelled is safe.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>handle<p>the timer handle returned by timer.delay()</p></p></div><h3>RETURN</h3><div class='return'><p>true - <p>if the timer was active, false if the timer is already cancelled / complete</p></p></div><hr/><h1><a name='//apple_ref/cpp/Function/timer.delay' class='dashAnchor'></a><a class='entry' name='timer.delay'>timer.delay()</a></h1><div class='brief'><p>create a timer</p></div><p><p>Adds a timer and returns a unique handle</p>
+<p>You may create more timers from inside a timer callback.</p>
+<p>Using a delay of 0 will result in a timer that triggers at the next frame just before
+script update functions.</p>
+<p>If you want a timer that triggers on each frame, set delay to 0.0f and repeat to true.</p>
+<p>Timers created within a script will automatically die when the script is deleted.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>delay<p>time interval in seconds</p></p><p class='param'>repeat<p>true = repeat timer until cancel, false = one-shot timer</p></p><p class='param'>callback<p><span class="type">function(self, handle, time_elapsed)</span> timer callback function</p>
+<dl>
+<dt><code>self</code></dt>
+<dd><span class="type">object</span> The current object</dd>
+<dt><code>handle</code></dt>
+<dd><span class="type">number</span> The handle of the timer</dd>
+<dt><code>time_elapsed</code></dt>
+<dd><span class="type">number</span> The elapsed time - on first trigger it is time since timer.delay call, otherwise time since last trigger</dd>
+</dl></p></div><h3>RETURN</h3><div class='return'><p>handle - <p>identifier for the create timer, returns timer.INVALID_TIMER_HANDLE if the timer can not be created</p></p></div><hr/></body></html>
