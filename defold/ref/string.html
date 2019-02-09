@@ -3,7 +3,129 @@
 <p>From <a href="https://www.lua.org/manual/5.1/">Lua 5.1 Reference Manual</a>
 by Roberto Ierusalimschy, Luiz Henrique de Figueiredo, Waldemar Celes.</p>
 <p>Copyright &copy; 2006-2012 Lua.org, PUC-Rio.</p>
-<p>Freely available under the terms of the <a href="https://www.lua.org/license.html">Lua license</a>.</p></p>
+<p>Freely available under the terms of the <a href="https://www.lua.org/license.html">Lua license</a>.</p>
+<h3>Patterns</h3>
+<p><em>Character Class:</em></p>
+<p>A character class is used to represent a set of characters.
+The following combinations are allowed in describing a character class:</p>
+<dl>
+<dt>x</dt>
+<dd>(where x is not one of the <em>magic characters</em> <code>^$()%.[]*+-?</code>)
+  represents the character <em>x</em> itself.</dd>
+<dt><code>.</code></dt>
+<dd>(a dot) represents all characters.</dd>
+<dt><code>%a</code></dt>
+<dd>represents all letters.</dd>
+<dt><code>%c</code></dt>
+<dd>represents all control characters.</dd>
+<dt><code>%d</code></dt>
+<dd>represents all digits.</dd>
+<dt><code>%l</code></dt>
+<dd>represents all lowercase letters.</dd>
+<dt><code>%p</code></dt>
+<dd>represents all punctuation characters.</dd>
+<dt><code>%s</code></dt>
+<dd>represents all space characters.</dd>
+<dt><code>%u</code></dt>
+<dd>represents all uppercase letters.</dd>
+<dt><code>%w</code></dt>
+<dd>represents all alphanumeric characters.</dd>
+<dt><code>%x</code></dt>
+<dd>represents all hexadecimal digits.</dd>
+<dt><code>%z</code></dt>
+<dd>represents the character with representation 0.</dd>
+<dt><code>%x</code></dt>
+<dd>(where x is any non-alphanumeric character) represents the character x.
+  This is the standard way to escape the magic characters.
+  Any punctuation character (even the non magic) can be preceded by a '%'
+  when used to represent itself in a pattern.</dd>
+<dt><code>[set]</code></dt>
+<dd>represents the class which is the union of all characters in set.
+  A range of characters can be specified by separating the end characters
+  of the range with a '-'.
+  All classes <code>%</code><em>x</em> described above can also be used as components in set.
+  All other characters in set represent themselves.
+  For example, <code>[%w_]</code> (or <code>[_%w]</code>) represents all alphanumeric characters
+  plus the underscore, <code>[0-7]</code> represents the octal digits,
+  and <code>[0-7%l%-]</code> represents the octal digits plus the lowercase letters
+  plus the '-' character.</dd>
+</dl>
+<p>The interaction between ranges and classes is not defined.
+  Therefore, patterns like <code>[%a-z]</code> or <code>[a-%%]</code> have no meaning.</p>
+<dl>
+<dt><code>[^set]</code></dt>
+<dd>represents the complement of set,
+  where set is interpreted as above.</dd>
+</dl>
+<p>For all classes represented by single letters (<code>%a</code>, <code>%c</code>, etc.),
+the corresponding uppercase letter represents the complement of the class.
+For instance, <code>%S</code> represents all non-space characters.</p>
+<p>The definitions of letter, space, and other character groups
+depend on the current locale. In particular, the class <code>[a-z]</code> may not be
+equivalent to <code>%l</code>.</p>
+<p><em>Pattern Item:</em></p>
+<p>A pattern item can be</p>
+<ul>
+<li>
+<p>a single character class, which matches any single character in the class;</p>
+</li>
+<li>
+<p>a single character class followed by '*',
+  which matches 0 or more repetitions of characters in the class.
+  These repetition items will always match the longest possible sequence;</p>
+</li>
+<li>
+<p>a single character class followed by '+',
+  which matches 1 or more repetitions of characters in the class.
+  These repetition items will always match the longest possible sequence;</p>
+</li>
+<li>
+<p>a single character class followed by '-',
+  which also matches 0 or more repetitions of characters in the class.
+  Unlike '*', these repetition items will always match the <em>shortest</em>
+  possible sequence;</p>
+</li>
+<li>
+<p>a single character class followed by '?',
+  which matches 0 or 1 occurrence of a character in the class;</p>
+</li>
+<li>
+<p><code>%n</code>, for n between 1 and 9; such item matches a substring equal to the
+  n-th captured string (see below);</p>
+</li>
+<li>
+<p><code>%bxy</code>, where x and y are two distinct characters;
+  such item matches strings that start with x, end with y,
+  and where the x and y are <em>balanced</em>.
+  This means that, if one reads the string from left to right,
+  counting +1 for an x and -1 for a y,
+  the ending y is the first y where the count reaches 0.
+  For instance, the item <code>%b()</code> matches expressions with balanced parentheses.</p>
+</li>
+</ul>
+<p><em>Pattern:</em></p>
+<p>A pattern is a sequence of pattern items.
+A '^' at the beginning of a pattern anchors the match at the
+beginning of the subject string.
+A '$' at the end of a pattern anchors the match at the
+end of the subject string.
+At other positions, '^' and '$' have no special meaning and represent themselves.</p>
+<p><em>Captures:</em></p>
+<p>A pattern can contain sub-patterns enclosed in parentheses;
+they describe captures.
+When a match succeeds, the substrings of the subject string
+that match captures are stored (<em>captured</em>) for future use.
+Captures are numbered according to their left parentheses.
+For instance, in the pattern <code>"(a*(.)%w(%s*))"</code>,
+the part of the string matching <code>"a*(.)%w(%s*)"</code> is
+stored as the first capture (and therefore has number 1);
+the character matching "." is captured with number 2,
+and the part matching "%s*" has number 3.</p>
+<p>As a special case, the empty capture <code>()</code> captures
+the current string position (a number).
+For instance, if we apply the pattern <code>"()aa()"</code> on the
+string <code>"flaaap"</code>, there will be two captures: 3 and 5.</p>
+<p>A pattern cannot contain embedded zeros.  Use <code>%z</code> instead.</p></p>
 <h1><a name='//apple_ref/cpp/Function/string.byte' class='dashAnchor'></a><a class='entry' name='string.byte'>string.byte()</a></h1><div class='brief'><p>converts a character into its ASCII (decimal) equivalent</p></div><p><p>Returns the internal numerical codes of the characters <code>s[i]</code>,
 <code>s[i+1]</code>, ..., <code>s[j]</code>.
 The default value for i is 1;
@@ -166,137 +288,4 @@ and <code>string.sub(s, -i)</code> returns a suffix of s
 with length i.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>s</p><p class='param'>i</p><p class='param'>[j]</p></div><hr/><h1><a name='//apple_ref/cpp/Function/string.upper' class='dashAnchor'></a><a class='entry' name='string.upper'>string.upper()</a></h1><div class='brief'><p>converts a string to upper-case</p></div><p><p>Receives a string and returns a copy of this string with all
 lowercase letters changed to uppercase.
 All other characters are left unchanged.
-The definition of what a lowercase letter is depends on the current locale.</p>
-<p>Patterns</p>
-<p>Character Class:
-A character class is used to represent a set of characters.
-The following combinations are allowed in describing a character class:</p>
-<dl>
-<dt>x</dt>
-<dd>(where x is not one of the <em>magic characters</em>
-<code>^$()%.[]*+-?</code>)
-represents the character <em>x</em> itself.</dd>
-<dt><code>.</code></dt>
-<dd>(a dot) represents all characters.</dd>
-<dt><code>%a</code></dt>
-<dd>represents all letters.</dd>
-<dt><code>%c</code></dt>
-<dd>represents all control characters.</dd>
-<dt><code>%d</code></dt>
-<dd>represents all digits.</dd>
-<dt><code>%l</code></dt>
-<dd>represents all lowercase letters.</dd>
-<dt><code>%p</code></dt>
-<dd>represents all punctuation characters.</dd>
-<dt><code>%s</code></dt>
-<dd>represents all space characters.</dd>
-<dt><code>%u</code></dt>
-<dd>represents all uppercase letters.</dd>
-<dt><code>%w</code></dt>
-<dd>represents all alphanumeric characters.</dd>
-<dt><code>%x</code></dt>
-<dd>represents all hexadecimal digits.</dd>
-<dt><code>%z</code></dt>
-<dd>represents the character with representation 0.</dd>
-<dt><code>%x</code></dt>
-<dd>(where x is any non-alphanumeric character)
-represents the character x.
-This is the standard way to escape the magic characters.
-Any punctuation character (even the non magic)
-can be preceded by a '%'
-when used to represent itself in a pattern.</dd>
-<dt><code>[set]</code></dt>
-<dd>represents the class which is the union of all
-characters in set.
-A range of characters can be specified by
-separating the end characters of the range with a '-'.
-All classes <code>%</code><em>x</em> described above can also be used as
-components in set.
-All other characters in set represent themselves.
-For example, <code>[%w_]</code> (or <code>[_%w]</code>)
-represents all alphanumeric characters plus the underscore,
-<code>[0-7]</code> represents the octal digits,
-and <code>[0-7%l%-]</code> represents the octal digits plus
-the lowercase letters plus the '-' character.</dd>
-</dl>
-<p>The interaction between ranges and classes is not defined.
-Therefore, patterns like <code>[%a-z]</code> or <code>[a-%%]</code>
-have no meaning.</p>
-<dl>
-<dt><code>[^set]</code></dt>
-<dd>represents the complement of set,
-where set is interpreted as above.</dd>
-</dl>
-<p>For all classes represented by single letters (<code>%a</code>, <code>%c</code>, etc.),
-the corresponding uppercase letter represents the complement of the class.
-For instance, <code>%S</code> represents all non-space characters.</p>
-<p>The definitions of letter, space, and other character groups
-depend on the current locale.
-In particular, the class <code>[a-z]</code> may not be equivalent to <code>%l</code>.</p>
-<p>Pattern Item:
-A pattern item can be</p>
-<ul>
-<li>
-<p>a single character class,
-which matches any single character in the class;</p>
-</li>
-<li>
-<p>a single character class followed by '*',
-which matches 0 or more repetitions of characters in the class.
-These repetition items will always match the longest possible sequence;</p>
-</li>
-<li>
-<p>a single character class followed by '+',
-which matches 1 or more repetitions of characters in the class.
-These repetition items will always match the longest possible sequence;</p>
-</li>
-<li>
-<p>a single character class followed by '-',
-which also matches 0 or more repetitions of characters in the class.
-Unlike '*',
-these repetition items will always match the <em>shortest</em> possible sequence;</p>
-</li>
-<li>
-<p>a single character class followed by '?',
-which matches 0 or 1 occurrence of a character in the class;</p>
-</li>
-<li>
-<p><code>%n</code>, for n between 1 and 9;
-such item matches a substring equal to the n-th captured string
-(see below);</p>
-</li>
-<li>
-<p><code>%bxy</code>, where x and y are two distinct characters;
-such item matches strings that start with x, end with y,
-and where the x and y are <em>balanced</em>.
-This means that, if one reads the string from left to right,
-counting +1 for an x and -1 for a y,
-the ending y is the first y where the count reaches 0.
-For instance, the item <code>%b()</code> matches expressions with
-balanced parentheses.</p>
-</li>
-</ul>
-<p>Pattern:
-A pattern is a sequence of pattern items.
-A '^' at the beginning of a pattern anchors the match at the
-beginning of the subject string.
-A '$' at the end of a pattern anchors the match at the
-end of the subject string.
-At other positions,
-'^' and '$' have no special meaning and represent themselves.</p>
-<p>Captures:
-A pattern can contain sub-patterns enclosed in parentheses;
-they describe captures.
-When a match succeeds, the substrings of the subject string
-that match captures are stored (<em>captured</em>) for future use.
-Captures are numbered according to their left parentheses.
-For instance, in the pattern <code>"(a*(.)%w(%s*))"</code>,
-the part of the string matching <code>"a*(.)%w(%s*)"</code> is
-stored as the first capture (and therefore has number 1);
-the character matching "." is captured with number 2,
-and the part matching "%s*" has number 3.</p>
-<p>As a special case, the empty capture <code>()</code> captures
-the current string position (a number).
-For instance, if we apply the pattern <code>"()aa()"</code> on the
-string <code>"flaaap"</code>, there will be two captures: 3 and 5.</p>
-<p>A pattern cannot contain embedded zeros.  Use <code>%z</code> instead.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>s</p></div><hr/></body></html>
+The definition of what a lowercase letter is depends on the current locale.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>s</p></div><hr/></body></html>

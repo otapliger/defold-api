@@ -17,8 +17,11 @@ project root.</p>
 <div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">arg1</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="s">--config=bootstrap.main_collection=/my.collectionc&#39;</span>
 <span class="kd">local</span> <span class="n">arg2</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="s">build/default/game.projectc&#39;</span>
 <span class="n">msg</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">@system:&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">reboot&quot;</span><span class="p">,</span> <span class="p">{</span><span class="n">arg1</span> <span class="o">=</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span> <span class="o">=</span> <span class="n">arg2</span><span class="p">})</span>
-</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Command/set_update_frequency' class='dashAnchor'></a><a class='entry' name='set_update_frequency'>set_update_frequency</a></h1><div class='brief'><p>set update frequency</p></div><p><p>Set game update-frequency. This option is equivalent to <code>display.update_frequency</code> in
-the "game.project" settings but set in run-time.</p>
+</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Command/set_update_frequency' class='dashAnchor'></a><a class='entry' name='set_update_frequency'>set_update_frequency</a></h1><div class='brief'><p>set update frequency</p></div><p><p>Set game update-frequency (frame cap). This option is equivalent to <code>display.update_frequency</code> in
+the "game.project" settings but set in run-time. If <code>Vsync</code> checked in "game.project", the rate will
+be clamped to a swap interval that matches any detected main monitor refresh rate. If <code>Vsync</code> is
+unchecked the engine will try to respect the rate in software using timers. There is no
+guarantee that the frame cap will be achieved depending on platform specifics and hardware settings.</p>
 <p>This message can only be sent to the designated <code>@system</code> socket.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>frequency<p>target frequency. 60 for 60 fps</p></p></div><h3>EXAMPLES</h3><div class='examples'><p><pre>
 msg.post("@system:", "set_update_frequency", { frequency = 60 } )
 </pre></p></div><hr/><h1><a name='//apple_ref/cpp/Command/set_vsync' class='dashAnchor'></a><a class='entry' name='set_vsync'>set_vsync</a></h1><div class='brief'><p>set vsync swap interval</p></div><p><p>Set the vsync swap interval. The interval with which to swap the front and back buffers
@@ -26,8 +29,8 @@ in sync with vertical blanks (v-blank), the hardware event where the screen imag
 with data from the front buffer. A value of 1 swaps the buffers at every v-blank, a value of
 2 swaps the buffers every other v-blank and so on. A value of 0 disables waiting for v-blank
 before swapping the buffers. Default value is 1.</p>
-<p>When setting the swap interval to 0 on desktop platforms and having <code>variable_dt</code> disabled in
-"game.project", the engine will try to respect the set <code>update_frequency</code> value from
+<p>When setting the swap interval to 0 and having <code>vsync</code> disabled in
+"game.project", the engine will try to respect the set frame cap value from
 "game.project" in software instead.</p>
 <p>This setting may be overridden by driver settings.</p>
 <p>This message can only be sent to the designated <code>@system</code> socket.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>swap_interval<p>target swap interval.</p></p></div><h3>EXAMPLES</h3><div class='examples'><p><pre>
