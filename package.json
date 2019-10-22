@@ -16,7 +16,7 @@
   "dependencies": {
     "live-server": "^1.2.1",
     "loophole": "^1.1.0",
-    "open": "0.0.5"
+    "open": "6.0.0"
   },
   "consumedServices": {
     "tool-bar": {
