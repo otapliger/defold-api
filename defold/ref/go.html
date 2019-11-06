@@ -85,7 +85,7 @@ any passed <code>complete_function</code> will be ignored and never called upon 
 <li><code>go.PLAYBACK_LOOP_FORWARD</code></li>
 <li><code>go.PLAYBACK_LOOP_BACKWARD</code></li>
 <li><code>go.PLAYBACK_LOOP_PINGPONG</code></li>
-</ul></p><p class='param'>to<p><span class="type">number | vector3 | vector4 | quaternion</span> target property value</p></p><p class='param'>easing<p><span class="type">constant | vector</span> easing to use during animation. Either specify a constant, see the <a href="http://www.defold.com/manuals/animation">animation guide</a> for a complete list, or a vmath.vector with a curve</p></p><p class='param'>duration<p><span class="type">number</span> duration of the animation in seconds</p></p><p class='param'>[delay]<p><span class="type">number</span> delay before the animation starts in seconds</p></p><p class='param'>[complete_function]<p><span class="type">function(self, url, property)</span> optional function to call when the animation has completed</p>
+</ul></p><p class='param'>to<p><span class="type">number | vector3 | vector4 | quaternion</span> target property value</p></p><p class='param'>easing<p><span class="type">constant | vector</span> easing to use during animation. Either specify a constant, see the <a href="http://www.defold.com/manuals/animation#_easing">animation guide</a> for a complete list, or a vmath.vector with a curve</p></p><p class='param'>duration<p><span class="type">number</span> duration of the animation in seconds</p></p><p class='param'>[delay]<p><span class="type">number</span> delay before the animation starts in seconds</p></p><p class='param'>[complete_function]<p><span class="type">function(self, url, property)</span> optional function to call when the animation has completed</p>
 <dl>
 <dt><code>self</code></dt>
 <dd>
@@ -127,7 +127,9 @@ any passed <code>complete_function</code> will be ignored and never called upon 
 </pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Function/go.delete' class='dashAnchor'></a><a class='entry' name='go.delete'>go.delete()</a></h1><div class='brief'><p>delete one or more game object instances</p></div><p><p>Delete one or more game objects identified by id. Deletion is asynchronous meaning that
 the game object(s) are scheduled for deletion which will happen at the end of the current
 frame. Note that game objects scheduled for deletion will be counted against
-<code>max_instances</code> in "game.project" until they are actually removed.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>[id]<p><span class="type">string | hash | url | table</span> optional id or table of id's of the instance(s) to delete, the instance of the calling script is deleted by default</p></p><p class='param'>[recursive]<p><span class="type">boolean</span> optional boolean, set to true to recursively delete child hiearchy in child to parent order</p></p></div><h3>EXAMPLES</h3><div class='examples'><p><p>This example demonstrates how to delete game objects</p>
+<code>max_instances</code> in "game.project" until they are actually removed.</p>
+<p><span class="icon-attention"></span> Deleting a game object containing a particle FX component emitting particles will not immediately stop the particle FX from emitting particles. You need to manually stop the particle FX using <code>particlefx.stop()</code>.
+<span class="icon-attention"></span> Deleting a game object containing a sound component that is playing will not immediately stop the sound from playing. You need to manually stop the sound using <code>sound.stop()</code>.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>[id]<p><span class="type">string | hash | url | table</span> optional id or table of id's of the instance(s) to delete, the instance of the calling script is deleted by default</p></p><p class='param'>[recursive]<p><span class="type">boolean</span> optional boolean, set to true to recursively delete child hiearchy in child to parent order</p></p></div><h3>EXAMPLES</h3><div class='examples'><p><p>This example demonstrates how to delete game objects</p>
 <div class="codehilite"><pre><span></span><span class="c1">-- Delete the script game object</span>
 <span class="n">go</span><span class="p">.</span><span class="n">delete</span><span class="p">()</span>
 <span class="c1">-- Delete a game object with the id &quot;my_game_object&quot;.</span>
@@ -227,6 +229,13 @@ For most cases it should be fine to use <a href="http://www.defold.com/ref/go#go
 
 <p>Get the world scale of another game object instance with id "x":</p>
 <div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">s</span> <span class="o">=</span> <span class="n">go</span><span class="p">.</span><span class="n">get_world_scale_uniform</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">x&quot;</span><span class="p">)</span>
+</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Function/go.get_world_transform' class='dashAnchor'></a><a class='entry' name='go.get_world_transform'>go.get_world_transform()</a></h1><div class='brief'><p>gets the game object instance world transform matrix</p></div><h3>PARAMETERS</h3><div class='params'><p class='param'>[id]<p><span class="type">string | hash | url</span> optional id of the game object instance to get the world transform for, by default the instance of the calling script</p></p></div><h3>RETURN</h3><div class='return'><p>transform - <p><span class="type">matrix4</span> instance world transform</p></p></div><h3>EXAMPLES</h3><div class='examples'><p><p>Get the world transform of the game object instance the script is attached to:</p>
+<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">m</span> <span class="o">=</span> <span class="n">go</span><span class="p">.</span><span class="n">get_world_transform</span><span class="p">()</span>
+</pre></div>
+
+
+<p>Get the world transform of another game object instance with id "x":</p>
+<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">m</span> <span class="o">=</span> <span class="n">go</span><span class="p">.</span><span class="n">get_world_transform</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">x&quot;</span><span class="p">)</span>
 </pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Function/go.property' class='dashAnchor'></a><a class='entry' name='go.property'>go.property()</a></h1><div class='brief'><p>define a property for the script</p></div><p><p>This function defines a property which can then be used in the script through the self-reference.
 The properties defined this way are automatically exposed in the editor in game objects and collections which use the script.
 Note that you can only use this function outside any callback-functions like init and update.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>name<p><span class="type">string</span> the id of the property</p></p><p class='param'>value<p><span class="type">number | hash | url | vector3 | vector4 | quaternion</span> default value of the property. In the case of a url, only the empty constructor msg.url() is allowed</p></p></div><h3>EXAMPLES</h3><div class='examples'><p><p>This example demonstrates how to define a property called "health" in a script.
@@ -251,6 +260,19 @@ The health is decreased whenever someone sends a message called "take_damage" to
 
 <p>Then in the calling script (assumed to belong to the same game object, but does not have to):</p>
 <div class="codehilite"><pre><span></span><span class="n">go</span><span class="p">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">#player&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">speed&quot;</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Function/go.set_parent' class='dashAnchor'></a><a class='entry' name='go.set_parent'>go.set_parent()</a></h1><div class='brief'><p>sets the parent for a specific game object instance</p></div><p><p>Sets the parent for a game object instance. This means that the instance will exist in the geometrical space of its parent,
+like a basic transformation hierarchy or scene graph. If no parent is specified, the instance will be detached from any parent and exist in world space.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>[id]<p><span class="type">string | hash | url</span> optional id of the game object instance to set parent for, defaults to the instance containing the calling script</p></p><p class='param'>[parent_id]<p><span class="type">string | hash | url</span> optional id of the new parent game object, defaults to detaching game object from its parent</p></p><p class='param'>[keep_world_transform]<p><span class="type">boolean</span> optional boolean, set to true to maintain the world transform when changing spaces. Defaults to false.</p></p></div><h3>EXAMPLES</h3><div class='examples'><p><p>Attach myself to another instance "my_parent":</p>
+<div class="codehilite"><pre><span></span><span class="n">go</span><span class="p">.</span><span class="n">set_parent</span><span class="p">(</span><span class="n">go</span><span class="p">.</span><span class="n">get_id</span><span class="p">(),</span><span class="n">go</span><span class="p">.</span><span class="n">get_id</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">my_parent&quot;</span><span class="p">))</span>
+</pre></div>
+
+
+<p>Attach an instance "my_instance" to another instance "my_parent":</p>
+<div class="codehilite"><pre><span></span><span class="n">go</span><span class="p">.</span><span class="n">set_parent</span><span class="p">(</span><span class="n">go</span><span class="p">.</span><span class="n">get_id</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">my_instance&quot;</span><span class="p">),</span><span class="n">go</span><span class="p">.</span><span class="n">get_id</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">my_parent&quot;</span><span class="p">))</span>
+</pre></div>
+
+
+<p>Detach an instance "my_instance" from its parent (if any):</p>
+<div class="codehilite"><pre><span></span><span class="n">go</span><span class="p">.</span><span class="n">set_parent</span><span class="p">(</span><span class="n">go</span><span class="p">.</span><span class="n">get_id</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">my_instance&quot;</span><span class="p">))</span>
 </pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Function/go.set_position' class='dashAnchor'></a><a class='entry' name='go.set_position'>go.set_position()</a></h1><div class='brief'><p>sets the position of the game object instance</p></div><p><p>The position is relative to the parent (if any). The global world position cannot be manually set.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>position<p><span class="type">vector3</span> position to set</p></p><p class='param'>[id]<p><span class="type">string | hash | url</span> optional id of the game object instance to set the position for, by default the instance of the calling script</p></p></div><h3>EXAMPLES</h3><div class='examples'><p><p>Set the position of the game object instance the script is attached to:</p>
 <div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">p</span> <span class="o">=</span> <span class="o">...</span>
 <span class="n">go</span><span class="p">.</span><span class="n">set_position</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
@@ -315,15 +337,15 @@ The <code>action</code> only contains positional parameters in this case, such a
 </tr>
 <tr>
 <td><code>pressed</code></td>
-<td>If the input was pressed this frame, 0 for false and 1 for true. This is not present for mouse movement.</td>
+<td>If the input was pressed this frame. This is not present for mouse movement.</td>
 </tr>
 <tr>
 <td><code>released</code></td>
-<td>If the input was released this frame, 0 for false and 1 for true. This is not present for mouse movement.</td>
+<td>If the input was released this frame. This is not present for mouse movement.</td>
 </tr>
 <tr>
 <td><code>repeated</code></td>
-<td>If the input was repeated this frame, 0 for false and 1 for true. This is similar to how a key on a keyboard is repeated when you hold it down. This is not present for mouse movement.</td>
+<td>If the input was repeated this frame. This is similar to how a key on a keyboard is repeated when you hold it down. This is not present for mouse movement.</td>
 </tr>
 <tr>
 <td><code>x</code></td>

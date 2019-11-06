@@ -42,6 +42,7 @@ not the entire file is played back. It's probably an issue with VLC.
 The Miro Video Converter has support for vp8/ivf.</p>
 <p><span class="icon-macos"></span> <span class="icon-windows"></span> <span class="icon-linux"></span> Video recording is only supported on desktop platforms.</p>
 <p><span class="icon-attention"></span> Audio is currently not supported</p>
+<p><span class="icon-attention"></span> Window width and height must be a multiple of 8 to be able to record video.</p>
 <p>This message can only be sent to the designated <code>@system</code> socket.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>file_name<p><span class="type">string</span> file name to write the video to</p></p><p class='param'>frame_period<p><span class="type">number</span> frame period to record, ie write every nth frame. Default value is <code>2</code></p></p><p class='param'>fps<p><span class="type">number</span> frames per second. Playback speed for the video. Default value is <code>30</code>. The fps value doens't affect the recording. It's only meta-data in the written video file.</p></p></div><h3>EXAMPLES</h3><div class='examples'><p><p>Record a video in 30 fps given that the native game fps is 60:</p>
 <div class="codehilite"><pre><span></span><span class="n">msg</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">@system:&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">start_record&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="n">file_name</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="s">test_rec.ivf&quot;</span> <span class="p">}</span> <span class="p">)</span>
 </pre></div>
@@ -52,7 +53,13 @@ The Miro Video Converter has support for vp8/ivf.</p>
 </pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Command/stop_record' class='dashAnchor'></a><a class='entry' name='stop_record'>stop_record</a></h1><div class='brief'><p>stop current video recording</p></div><p><p>Stops the currently active video recording.</p>
 <p><span class="icon-macos"></span> <span class="icon-windows"></span> <span class="icon-linux"></span> Video recording is only supported on desktop platforms.</p>
 <p>This message can only be sent to the designated <code>@system</code> socket.</p></p><h3>EXAMPLES</h3><div class='examples'><p><div class="codehilite"><pre><span></span><span class="n">msg</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">@system:&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">stop_record&quot;</span><span class="p">)</span>
-</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Variable/sys.NETWORK_CONNECTED' class='dashAnchor'></a><a class='entry' name='sys.NETWORK_CONNECTED'>sys.NETWORK_CONNECTED</a></h1><div class='brief'><p>network connected through other, non cellular, connection</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/sys.NETWORK_CONNECTED_CELLULAR' class='dashAnchor'></a><a class='entry' name='sys.NETWORK_CONNECTED_CELLULAR'>sys.NETWORK_CONNECTED_CELLULAR</a></h1><div class='brief'><p>network connected through mobile cellular</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/sys.NETWORK_DISCONNECTED' class='dashAnchor'></a><a class='entry' name='sys.NETWORK_DISCONNECTED'>sys.NETWORK_DISCONNECTED</a></h1><div class='brief'><p>no network connection found</p></div><hr/><h1><a name='//apple_ref/cpp/Function/sys.get_application_info' class='dashAnchor'></a><a class='entry' name='sys.get_application_info'>sys.get_application_info()</a></h1><div class='brief'><p>get application information</p></div><p><p>Returns a table with application information for the requested app.</p>
+</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Variable/sys.NETWORK_CONNECTED' class='dashAnchor'></a><a class='entry' name='sys.NETWORK_CONNECTED'>sys.NETWORK_CONNECTED</a></h1><div class='brief'><p>network connected through other, non cellular, connection</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/sys.NETWORK_CONNECTED_CELLULAR' class='dashAnchor'></a><a class='entry' name='sys.NETWORK_CONNECTED_CELLULAR'>sys.NETWORK_CONNECTED_CELLULAR</a></h1><div class='brief'><p>network connected through mobile cellular</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/sys.NETWORK_DISCONNECTED' class='dashAnchor'></a><a class='entry' name='sys.NETWORK_DISCONNECTED'>sys.NETWORK_DISCONNECTED</a></h1><div class='brief'><p>no network connection found</p></div><hr/><h1><a name='//apple_ref/cpp/Function/sys.exit' class='dashAnchor'></a><a class='entry' name='sys.exit'>sys.exit()</a></h1><div class='brief'><p>exits application</p></div><p><p>Terminates the game application and reports the specified <code>code</code> to the OS.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>code<p><span class="type">number</span> exit code to report to the OS, 0 means clean exit</p></p></div><h3>EXAMPLES</h3><div class='examples'><p><p>This examples demonstrates how to exit the application when some kind of quit messages is received (maybe from gui or similar):</p>
+<div class="codehilite"><pre><span></span><span class="k">function</span> <span class="nf">on_message</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">message_id</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">sender</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">message_id</span> <span class="o">==</span> <span class="n">hash</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">quit&quot;</span><span class="p">)</span> <span class="k">then</span>
+        <span class="n">sys</span><span class="p">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="k">end</span>
+<span class="k">end</span>
+</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Function/sys.get_application_info' class='dashAnchor'></a><a class='entry' name='sys.get_application_info'>sys.get_application_info()</a></h1><div class='brief'><p>get application information</p></div><p><p>Returns a table with application information for the requested app.</p>
 <p><span class="icon-ios"></span> On iOS, the <code>app_string</code> is an url scheme for the app that is queried. Your
 game needs to list the schemes that are queried in an <code>LSApplicationQueriesSchemes</code> array
 in a custom "Info.plist".</p>
@@ -83,6 +90,25 @@ in a custom "Info.plist".</p>
    <span class="nt">&lt;string&gt;</span>twitter<span class="nt">&lt;/string&gt;</span>
  <span class="nt">&lt;/array&gt;</span>
 ...
+</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Function/sys.get_application_path' class='dashAnchor'></a><a class='entry' name='sys.get_application_path'>sys.get_application_path()</a></h1><div class='brief'><p>gets the application path</p></div><p><p>The path from which the application is run.</p></p><h3>RETURN</h3><div class='return'><p>path - <p><span class="type">string</span> path to application executable</p></p></div><h3>EXAMPLES</h3><div class='examples'><p><p>Find a path where we can store data (the example path is on the macOS platform):</p>
+<div class="codehilite"><pre><span></span><span class="c1">-- macOS: /Applications/my_game.app</span>
+<span class="kd">local</span> <span class="n">application_path</span> <span class="o">=</span> <span class="n">sys</span><span class="p">.</span><span class="n">get_application_path</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">application_path</span><span class="p">)</span> <span class="c1">--&gt; /Applications/my_game.app</span>
+
+<span class="c1">-- Windows: C:\Program Files\my_game\my_game.exe</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">application_path</span><span class="p">)</span> <span class="c1">--&gt; C:\Program Files\my_game</span>
+
+<span class="c1">-- Linux: /home/foobar/my_game/my_game</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">application_path</span><span class="p">)</span> <span class="c1">--&gt; /home/foobar/my_game</span>
+
+<span class="c1">-- Android package name: com.foobar.my_game</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">application_path</span><span class="p">)</span> <span class="c1">--&gt; /data/user/0/com.foobar.my_game</span>
+
+<span class="c1">-- iOS: my_game.app</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">application_path</span><span class="p">)</span> <span class="c1">--&gt; /var/containers/Bundle/Applications/123456AB-78CD-90DE-12345678ABCD/my_game.app</span>
+
+<span class="c1">-- HTML5: http://www.foobar.com/my_game/</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">application_path</span><span class="p">)</span> <span class="c1">--&gt; http://www.foobar.com/my_game</span>
 </pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Function/sys.get_config' class='dashAnchor'></a><a class='entry' name='sys.get_config'>sys.get_config()</a></h1><div class='brief'><p>get config value</p></div><p><p>Get config value from the game.project configuration file.</p>
 <p>In addition to the project file, configuration values can also be passed
 to the runtime as command line arguments with the <code>--config</code> argument.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>key<p><span class="type">string</span> key to get value for. The syntax is SECTION.KEY</p></p></div><h3>RETURN</h3><div class='return'><p>value - <p><span class="type">string</span> config value as a string. nil if the config key doesn't exists</p></p></div><h3>EXAMPLES</h3><div class='examples'><p><p>Get display width</p>
@@ -166,11 +192,7 @@ on mobile platforms.</p>
 <dt><code>gmt_offset</code></dt>
 <dd><span class="type">number</span> The current offset from GMT (Greenwich Mean Time), in minutes.</dd>
 <dt><code>device_ident</code></dt>
-<dd><span class="type">string</span> <span class="icon-ios"></span> "identifierForVendor" on iOS. <span class="icon-android"></span> "android_id" on Android.</dd>
-<dt><code>ad_ident</code></dt>
-<dd><span class="type">string</span> <span class="icon-ios"></span> "advertisingIdentifier" on iOS. <span class="icon-android"></span> advertising ID provided by Google Play on Android.</dd>
-<dt><code>ad_tracking_enabled</code></dt>
-<dd><span class="type">boolean</span> <code>true</code> if ad tracking is enabled, <code>false</code> otherwise.</dd>
+<dd><span class="type">string</span> <span class="icon-ios"></span> "identifierForVendor" on iOS. <span class="icon-android"></span> "android_id" on Android. On Android, you need to add <code>READ_PHONE_STATE</code> permission to be able to get this data. We don't use this permission in Defold.</dd>
 <dt><code>user_agent</code></dt>
 <dd><span class="type">string</span> <span class="icon-html5"></span> The HTTP user agent, i.e. "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/602.4.8 (KHTML, like Gecko) Version/10.0.3 Safari/602.4.8"</dd>
 </dl></p></div><h3>EXAMPLES</h3><div class='examples'><p><p>How to get system information:</p>
@@ -186,22 +208,34 @@ on mobile platforms.</p>
 <span class="k">end</span>
 </pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Function/sys.load_resource' class='dashAnchor'></a><a class='entry' name='sys.load_resource'>sys.load_resource()</a></h1><div class='brief'><p>loads resource from game data</p></div><p><p>Loads a custom resource. Specify the full filename of the resource that you want
 to load. When loaded, the file data is returned as a string.
-If loading fails, the function returns nil.</p>
+If loading fails, the function returns nil plus the error message.</p>
 <p>In order for the engine to include custom resources in the build process, you need
 to specify them in the "custom_resources" key in your "game.project" settings file.
-You can specify single resource files or directories. If a directory is is included
+You can specify single resource files or directories. If a directory is included
 in the resource list, all files and directories in that directory is recursively
 included:</p>
-<p>For example "main/data/,assets/level_data.json".</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>filename<p><span class="type">string</span> resource to load, full path</p></p></div><h3>RETURN</h3><div class='return'><p>data - <p><span class="type">string</span> loaded data, or nil if the resource could not be loaded</p></p></div><h3>EXAMPLES</h3><div class='examples'><p><div class="codehilite"><pre><span></span><span class="c1">-- Load level data into a string</span>
-<span class="kd">local</span> <span class="n">data</span> <span class="o">=</span> <span class="n">sys</span><span class="p">.</span><span class="n">load_resource</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">/assets/level_data.json&quot;</span><span class="p">)</span>
+<p>For example "main/data/,assets/level_data.json".</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>filename<p><span class="type">string</span> resource to load, full path</p></p></div><h3>RETURN</h3><div class='return'><p>data - <p><span class="type">string</span> loaded data, or <code>nil</code> if the resource could not be loaded</p></p><p>error - <p><span class="type">string</span> the error message, or <code>nil</code> if no error occurred</p></p></div><h3>EXAMPLES</h3><div class='examples'><p><div class="codehilite"><pre><span></span><span class="c1">-- Load level data into a string</span>
+<span class="kd">local</span> <span class="n">data</span><span class="p">,</span> <span class="nb">error</span> <span class="o">=</span> <span class="n">sys</span><span class="p">.</span><span class="n">load_resource</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">/assets/level_data.json&quot;</span><span class="p">)</span>
 <span class="c1">-- Decode json string to a Lua table</span>
-<span class="kd">local</span> <span class="n">data_table</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="n">decode</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<span class="n">pprint</span><span class="p">(</span><span class="n">data_table</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">data</span> <span class="k">then</span>
+  <span class="kd">local</span> <span class="n">data_table</span> <span class="o">=</span> <span class="n">json</span><span class="p">.</span><span class="n">decode</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+  <span class="n">pprint</span><span class="p">(</span><span class="n">data_table</span><span class="p">)</span>
+<span class="k">else</span>
+  <span class="nb">print</span><span class="p">(</span><span class="nb">error</span><span class="p">)</span>
+<span class="k">end</span>
 </pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Function/sys.open_url' class='dashAnchor'></a><a class='entry' name='sys.open_url'>sys.open_url()</a></h1><div class='brief'><p>open url in default application</p></div><p><p>Open URL in default application, typically a browser</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>url<p><span class="type">string</span> url to open</p></p></div><h3>RETURN</h3><div class='return'><p>success - <p><span class="type">boolean</span> a boolean indicating if the url could be opened or not</p></p></div><h3>EXAMPLES</h3><div class='examples'><p><p>Open an URL:</p>
 <div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">success</span> <span class="o">=</span> <span class="n">sys</span><span class="p">.</span><span class="n">open_url</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">http://www.defold.com&quot;</span><span class="p">)</span>
 <span class="k">if</span> <span class="ow">not</span> <span class="n">success</span> <span class="k">then</span>
   <span class="c1">-- could not open the url...</span>
 <span class="k">end</span>
+</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Function/sys.reboot' class='dashAnchor'></a><a class='entry' name='sys.reboot'>sys.reboot()</a></h1><div class='brief'><p>reboot engine with arguments</p></div><p><p>Reboots the game engine with a specified set of arguments.
+Arguments will be translated into command line arguments. Calling reboot
+function is equivalent to starting the engine with the same arguments.</p>
+<p>On startup the engine reads configuration from "game.project" in the
+project root.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>arg1<p><span class="type">string</span> argument 1</p></p><p class='param'>arg2<p><span class="type">string</span> argument 2</p></p><p class='param'>arg3<p><span class="type">string</span> argument 3</p></p><p class='param'>arg4<p><span class="type">string</span> argument 4</p></p><p class='param'>arg5<p><span class="type">string</span> argument 5</p></p><p class='param'>arg6<p><span class="type">string</span> argument 6</p></p></div><h3>EXAMPLES</h3><div class='examples'><p><p>How to reboot engine with a specific bootstrap collection.</p>
+<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">arg1</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="s">--config=bootstrap.main_collection=/my.collectionc&#39;</span>
+<span class="kd">local</span> <span class="n">arg2</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="s">build/default/game.projectc&#39;</span>
+<span class="n">sys</span><span class="p">.</span><span class="n">reboot</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">)</span>
 </pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Function/sys.save' class='dashAnchor'></a><a class='entry' name='sys.save'>sys.save()</a></h1><div class='brief'><p>saves a lua table to a file stored on disk</p></div><p><p>The table can later be loaded by <code>sys.load</code>.
 Use <code>sys.get_save_file</code> to obtain a valid location for the file.
 Internally, this function uses a workspace buffer sized output file sized 512kb.
@@ -243,6 +277,22 @@ The error handler is a function which is called whenever a lua runtime error occ
   <span class="n">sys</span><span class="p">.</span><span class="n">set_error_handler</span><span class="p">(</span><span class="n">my_error_handler</span><span class="p">)</span>
   <span class="n">boom</span><span class="p">()</span>
 <span class="k">end</span>
+</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Function/sys.set_update_frequency' class='dashAnchor'></a><a class='entry' name='sys.set_update_frequency'>sys.set_update_frequency()</a></h1><div class='brief'><p>set update frequency</p></div><p><p>Set game update-frequency (frame cap). This option is equivalent to <code>display.update_frequency</code> in
+the "game.project" settings but set in run-time. If <code>Vsync</code> checked in "game.project", the rate will
+be clamped to a swap interval that matches any detected main monitor refresh rate. If <code>Vsync</code> is
+unchecked the engine will try to respect the rate in software using timers. There is no
+guarantee that the frame cap will be achieved depending on platform specifics and hardware settings.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>frequency<p>target frequency. 60 for 60 fps</p></p></div><h3>EXAMPLES</h3><div class='examples'><p><p>Setting the update frequency to 60 frames per second</p>
+<div class="codehilite"><pre><span></span><span class="n">sys</span><span class="p">.</span><span class="n">set_update_frequency</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Function/sys.set_vsync_swap_interval' class='dashAnchor'></a><a class='entry' name='sys.set_vsync_swap_interval'>sys.set_vsync_swap_interval()</a></h1><div class='brief'><p>set vsync swap interval</p></div><p><p>Set the vsync swap interval. The interval with which to swap the front and back buffers
+in sync with vertical blanks (v-blank), the hardware event where the screen image is updated
+with data from the front buffer. A value of 1 swaps the buffers at every v-blank, a value of
+2 swaps the buffers every other v-blank and so on. A value of 0 disables waiting for v-blank
+before swapping the buffers. Default value is 1.</p>
+<p>When setting the swap interval to 0 and having <code>vsync</code> disabled in
+"game.project", the engine will try to respect the set frame cap value from
+"game.project" in software instead.</p>
+<p>This setting may be overridden by driver settings.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>swap_interval<p>target swap interval.</p></p></div><h3>EXAMPLES</h3><div class='examples'><p><p>Setting the swap intervall to swap every v-blank</p>
+<div class="codehilite"><pre><span></span><span class="n">sys</span><span class="p">.</span><span class="n">set_vsync_swap_interval</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 </pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Command/toggle_physics_debug' class='dashAnchor'></a><a class='entry' name='toggle_physics_debug'>toggle_physics_debug</a></h1><div class='brief'><p>shows/hides the on-screen physics visual debugging</p></div><p><p>Toggles the on-screen physics visual debugging mode which is very useful for
 tracking down issues related to physics. This mode visualizes
 all collision object shapes and normals at detected contact points. Toggling

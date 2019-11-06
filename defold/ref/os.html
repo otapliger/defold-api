@@ -36,7 +36,12 @@ If command is absent, then it returns nonzero if a shell is available
 and zero otherwise.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>[command]</p></div><hr/><h1><a name='//apple_ref/cpp/Function/os.exit' class='dashAnchor'></a><a class='entry' name='os.exit'>os.exit()</a></h1><div class='brief'><p>attempts to terminate the process</p></div><p><p>Calls the C function exit,
 with an optional code,
 to terminate the host program.
-The default value for code is the success code.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>[code]</p></div><hr/><h1><a name='//apple_ref/cpp/Function/os.getenv' class='dashAnchor'></a><a class='entry' name='os.getenv'>os.getenv()</a></h1><div class='brief'><p>returns an operating system environment variable</p></div><p><p>Returns the value of the process environment variable varname,
+The default value for code is the success code.</p>
+<p>Calling os.exit will do a hard exit which will not run
+the engine shutdown code. This may cause crashes on exit.</p>
+<p>The recommended way to terminate your game is by using
+the exit message which does a graceful shutdown.</p>
+<p><code>msg.post("@system:", "exit", {code = 0})</code></p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>[code]</p></div><hr/><h1><a name='//apple_ref/cpp/Function/os.getenv' class='dashAnchor'></a><a class='entry' name='os.getenv'>os.getenv()</a></h1><div class='brief'><p>returns an operating system environment variable</p></div><p><p>Returns the value of the process environment variable varname,
 or <span class="type"> nil</span> if the variable is not defined.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>varname</p></div><hr/><h1><a name='//apple_ref/cpp/Function/os.remove' class='dashAnchor'></a><a class='entry' name='os.remove'>os.remove()</a></h1><div class='brief'><p>deletes a file</p></div><p><p>Deletes the file or directory with the given name.
 Directories must be empty to be removed.
 If this function fails, it returns <span class="type"> nil</span>,

@@ -23,8 +23,44 @@ this message.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>cur
     <span class="n">msg</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">#sprite&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">play_animation&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="n">id</span> <span class="o">=</span> <span class="n">hash</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">walk&quot;</span><span class="p">)</span> <span class="p">})</span>
   <span class="k">end</span>
 <span class="k">end</span>
+</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Property/cursor' class='dashAnchor'></a><a class='entry' name='cursor'>cursor</a></h1><div class='brief'><p><span class="type">number</span> sprite cursor</p></div><p><p>The normalized animation cursor. The type of the property is number.</p></p><h3>EXAMPLES</h3><div class='examples'><p><p>How to get the normalized cursor value:</p>
+<div class="codehilite"><pre><span></span><span class="k">function</span> <span class="nf">init</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
+  <span class="c1">-- Get the cursor value on component &quot;sprite&quot;</span>
+  <span class="n">cursor</span> <span class="o">=</span> <span class="n">go</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">#sprite&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">cursor&quot;</span><span class="p">)</span>
+<span class="k">end</span>
+</pre></div>
+
+
+<p>How to animate the cursor from 0.0 to 1.0 using linear easing for 2.0 seconds:</p>
+<div class="codehilite"><pre><span></span><span class="k">function</span> <span class="nf">init</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
+  <span class="c1">-- Get the current value on component &quot;sprite&quot;</span>
+  <span class="n">go</span><span class="p">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">#sprite&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">cursor&quot;</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span>
+  <span class="c1">-- Animate the cursor value</span>
+  <span class="n">go</span><span class="p">.</span><span class="n">animate</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">#sprite&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">cursor&quot;</span><span class="p">,</span> <span class="n">go</span><span class="p">.</span><span class="n">PLAYBACK_LOOP_FORWARD</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">go</span><span class="p">.</span><span class="n">EASING_LINEAR</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="k">end</span>
+</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Property/image' class='dashAnchor'></a><a class='entry' name='image'>image</a></h1><div class='brief'><p><span class="type">hash</span> sprite image</p></div><p><p>The image used when rendering the sprite. The type of the property is hash.</p></p><h3>EXAMPLES</h3><div class='examples'><p><p>How to set image using a script property (see <a href="http://www.defold.com/ref/resource#resource.atlas">resource.atlas</a>)</p>
+<div class="codehilite"><pre><span></span><span class="n">go</span><span class="p">.</span><span class="n">property</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">my_image&quot;</span><span class="p">,</span> <span class="n">resource</span><span class="p">.</span><span class="n">atlas</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">/atlas.atlas&quot;</span><span class="p">))</span>
+<span class="k">function</span> <span class="nf">init</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
+  <span class="n">go</span><span class="p">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">#sprite&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">image&quot;</span><span class="p">,</span> <span class="n">self</span><span class="p">.</span><span class="n">my_image</span><span class="p">)</span>
+<span class="k">end</span>
+</pre></div>
+
+
+<p>See <a href="http://www.defold.com/ref/resource#resource.set_texture">resource.set_texture</a> for an example on how to set the texture of an atlas.</p></p></div><hr/><h1><a name='//apple_ref/cpp/Property/material' class='dashAnchor'></a><a class='entry' name='material'>material</a></h1><div class='brief'><p><span class="type">hash</span> sprite material</p></div><p><p>The material used when rendering the sprite. The type of the property is hash.</p></p><h3>EXAMPLES</h3><div class='examples'><p><p>How to set material using a script property (see <a href="http://www.defold.com/ref/resource#resource.material">resource.material</a>)</p>
+<div class="codehilite"><pre><span></span><span class="n">go</span><span class="p">.</span><span class="n">property</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">my_material&quot;</span><span class="p">,</span> <span class="n">resource</span><span class="p">.</span><span class="n">material</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">/material.material&quot;</span><span class="p">))</span>
+<span class="k">function</span> <span class="nf">init</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
+  <span class="n">go</span><span class="p">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">#sprite&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">material&quot;</span><span class="p">,</span> <span class="n">self</span><span class="p">.</span><span class="n">my_material</span><span class="p">)</span>
+<span class="k">end</span>
 </pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Command/play_animation' class='dashAnchor'></a><a class='entry' name='play_animation'>play_animation</a></h1><div class='brief'><p>play a sprite animation</p></div><p><p>Post this message to a sprite component to make it play an animation from its tile set.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>id<p><span class="type">hash</span> the id of the animation to play</p></p></div><h3>EXAMPLES</h3><div class='examples'><p><p>In the example, it is assumed that the instance of the script has a sprite-component with id "sprite". The sprite itself is assumed to be bound to a tile set with animations "walk" and "jump".</p>
 <div class="codehilite"><pre><span></span><span class="n">msg</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">#sprite&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">play_animation&quot;</span><span class="p">,</span> <span class="p">{</span><span class="n">id</span> <span class="o">=</span> <span class="n">hash</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">jump&quot;</span><span class="p">)})</span>
+</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Property/playback_rate' class='dashAnchor'></a><a class='entry' name='playback_rate'>playback_rate</a></h1><div class='brief'><p><span class="type">number</span> sprite playback_rate</p></div><p><p>The animation playback rate. A multiplier to the animation playback rate. The type of the property is <span class="type">number</span>.</p>
+<p>The playback_rate is a non-negative number, a negative value will be clamped to 0.</p></p><h3>EXAMPLES</h3><div class='examples'><p><p>How to set the playback_rate on component "sprite" to play at double the current speed:</p>
+<div class="codehilite"><pre><span></span><span class="k">function</span> <span class="nf">init</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
+  <span class="c1">-- Get the current value on component &quot;sprite&quot;</span>
+  <span class="n">playback_rate</span> <span class="o">=</span> <span class="n">go</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">#sprite&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">playback_rate&quot;</span><span class="p">)</span>
+  <span class="c1">-- Set the playback_rate to double the previous value.</span>
+  <span class="n">go</span><span class="p">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">#sprite&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">playback_rate&quot;</span><span class="p">,</span> <span class="n">playback_rate</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
+<span class="k">end</span>
 </pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Property/scale' class='dashAnchor'></a><a class='entry' name='scale'>scale</a></h1><div class='brief'><p><span class="type">vector3</span> sprite scale</p></div><p><p>The non-uniform scale of the sprite. The type of the property is vector3.</p></p><h3>EXAMPLES</h3><div class='examples'><p><p>How to scale a sprite independently along the X and Y axis:</p>
 <div class="codehilite"><pre><span></span><span class="k">function</span> <span class="nf">init</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
   <span class="c1">-- Double the y-axis scaling on component &quot;sprite&quot;</span>
@@ -59,16 +95,25 @@ a <a href="#animation_done">animation_done</a> message is sent to the script tha
 <dl>
 <dt><code>sender</code></dt>
 <dd><span class="type">url</span> The invoker of the callback: the sprite component.</dd>
+</dl></p><p class='param'>[play_properties]<p><span class="type">table</span> optional table with properties:</p>
+<dl>
+<dt><code>offset</code></dt>
+<dd><span class="type">number</span> the normalized initial value of the animation cursor when the animation starts playing.</dd>
+<dt><code>playback_rate</code></dt>
+<dd><span class="type">number</span> the rate with which the animation will be played. Must be positive.</dd>
 </dl></p></div><h3>EXAMPLES</h3><div class='examples'><p><p>The following examples assumes that the model has id "sprite".</p>
 <p>How to play the "jump" animation followed by the "run" animation:</p>
-<p>local function anim_done(self, message_id, message, sender)
-  if message_id == hash("model_animation_done") then
-    if message.id == hash("jump") then
-      -- open animation done, chain with "run"
-      sprite.play_flipbook(url, "run")
-    end
-  end
-end</p>
+<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="k">function</span> <span class="nf">anim_done</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">message_id</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">sender</span><span class="p">)</span>
+  <span class="k">if</span> <span class="n">message_id</span> <span class="o">==</span> <span class="n">hash</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">model_animation_done&quot;</span><span class="p">)</span> <span class="k">then</span>
+    <span class="k">if</span> <span class="n">message</span><span class="p">.</span><span class="n">id</span> <span class="o">==</span> <span class="n">hash</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">jump&quot;</span><span class="p">)</span> <span class="k">then</span>
+      <span class="c1">-- open animation done, chain with &quot;run&quot;</span>
+      <span class="n">sprite</span><span class="p">.</span><span class="n">play_flipbook</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">run&quot;</span><span class="p">)</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+
+
 <div class="codehilite"><pre><span></span><span class="k">function</span> <span class="nf">init</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
   <span class="kd">local</span> <span class="n">url</span> <span class="o">=</span> <span class="n">msg</span><span class="p">.</span><span class="n">url</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">#sprite&quot;</span><span class="p">)</span>
   <span class="n">sprite</span><span class="p">.</span><span class="n">play_flipbook</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">jump&quot;</span><span class="p">,</span> <span class="n">anim_done</span><span class="p">)</span>
@@ -112,4 +157,4 @@ If the currently playing animation is flipped by default, flipping it again will
 </pre></div>
 
 
-<p>It is assumed that the sprite component has id "sprite" and that the original animations are up-right.</p></p></div><hr/><h1><a name='//apple_ref/cpp/Property/texture0' class='dashAnchor'></a><a class='entry' name='texture0'>texture0</a></h1><div class='brief'><p><span class="type">hash</span> sprite texture0</p></div><p><p><span class="mark">READ ONLY</span> Returns the texture path hash of the sprite. Used for getting/setting resource data</p></p><h3>EXAMPLES</h3><div class='examples'><p><p>See <a href="http://www.defold.com/ref/resource#resource.set_texture">resource.set_texture</a> for an example on how to set the texture of an atlas.</p></p></div><hr/></body></html>
+<p>It is assumed that the sprite component has id "sprite" and that the original animations are up-right.</p></p></div><hr/></body></html>

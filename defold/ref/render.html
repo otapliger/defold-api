@@ -44,7 +44,7 @@ in the "game.project" setting.</p></p><h3>EXAMPLES</h3><div class='examples'><p>
 </ul></p></div><h3>EXAMPLES</h3><div class='examples'><p><p>Disable face culling when drawing the tile predicate:</p>
 <div class="codehilite"><pre><span></span><span class="n">render</span><span class="p">.</span><span class="n">disable_state</span><span class="p">(</span><span class="n">render</span><span class="p">.</span><span class="n">STATE_CULL_FACE</span><span class="p">)</span>
 <span class="n">render</span><span class="p">.</span><span class="n">draw</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">tile_pred</span><span class="p">)</span>
-</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Function/render.disable_texture' class='dashAnchor'></a><a class='entry' name='render.disable_texture'>render.disable_texture()</a></h1><div class='brief'><p>disables a texture for a render target</p></div><p><p>Disables a texture unit for a render target that has previourly been enabled.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>unit<p><span class="type">number</span> texture unit to disable</p></p></div><h3>EXAMPLES</h3><div class='examples'><p><div class="codehilite"><pre><span></span><span class="k">function</span> <span class="nf">update</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
+</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Function/render.disable_texture' class='dashAnchor'></a><a class='entry' name='render.disable_texture'>render.disable_texture()</a></h1><div class='brief'><p>disables a texture for a render target</p></div><p><p>Disables a texture unit for a render target that has previourly been enabled.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>unit<p><span class="type">number</span> texture unit to disable</p></p></div><h3>EXAMPLES</h3><div class='examples'><p><div class="codehilite"><pre><span></span><span class="k">function</span> <span class="nf">update</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
     <span class="n">render</span><span class="p">.</span><span class="n">enable_texture</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">self</span><span class="p">.</span><span class="n">my_render_target</span><span class="p">,</span> <span class="n">render</span><span class="p">.</span><span class="n">BUFFER_COLOR_BIT</span><span class="p">)</span>
     <span class="c1">-- draw a predicate with the render target available as texture 0 in the predicate</span>
     <span class="c1">-- material shader.</span>
@@ -60,7 +60,7 @@ system constants buffer is used containing constants as defined in materials and
     <span class="n">self</span><span class="p">.</span><span class="n">my_pred</span> <span class="o">=</span> <span class="n">render</span><span class="p">.</span><span class="n">predicate</span><span class="p">({</span><span class="n">hash</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">my_tag&quot;</span><span class="p">)})</span>
 <span class="k">end</span>
 
-<span class="k">function</span> <span class="nf">update</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
+<span class="k">function</span> <span class="nf">update</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
     <span class="c1">-- draw everything in the my_pred predicate</span>
     <span class="n">render</span><span class="p">.</span><span class="n">draw</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">my_pred</span><span class="p">)</span>
 <span class="k">end</span>
@@ -71,7 +71,7 @@ system constants buffer is used containing constants as defined in materials and
 <div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">constants</span> <span class="o">=</span> <span class="n">render</span><span class="p">.</span><span class="n">constant_buffer</span><span class="p">()</span>
 <span class="n">constants</span><span class="p">.</span><span class="n">tint</span> <span class="o">=</span> <span class="n">vmath</span><span class="p">.</span><span class="n">vector4</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 <span class="n">render</span><span class="p">.</span><span class="n">draw</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">my_pred</span><span class="p">,</span> <span class="n">constants</span><span class="p">)</span>
-</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Function/render.draw_debug3d' class='dashAnchor'></a><a class='entry' name='render.draw_debug3d'>render.draw_debug3d()</a></h1><div class='brief'><p>draws all 3d debug graphics</p></div><p><p>Draws all 3d debug graphics such as lines drawn with "draw_line" messages and physics visualization.</p></p><h3>EXAMPLES</h3><div class='examples'><p><div class="codehilite"><pre><span></span><span class="k">function</span> <span class="nf">update</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
+</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Function/render.draw_debug3d' class='dashAnchor'></a><a class='entry' name='render.draw_debug3d'>render.draw_debug3d()</a></h1><div class='brief'><p>draws all 3d debug graphics</p></div><p><p>Draws all 3d debug graphics such as lines drawn with "draw_line" messages and physics visualization.</p></p><h3>EXAMPLES</h3><div class='examples'><p><div class="codehilite"><pre><span></span><span class="k">function</span> <span class="nf">update</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
     <span class="c1">-- draw debug visualization</span>
     <span class="n">render</span><span class="p">.</span><span class="n">draw_debug3d</span><span class="p">()</span>
 <span class="k">end</span>
@@ -101,7 +101,7 @@ A material shader can then use the texture to sample from.</p></p><h3>PARAMETERS
 <li><code>render.BUFFER_COLOR_BIT</code></li>
 <li><code>render.BUFFER_DEPTH_BIT</code></li>
 <li><code>render.BUFFER_STENCIL_BIT</code></li>
-</ul></p></div><h3>EXAMPLES</h3><div class='examples'><p><div class="codehilite"><pre><span></span><span class="k">function</span> <span class="nf">update</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
+</ul></p></div><h3>EXAMPLES</h3><div class='examples'><p><div class="codehilite"><pre><span></span><span class="k">function</span> <span class="nf">update</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
     <span class="c1">-- enable target so all drawing is done to it</span>
     <span class="n">render</span><span class="p">.</span><span class="n">enable_render_target</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">my_render_target</span><span class="p">)</span>
 
@@ -213,7 +213,7 @@ of parameters. The following parameter keys are available:</p>
     <span class="n">self</span><span class="p">.</span><span class="n">my_render_target</span> <span class="o">=</span> <span class="n">render</span><span class="p">.</span><span class="n">render_target</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">my_target&quot;</span><span class="p">,</span> <span class="p">{[</span><span class="n">render</span><span class="p">.</span><span class="n">BUFFER_COLOR_BIT</span><span class="p">]</span> <span class="o">=</span> <span class="n">color_params</span><span class="p">,</span> <span class="p">[</span><span class="n">render</span><span class="p">.</span><span class="n">BUFFER_DEPTH_BIT</span><span class="p">]</span> <span class="o">=</span> <span class="n">depth_params</span> <span class="p">})</span>
 <span class="k">end</span>
 
-<span class="k">function</span> <span class="nf">update</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
+<span class="k">function</span> <span class="nf">update</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
     <span class="c1">-- enable target so all drawing is done to it</span>
     <span class="n">render</span><span class="p">.</span><span class="n">enable_render_target</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">my_render_target</span><span class="p">)</span>
 
@@ -307,9 +307,9 @@ The destination scale factor is referred to as (d<sub>R</sub>,d<sub>G</sub>,d<su
 <p>The blended RGBA values of a pixel comes from the following equations:</p>
 <ul>
 <li>R<sub>d</sub> = min(k<sub>R</sub>, R<sub>s</sub> * s<sub>R</sub> + R<sub>d</sub> * d<sub>R</sub>)</li>
-<li>G<sub>d</sub> = min(k<sub>G</sub>, G<sub>s</sub> * s<sub>G</sub> + G<sub>d</sub> * d<sub>R</sub>)</li>
+<li>G<sub>d</sub> = min(k<sub>G</sub>, G<sub>s</sub> * s<sub>G</sub> + G<sub>d</sub> * d<sub>G</sub>)</li>
 <li>B<sub>d</sub> = min(k<sub>B</sub>, B<sub>s</sub> * s<sub>B</sub> + B<sub>d</sub> * d<sub>B</sub>)</li>
-<li>A<sub>d</sub> = min(k<sub>A</sub>, A<sub>s</sub> * s<sub>B</sub> + A<sub>d</sub> * d<sub>A</sub>)</li>
+<li>A<sub>d</sub> = min(k<sub>A</sub>, A<sub>s</sub> * s<sub>A</sub> + A<sub>d</sub> * d<sub>A</sub>)</li>
 </ul>
 <p>Blend function <code>(render.BLEND_SRC_ALPHA, render.BLEND_ONE_MINUS_SRC_ALPHA)</code> is useful for
 drawing with transparency when the drawn objects are sorted from farthest to nearest.
@@ -377,7 +377,7 @@ width and height as set in project settings and depth (z) between -1 and 1:</p>
 render target until it is replaced by a subsequent call to set_render_target.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>render_target<p><span class="type">render_target</span> render target to set. render.RENDER_TARGET_DEFAULT to set the default render target</p></p><p class='param'>[options]<p><span class="type">table</span> optional table with behaviour parameters</p>
 <dl>
 <dt><code>transient</code></dt>
-<dd><span class="type">number</span> Transient frame buffer types are only valid while the render target is active, i.e becomes undefined when a new target is set by a subsequent call to set_render_target.
+<dd><span class="type">table</span> Transient frame buffer types are only valid while the render target is active, i.e becomes undefined when a new target is set by a subsequent call to set_render_target.
  Default is all non-transient. Be aware that some hardware uses a combined depth stencil buffer and when this is the case both are considered non-transient if exclusively selected!
  A buffer type defined that doesn't exist in the render target is silently ignored.</dd>
 </dl>
@@ -387,9 +387,9 @@ render target until it is replaced by a subsequent call to set_render_target.</p
 <li><code>render.BUFFER_STENCIL_BIT</code></li>
 </ul></p></div><h3>EXAMPLES</h3><div class='examples'><p><p>How to set a render target and draw to it and then switch back to the default render target
 The render target defines the depth/stencil buffers as transient, when set_render_target is called the next time the buffers may be invalidated and allow for optimisations depending on driver support</p>
-<div class="codehilite"><pre><span></span><span class="k">function</span> <span class="nf">update</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><span class="k">function</span> <span class="nf">update</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
     <span class="c1">-- set render target so all drawing is done to it</span>
-    <span class="n">render</span><span class="p">.</span><span class="n">set_render_target</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">my_render_target</span><span class="p">,</span> <span class="p">{</span> <span class="n">transient</span> <span class="o">=</span> <span class="p">[</span><span class="n">render</span><span class="p">.</span><span class="n">BUFFER_DEPTH_BIT</span><span class="p">,</span> <span class="n">render</span><span class="p">.</span><span class="n">BUFFER_STENCIL_BIT</span><span class="p">]</span> <span class="p">}</span> <span class="p">)</span>
+    <span class="n">render</span><span class="p">.</span><span class="n">set_render_target</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">my_render_target</span><span class="p">,</span> <span class="p">{</span> <span class="n">transient</span> <span class="o">=</span> <span class="p">{</span> <span class="n">render</span><span class="p">.</span><span class="n">BUFFER_DEPTH_BIT</span><span class="p">,</span> <span class="n">render</span><span class="p">.</span><span class="n">BUFFER_STENCIL_BIT</span> <span class="p">}</span> <span class="p">}</span> <span class="p">)</span>
 
     <span class="c1">-- draw a predicate to the render target</span>
     <span class="n">render</span><span class="p">.</span><span class="n">draw</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">my_pred</span><span class="p">)</span>
@@ -466,7 +466,7 @@ the values supplied by a camera.</p>
   <span class="n">self</span><span class="p">.</span><span class="n">projection</span> <span class="o">=</span> <span class="n">vmath</span><span class="p">.</span><span class="n">matrix4</span><span class="p">()</span>
 <span class="k">end</span>
 
-<span class="k">function</span> <span class="nf">update</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
+<span class="k">function</span> <span class="nf">update</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
   <span class="c1">-- set the view to the stored view value</span>
   <span class="n">render</span><span class="p">.</span><span class="n">set_view</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">view</span><span class="p">)</span>
   <span class="c1">-- now we can draw with this view</span>
@@ -481,6 +481,7 @@ the values supplied by a camera.</p>
 <span class="k">end</span>
 </pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Function/render.set_viewport' class='dashAnchor'></a><a class='entry' name='render.set_viewport'>render.set_viewport()</a></h1><div class='brief'><p>sets the render viewport</p></div><p><p>Set the render viewport to the specified rectangle.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>x<p><span class="type">number</span> left corner</p></p><p class='param'>y<p><span class="type">number</span> bottom corner</p></p><p class='param'>width<p><span class="type">number</span> viewport width</p></p><p class='param'>height<p><span class="type">number</span> viewport height</p></p></div><h3>EXAMPLES</h3><div class='examples'><p><div class="codehilite"><pre><span></span><span class="c1">-- Set the viewport to the window dimensions.</span>
 <span class="n">render</span><span class="p">.</span><span class="n">set_viewport</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">render</span><span class="p">.</span><span class="n">get_window_width</span><span class="p">(),</span> <span class="n">render</span><span class="p">.</span><span class="n">get_window_height</span><span class="p">())</span>
+</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Command/resize' class='dashAnchor'></a><a class='entry' name='resize'>resize</a></h1><div class='brief'><p>resizes the window</p></div><p><p>Set the size of the game window. Only works on desktop platforms.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>height<p><span class="type">number</span> the new window height</p></p><p class='param'>width<p><span class="type">number</span> the new window width</p></p></div><h3>EXAMPLES</h3><div class='examples'><p><div class="codehilite"><pre><span></span><span class="n">msg</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">@render:&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">resize&quot;</span><span class="p">,</span> <span class="p">{</span> <span class="n">width</span> <span class="o">=</span> <span class="mi">1024</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="mi">768</span> <span class="p">}</span> <span class="p">)</span>
 </pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Command/window_resized' class='dashAnchor'></a><a class='entry' name='window_resized'>window_resized</a></h1><div class='brief'><p>reports a window size change</p></div><p><p>Reports a change in window size. This is initiated on window resize on desktop or by orientation changes
 on mobile devices.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>height<p><span class="type">number</span> the new window height</p></p><p class='param'>width<p><span class="type">number</span> the new window width</p></p></div><h3>EXAMPLES</h3><div class='examples'><p><div class="codehilite"><pre><span></span><span class="k">function</span> <span class="nf">on_message</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">message_id</span><span class="p">,</span> <span class="n">message</span><span class="p">)</span>
     <span class="c1">-- check for the message</span>

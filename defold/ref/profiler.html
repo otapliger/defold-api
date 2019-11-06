@@ -1,7 +1,12 @@
 <html><head><link rel='stylesheet' type='text/css' href='../defold.css'></head><body><div class='nav'><a class='chevron' href='../index.html'><img src='../svg/chevron-left.svg' alt='Home'></a></div><h1>Profiler</h1>
 <p><p>Functions for getting profiling data in runtime.
-More detailed profiling and debugging information can be found under the <a href="http://www.defold.com/manuals/debugging/">Debugging</a> section in the manuals.</p></p>
-<h1><a name='//apple_ref/cpp/Function/profiler.get_cpu_usage' class='dashAnchor'></a><a class='entry' name='profiler.get_cpu_usage'>profiler.get_cpu_usage()</a></h1><div class='brief'><p>get current CPU usage for app reported by OS</p></div><p><p>Get the percent of CPU usage by the application, as reported by the OS.</p>
+More detailed <a href="https://www.defold.com/manuals/profiling/">profiling</a> and <a href="http://www.defold.com/manuals/debugging/">debugging</a> information available in the manuals.</p></p>
+<h1><a name='//apple_ref/cpp/Variable/profiler.MODE_PAUSE' class='dashAnchor'></a><a class='entry' name='profiler.MODE_PAUSE'>profiler.MODE_PAUSE</a></h1><div class='brief'><p>pause on current frame</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/profiler.MODE_RECORD' class='dashAnchor'></a><a class='entry' name='profiler.MODE_RECORD'>profiler.MODE_RECORD</a></h1><div class='brief'><p>start recording</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/profiler.MODE_RUN' class='dashAnchor'></a><a class='entry' name='profiler.MODE_RUN'>profiler.MODE_RUN</a></h1><div class='brief'><p>continously show latest frame</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/profiler.MODE_SHOW_PEAK_FRAME' class='dashAnchor'></a><a class='entry' name='profiler.MODE_SHOW_PEAK_FRAME'>profiler.MODE_SHOW_PEAK_FRAME</a></h1><div class='brief'><p>pause at peak frame</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/profiler.VIEW_MODE_FULL' class='dashAnchor'></a><a class='entry' name='profiler.VIEW_MODE_FULL'>profiler.VIEW_MODE_FULL</a></h1><div class='brief'><p>show full profiler ui</p></div><hr/><h1><a name='//apple_ref/cpp/Variable/profiler.VIEW_MODE_MINIMIZED' class='dashAnchor'></a><a class='entry' name='profiler.VIEW_MODE_MINIMIZED'>profiler.VIEW_MODE_MINIMIZED</a></h1><div class='brief'><p>show mimimal profiler ui</p></div><hr/><h1><a name='//apple_ref/cpp/Function/profiler.enable_ui' class='dashAnchor'></a><a class='entry' name='profiler.enable_ui'>profiler.enable_ui()</a></h1><div class='brief'><p>enables or disables the on-screen profiler ui</p></div><p><p>Creates and shows or hides and destroys the on-sceen profiler ui</p>
+<p>The profiler is a real-time tool that shows the numbers of milliseconds spent
+in each scope per frame as well as counters. The profiler is very useful for
+tracking down performance and resource problems.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>enabled<p><span class="type">boolean</span> true to enable, false to disable</p></p></div><h3>EXAMPLES</h3><div class='examples'><p><div class="codehilite"><pre><span></span><span class="c1">-- Show the profiler UI</span>
+<span class="n">profiler</span><span class="p">.</span><span class="n">enable_ui</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span>
+</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Function/profiler.get_cpu_usage' class='dashAnchor'></a><a class='entry' name='profiler.get_cpu_usage'>profiler.get_cpu_usage()</a></h1><div class='brief'><p>get current CPU usage for app reported by OS</p></div><p><p>Get the percent of CPU usage by the application, as reported by the OS.</p>
 <p><span class="icon-attention"></span> This function is not available on <span class="icon-html5"></span> HTML5.</p>
 <p>For some platforms (<span class="icon-android"></span> Android, <span class="icon-linux"></span> Linux and <span class="icon-windows"></span> Windows), this information is only available
 by default in the debug version of the engine. It can be enabled in release version as well
@@ -35,4 +40,48 @@ by checking <code>track_cpu</code> under <code>profiler</code> in the <code>game
 <span class="n">msg</span><span class="p">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">#collectionproxy&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s">load&quot;</span><span class="p">)</span>
 <span class="o">...</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">profiler</span><span class="p">.</span><span class="n">get_memory_usage</span><span class="p">())</span> <span class="c1">-- will report a higher number than the initial call</span>
+</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Function/profiler.recorded_frame_count' class='dashAnchor'></a><a class='entry' name='profiler.recorded_frame_count'>profiler.recorded_frame_count()</a></h1><div class='brief'><p>get the number of recorded frames in the on-screen profiler ui</p></div><p><p>Get the number of recorded frames in the on-screen profiler ui recording buffer</p></p><h3>RETURN</h3><div class='return'><p>frame_count - <p><span class="type">number</span> the number of recorded frames, zero if on-screen profiler is disabled</p></p></div><h3>EXAMPLES</h3><div class='examples'><p><div class="codehilite"><pre><span></span><span class="c1">-- Show the last recorded frame</span>
+<span class="kd">local</span> <span class="n">recorded_frame_count</span> <span class="o">=</span> <span class="n">profiler</span><span class="p">.</span><span class="n">recorded_frame_count</span><span class="p">()</span>
+<span class="n">profiler</span><span class="p">.</span><span class="n">view_recorded_frame</span><span class="p">(</span><span class="n">recorded_frame_count</span><span class="p">)</span>
+</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Function/profiler.set_ui_mode' class='dashAnchor'></a><a class='entry' name='profiler.set_ui_mode'>profiler.set_ui_mode()</a></h1><div class='brief'><p>sets the the on-screen profiler ui mode</p></div><p><p>Set the on-screen profile mode - run, pause, record or show peak frame</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>mode<p><span class="type">constant</span> the mode to set the ui profiler in</p>
+<ul>
+<li><code>profiler.MODE_RUN</code> This is default mode that continously shows the last frame</li>
+<li><code>profiler.MODE_PAUSE</code> Pauses on the currently displayed frame</li>
+<li><code>profiler.MODE_SHOW_PEAK_FRAME</code> Pauses on the currently displayed frame but shows a new frame if that frame is slower</li>
+<li><code>profiler.MODE_RECORD</code> Records all incoming frames to the recording buffer</li>
+</ul>
+<p>To stop recording, switch to a different mode such as <code>MODE_PAUSE</code> or <code>MODE_RUN</code>.
+You can also use the <code>view_recorded_frame</code> function to display a recorded frame. Doing so stops the recording as well.</p>
+<p>Every time you switch to recording mode the recording buffer is cleared.
+The recording buffer is also cleared when setting the <code>MODE_SHOW_PEAK_FRAME</code> mode.</p></p></div><h3>EXAMPLES</h3><div class='examples'><p><div class="codehilite"><pre><span></span><span class="k">function</span> <span class="nf">start_recording</span><span class="p">()</span>
+     <span class="n">profiler</span><span class="p">.</span><span class="n">set_ui_mode</span><span class="p">(</span><span class="n">profiler</span><span class="p">.</span><span class="n">MODE_RECORD</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="k">function</span> <span class="nf">stop_recording</span><span class="p">()</span>
+     <span class="n">profiler</span><span class="p">.</span><span class="n">set_ui_mode</span><span class="p">(</span><span class="n">profiler</span><span class="p">.</span><span class="n">MODE_PAUSE</span><span class="p">)</span>
+<span class="k">end</span>
+</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Function/profiler.set_ui_view_mode' class='dashAnchor'></a><a class='entry' name='profiler.set_ui_view_mode'>profiler.set_ui_view_mode()</a></h1><div class='brief'><p>sets the the on-screen profiler ui view mode</p></div><p><p>Set the on-screen profile view mode - minimized or expanded</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>mode<p><span class="type">constant</span> the view mode to set the ui profiler in</p>
+<ul>
+<li><code>profiler.VIEW_MODE_FULL</code> The default mode which displays all the ui profiler details</li>
+<li><code>profiler.VIEW_MODE_MINIMIZED</code> Minimized mode which only shows the top header (fps counters and ui profiler mode)</li>
+</ul></p></div><h3>EXAMPLES</h3><div class='examples'><p><div class="codehilite"><pre><span></span><span class="c1">-- Minimize the profiler view</span>
+<span class="n">profiler</span><span class="p">.</span><span class="n">set_ui_view_mode</span><span class="p">(</span><span class="n">profiler</span><span class="p">.</span><span class="n">VIEW_MODE_MINIMIZED</span><span class="p">)</span>
+</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Function/profiler.set_ui_vsync_wait_visible' class='dashAnchor'></a><a class='entry' name='profiler.set_ui_vsync_wait_visible'>profiler.set_ui_vsync_wait_visible()</a></h1><div class='brief'><p>Shows or hides the vsync wait time in the on-screen profiler ui</p></div><p><p>Shows or hides the time the engine waits for vsync in the on-screen profiler</p>
+<p>Each frame the engine waits for vsync and depending on your vsync settings and how much time
+your game logic takes this time can dwarf the time in the game logic making it hard to
+see details in the on-screen profiler graph and lists.</p>
+<p>Also, by hiding this the FPS times in the header show the time spent each time excuding the
+time spent waiting for vsync. This shows you how long time your game is spending actively
+working each frame.</p>
+<p>This setting also effects the display of recorded frames but does not affect the actual
+recorded frames so it is possible to toggle this on and off when viewing recorded frames.</p>
+<p>By default the vsync wait times is displayed in the profiler.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>visible<p><span class="type">boolean</span> true to include it in the display, false to hide it.</p></p></div><h3>EXAMPLES</h3><div class='examples'><p><div class="codehilite"><pre><span></span><span class="c1">-- Exclude frame wait time form the profiler ui</span>
+<span class="n">profiler</span><span class="p">.</span><span class="n">set_ui_vsync_wait_visible</span><span class="p">(</span><span class="kc">false</span><span class="p">)</span>
+</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Function/profiler.view_recorded_frame' class='dashAnchor'></a><a class='entry' name='profiler.view_recorded_frame'>profiler.view_recorded_frame()</a></h1><div class='brief'><p>displays a previously recorded frame in the on-screen profiler ui</p></div><p><p>Pauses and displays a frame from the recording buffer in the on-screen profiler ui</p>
+<p>The frame to show can either be an absolute frame or a relative frame to the current frame.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>frame_index<p><span class="type">table</span> a table where you specify one of the following parameters:</p>
+<ul>
+<li><code>distance</code> The offset from the currently displayed frame (this is truncated between zero and the number of recorded frames)</li>
+<li><code>frame</code> The frame index in the recording buffer (1 is first recorded frame)</li>
+</ul></p></div><h3>EXAMPLES</h3><div class='examples'><p><div class="codehilite"><pre><span></span><span class="c1">-- Go back one frame</span>
+<span class="n">profiler</span><span class="p">.</span><span class="n">view_recorded_frame</span><span class="p">({</span><span class="n">distance</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">})</span>
 </pre></div></p></div><hr/></body></html>

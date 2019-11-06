@@ -1,32 +1,4 @@
 <html><head><link rel='stylesheet' type='text/css' href='../defold.css'></head><body><div class='nav'><a class='chevron' href='../index.html'><img src='../svg/chevron-left.svg' alt='Home'></a></div><h1>Inter-app communication</h1>
-<p><p>Functions and constants for doing inter-app communication.</p>
-<p><span class="icon-ios"></span> <span class="icon-android"></span> These API:s only exist on mobile platforms.</p></p>
-<h1><a name='//apple_ref/cpp/Variable/iac.TYPE_INVOCATION' class='dashAnchor'></a><a class='entry' name='iac.TYPE_INVOCATION'>iac.TYPE_INVOCATION</a></h1><div class='brief'><p>iac type</p></div><hr/><h1><a name='//apple_ref/cpp/Function/iac.set_listener' class='dashAnchor'></a><a class='entry' name='iac.set_listener'>iac.set_listener()</a></h1><div class='brief'><p>set iac listener</p></div><p><p>Sets the listener function for inter-app communication events.</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>listener<p><span class="type">function(self, payload, type)</span> listener callback function.
-Pass an empty function if you no longer wish to receive callbacks.</p>
-<dl>
-<dt><code>self</code></dt>
-<dd>
-<p><span class="type">object</span> The current object.</p>
-</dd>
-<dt><code>payload</code></dt>
-<dd>
-<p><span class="type">table</span> The iac payload.</p>
-</dd>
-<dt><code>type</code></dt>
-<dd>
-<p><span class="type">constant</span> The type of iac, an iac.TYPE_<TYPE> enumeration.</p>
-</dd>
-</dl></p></div><h3>EXAMPLES</h3><div class='examples'><p><p>Set the iac listener.</p>
-<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="k">function</span> <span class="nf">iac_listener</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">payload</span><span class="p">,</span> <span class="nb">type</span><span class="p">)</span>
-     <span class="k">if</span> <span class="nb">type</span> <span class="o">==</span> <span class="n">iac</span><span class="p">.</span><span class="n">TYPE_INVOCATION</span> <span class="k">then</span>
-         <span class="c1">-- This was an invocation</span>
-         <span class="nb">print</span><span class="p">(</span><span class="n">payload</span><span class="p">.</span><span class="n">origin</span><span class="p">)</span> <span class="c1">-- origin may be empty string if it could not be resolved</span>
-         <span class="nb">print</span><span class="p">(</span><span class="n">payload</span><span class="p">.</span><span class="n">url</span><span class="p">)</span>
-     <span class="k">end</span>
-<span class="k">end</span>
-
-<span class="kd">local</span> <span class="n">init</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
-     <span class="o">...</span>
-     <span class="n">iac</span><span class="p">.</span><span class="n">set_listener</span><span class="p">(</span><span class="n">iac_listener</span><span class="p">)</span>
-<span class="k">end</span>
-</pre></div></p></div><hr/></body></html>
+<p><p>The Inter-app communication module has been moved into an external extension library
+available on <a href="https://defold.github.io/extension-iac/">here</a>.</p></p>
+</body></html>

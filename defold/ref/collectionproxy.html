@@ -31,13 +31,8 @@ resources.</p></p></div><h3>RETURN</h3><div class='return'><p>resources - <p><sp
 <span class="kd">local</span> <span class="k">function</span> <span class="nf">callback</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">id</span><span class="p">,</span> <span class="n">response</span><span class="p">)</span>
     <span class="kd">local</span> <span class="n">expected</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">resources</span><span class="p">[</span><span class="n">id</span><span class="p">]</span>
     <span class="k">if</span> <span class="n">response</span> <span class="o">~=</span> <span class="kc">nil</span> <span class="ow">and</span> <span class="n">response</span><span class="p">.</span><span class="n">status</span> <span class="o">==</span> <span class="mi">200</span> <span class="k">then</span>
-        <span class="k">if</span> <span class="n">resource</span><span class="p">.</span><span class="n">verify_resource</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">manifest</span><span class="p">,</span> <span class="n">expected</span><span class="p">,</span> <span class="n">response</span><span class="p">.</span><span class="n">response</span><span class="p">)</span> <span class="k">then</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">Successfully downloaded resource: &quot;</span> <span class="o">..</span> <span class="n">expected</span><span class="p">)</span>
-            <span class="n">resource</span><span class="p">.</span><span class="n">store_resource</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">response</span><span class="p">)</span>
-        <span class="k">else</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">Resource could not be verified: &quot;</span> <span class="o">..</span> <span class="n">expected</span><span class="p">)</span>
-            <span class="c1">-- error handling</span>
-        <span class="k">end</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">Successfully downloaded resource: &quot;</span> <span class="o">..</span> <span class="n">expected</span><span class="p">)</span>
+        <span class="n">resource</span><span class="p">.</span><span class="n">store_resource</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="n">response</span><span class="p">)</span>
     <span class="k">else</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">Failed to download resource: &quot;</span> <span class="o">..</span> <span class="n">expected</span><span class="p">)</span>
         <span class="c1">-- error handling</span>
