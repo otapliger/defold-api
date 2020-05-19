@@ -223,8 +223,15 @@ included:</p>
 <span class="k">else</span>
   <span class="nb">print</span><span class="p">(</span><span class="nb">error</span><span class="p">)</span>
 <span class="k">end</span>
-</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Function/sys.open_url' class='dashAnchor'></a><a class='entry' name='sys.open_url'>sys.open_url()</a></h1><div class='brief'><p>open url in default application</p></div><p><p>Open URL in default application, typically a browser</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>url<p><span class="type">string</span> url to open</p></p></div><h3>RETURN</h3><div class='return'><p>success - <p><span class="type">boolean</span> a boolean indicating if the url could be opened or not</p></p></div><h3>EXAMPLES</h3><div class='examples'><p><p>Open an URL:</p>
-<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">success</span> <span class="o">=</span> <span class="n">sys</span><span class="p">.</span><span class="n">open_url</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">http://www.defold.com&quot;</span><span class="p">)</span>
+</pre></div></p></div><hr/><h1><a name='//apple_ref/cpp/Function/sys.open_url' class='dashAnchor'></a><a class='entry' name='sys.open_url'>sys.open_url()</a></h1><div class='brief'><p>open url in default application</p></div><p><p>Open URL in default application, typically a browser</p></p><h3>PARAMETERS</h3><div class='params'><p class='param'>url<p><span class="type">string</span> url to open</p></p><p class='param'>[attributes]<p><span class="type">table</span> table with attributes</p>
+<p><code>target</code>
+- <span class="type">string</span> <span class="icon-html5"></span>: Optional. Specifies the target attribute or the name of the window. The following values are supported:
+- <code>_self</code> - URL replaces the current page. This is default.
+- <code>_blank</code> - URL is loaded into a new window, or tab.
+- <code>_parent</code> - URL is loaded into the parent frame.
+- <code>_top</code> - URL replaces any framesets that may be loaded.
+- <code>name</code> - The name of the window (Note: the name does not specify the title of the new window).</p></p></div><h3>RETURN</h3><div class='return'><p>success - <p><span class="type">boolean</span> a boolean indicating if the url could be opened or not</p></p></div><h3>EXAMPLES</h3><div class='examples'><p><p>Open an URL:</p>
+<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">success</span> <span class="o">=</span> <span class="n">sys</span><span class="p">.</span><span class="n">open_url</span><span class="p">(</span><span class="s2">&quot;</span><span class="s">http://www.defold.com&quot;</span><span class="p">,</span> <span class="p">{</span><span class="n">target</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="s">_blank&quot;</span><span class="p">})</span>
 <span class="k">if</span> <span class="ow">not</span> <span class="n">success</span> <span class="k">then</span>
   <span class="c1">-- could not open the url...</span>
 <span class="k">end</span>
