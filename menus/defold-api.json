@@ -1,18 +1,18 @@
 {
-    "menu": [
-    	{
-    		"label": "Packages",
-    		"submenu": [
-                {
-        			"label": "Defold API",
-        			"submenu": [
-        				{
-        					"label": "About",
-        					"command": "defold-api:about"
-        				}
-        			]
-                }
-    		]
-    	}
-    ]
+	"menu": [
+		{
+			"label": "Packages",
+			"submenu": [
+				{
+					"label": "Defold API",
+					"submenu": [
+						{
+							"label": "About",
+							"command": "defold-api:about"
+						}
+					]
+				}
+			]
+		}
+	]
 }
